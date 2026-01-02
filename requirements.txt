@@ -1,0 +1,26 @@
+# Core app
+streamlit
+
+# Streamlit components
+streamlit-markmap
+streamlit-calendar
+streamlit-sortables
+
+# Data / validation
+pandas
+pydantic
+
+# Plot / graph
+matplotlib
+networkx
+
+# Fuzzy match
+rapidfuzz
+
+# YAML
+PyYAML
+ruamel.yaml
+
+# Calendar / CalDAV
+icalendar
+caldav

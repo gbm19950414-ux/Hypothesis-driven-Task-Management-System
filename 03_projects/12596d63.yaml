@@ -1,0 +1,24 @@
+uid: 12596d63
+title: 建立raw_data-stats-figure-yaml框架
+objective_uid: 56b6db08
+area_uid: d5b88577
+order_tasks:
+- 1fcbc306
+- dd6cb688
+- d38c4596
+- e40d63c3
+- ce2b334b
+- e7519088
+- 1fac3a10
+- 3be5a411
+- 7d10b8a8
+- 1ea8f1fa
+- 6e016cf8
+- 6b8c5505
+- 6735e2f9
+- 6adc5896
+- 904ea564
+- c9a01fa8
+- 951143ac
+- da283407
+desc: 方便之后从任何一个层级入手进行快速修正

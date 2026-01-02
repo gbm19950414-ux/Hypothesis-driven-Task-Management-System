@@ -1,0 +1,26 @@
+title: 结果部分框架构建
+area: research
+objective: okr-2025Q4-research
+project: proj-thesis-first_draft
+status: done
+difficulty: 5
+duration_minutes: 180
+due: '2025-10-01'
+created_at: '2025-09-30T00:18:42+00:00'
+tags: []
+time_logs:
+- start: 周四_2025-10-02_07:20
+  end: 周四_2025-10-02_12:42
+  note:
+  - 检查一下结果框架是否合适
+  - 发现从整体水平先打草稿是很适合的操作，这样该草稿可以多次被修改逻辑，完成草稿后首先与孙老师讨论一次，修改完成后再进行绘图工作。
+- start: 周五_2025-10-03_08:23
+  end: ''
+  note: []
+uid: 44c6723c
+project_uid: da038aa1
+objective_uid: df290bef
+area_uid: d5b88577
+start: '2025-10-01T01:00:00'
+end: '2025-10-01T03:00:00'
+duration: 2h

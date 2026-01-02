@@ -1,0 +1,18 @@
+title: 实验计划
+status: todo
+duration: 2h
+created_at: '2025-10-13'
+uid: e6bd9825
+project_uid: 40e42acd
+objective_uid: bb4031c1
+area_uid: 74a241b3
+acceptance_criteria:
+- 完成可执行的任务分步骤清单
+time_logs:
+- start: '2025-10-21T10:48:02'
+  end: '2025-10-21T10:49:51'
+  note: "已完成实验整体思路框架，但是还没获得具体的protocol，现在需要了解nd-clnd的发展过程，然后将cl-nd相关文献整合，然后根据这些文献中提到的cl-nd制作方法，总结出一个客观主流的cl-nd制作方法\n"
+repeat_cycle: 不重复
+due: '2026-01-03'
+start: '2026-01-03T00:00:00'
+end: '2026-01-03T02:00:00'

@@ -1,0 +1,18 @@
+title: 功能意义与生理/疾病相关性-3
+status: done
+due: '2025-10-22'
+created_at: '2025-10-10'
+uid: 717708b9
+project_uid: 02ae0c3c
+objective_uid: 5239c235
+area_uid: d5b88577
+start: '2025-10-22T10:30:00'
+end: '2025-10-22T12:30:00'
+duration: 2h
+acceptance_criteria: []
+time_logs:
+- start: '2025-10-22T12:45:55'
+  end: '2025-10-22T18:01:16'
+  note: ''
+completed_at: '2025-10-22T18:02:16'
+time_spent_min: 315

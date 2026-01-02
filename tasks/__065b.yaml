@@ -1,0 +1,26 @@
+id: __065b
+uid: 065b90fd
+title: 生成训练/验证清单与字典
+desc: >
+  运行 python scripts/04_make_lists_and_charset.py 以及 python scripts/05_gen_rec_config.py
+  。 这会： 1) 从修订后的 labels/lowconf.tsv 里收集行图与最终文本，
+     产出 labels/rec_train_list.txt / rec_val_list.txt / rec_test_list.txt
+     （每行是: 行图片路径<TAB>文字）。
+  2) 统计所有实际出现过的字符，写入 labels/charset_user.txt，
+     只保留你的手写里真的会出现的字。
+  3) 生成训练配置 scripts/rec_user.yml（包含字典路径、数据列表、模型结构等）。
+status: done
+due: '2025-11-08'
+start: '2025-11-08T16:30:00'
+end: '2025-11-08T16:40:00'
+duration: 10min
+project_uid: cf38d4c9
+objective_uid: 3d5e28ae
+area_uid: d2a2396b
+acceptance_criteria: []
+deliverable: []
+repeat_cycle: 不重复
+created_at: '2025-10-27'
+time_logs: []
+completed_at: '2025-10-28T16:22:29'
+time_spent_min: 0

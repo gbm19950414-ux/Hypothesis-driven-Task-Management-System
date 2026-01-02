@@ -1,0 +1,21 @@
+id: __026f
+uid: 026fe18a
+title: 完成所有书籍的扫描
+status: done
+due: '2025-11-12'
+start: '2025-11-12T02:00:00'
+end: '2025-11-12T04:00:00'
+duration: 2h
+project_uid: cf38d4c9
+objective_uid: 3d5e28ae
+area_uid: d2a2396b
+acceptance_criteria: []
+deliverable: []
+repeat_cycle: 不重复
+created_at: '2025-11-03'
+time_logs:
+- start: '2025-11-12T07:49:28'
+  end: '2025-11-12T07:49:32'
+  note: 完成
+completed_at: '2025-11-12T07:49:38'
+time_spent_min: 0

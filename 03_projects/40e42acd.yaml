@@ -1,0 +1,8 @@
+title: 因果实验
+desc: 为了使用因果手段验证心磷脂含量减少，使用脂质体递送心磷脂到细胞中，观察是否可以恢复表型
+created_at: '2025-10-13'
+uid: 40e42acd
+objective_uid: bb4031c1
+area_uid: 74a241b3
+order_tasks:
+- e6bd9825

@@ -1,0 +1,15 @@
+id: __ec32
+uid: ec32cbc6
+title: 答辩结果、终版论文提交完成相应批次学位申请材料结束授理
+status: todo
+due: '2026-06-07'
+start: '2026-06-07T09:00:00'
+end: '2026-06-07T11:00:00'
+duration: 2h
+project_uid: 78e9431a
+objective_uid: '08422210'
+area_uid: d5b88577
+acceptance_criteria: []
+deliverable: []
+repeat_cycle: 不重复
+created_at: '2025-11-11'

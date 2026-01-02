@@ -1,0 +1,22 @@
+id: __49f5
+uid: 49f56f6a
+title: 训练自有识别模型
+desc: >
+  运行 bash scripts/07_train_rec.sh 。 该脚本会用 PaddleOCR 的训练入口加载 scripts/rec_user.yml，
+  对中文识别头（如 SVTR/CRNN/Transformer 识别分支）进行微调。 训练会把权重/日志写到 outputs/ckpt 或 output/rec_user/
+  目录， 并根据验证集字符错误率（CER）挑 best 模型。
+status: done
+due: '2025-11-08'
+start: '2025-11-08T17:30:00'
+end: '2025-11-08T20:30:00'
+duration: 3h
+project_uid: cf38d4c9
+objective_uid: 3d5e28ae
+area_uid: d2a2396b
+acceptance_criteria: []
+deliverable: []
+repeat_cycle: 不重复
+created_at: '2025-10-27'
+time_logs: []
+completed_at: '2025-10-28T16:22:23'
+time_spent_min: 0

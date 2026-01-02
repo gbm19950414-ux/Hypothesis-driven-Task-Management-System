@@ -1,0 +1,28 @@
+default_capacity:
+  hours_available: 28
+  deep_blocks_target: 7
+  buffer_ratio: 0.2
+  area_weights:
+    健身: 0.0
+    博士毕业论文: 0.5
+    工作: 0.0
+    效率: 0.0
+    旅游: 0.0
+    爱情: 0.19
+    科研: 0.41
+defaults:
+  not_do:
+  - 不开新分析脚本
+  - 不新增实验分支
+  metrics:
+    leading:
+      deep_work_hours: 12
+      valid_steps: 10
+    lagging:
+      figures_done: 1
+      datasets_qc_passed: 1
+  evidence_method:
+  - git_commit
+  - lab_record_id
+paths:
+  weekly_dir: /Users/gongbaoming/Library/CloudStorage/OneDrive-个人/life_os/weekly

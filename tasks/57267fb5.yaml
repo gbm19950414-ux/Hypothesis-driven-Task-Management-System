@@ -1,0 +1,23 @@
+uid: 57267fb5
+title: 基因型鉴定
+status: done
+due: '2025-11-07'
+start: '2025-11-07T16:30:00'
+end: '2025-11-07T18:30:00'
+duration: 2h
+project_uid: 135efa63
+objective_uid: 3a986ba1
+area_uid: 74a241b3
+acceptance_criteria: []
+deliverable: []
+repeat_cycle: 不重复
+created_at: '2025-10-22'
+time_logs:
+- start: '2025-10-24T12:01:24'
+  end: '2025-10-25T08:39:58'
+  note: 建立实验记录
+- start: '2025-10-27T09:03:41'
+  end: '2025-10-27T09:04:27'
+  note: 完成基因型鉴定与实验报告，接下来需要进行基因型标注、冻精申请
+completed_at: '2025-10-27T09:05:36'
+time_spent_min: 1238

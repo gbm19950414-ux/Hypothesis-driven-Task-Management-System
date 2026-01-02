@@ -1,0 +1,6 @@
+# 允许的取值与默认规则
+areas: ["research", "thesis", "fitness", "personal"]
+priorities: ["P1", "P2", "P3"]
+statuses: ["backlog", "todo", "doing", "waiting", "blocked", "done"]
+default_priority: "P2"
+timezone: "Asia/Shanghai"   # 可改

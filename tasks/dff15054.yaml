@@ -1,0 +1,27 @@
+title: 建立机器学习文字识别系统
+area: love
+objective: okr-2025Q4-birthday_gift
+project: proj- diary
+status: done
+importance: P2
+difficulty: 3
+duration_minutes: 120
+tags: []
+created_at: '2025-09-24T09:09:24+00:00'
+uid: dff15054
+project_uid: cf38d4c9
+objective_uid: 3d5e28ae
+area_uid: d2a2396b
+due: '2025-11-07'
+start: '2025-11-07T15:00:00'
+end: '2025-11-07T17:00:00'
+duration: 2h
+time_logs:
+- start: '2025-10-23T14:29:32'
+  end: '2025-10-23T14:53:33'
+  note: "已经进行了一部分工作，建立了文件夹和脚本，可能是因为机器性能问题，还不能完成02脚本的工作\n目前跑通了02脚本的工作，接下来的工作之后再进行吧"
+- start: '2025-10-25T10:19:04'
+  end: '2025-10-27T08:43:21'
+  note: 完成260条纠错任务，先跑通一遍路径，再考虑加入大语言模型进行识别
+completed_at: '2025-10-27T09:19:55'
+time_spent_min: 2808

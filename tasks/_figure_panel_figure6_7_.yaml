@@ -1,0 +1,31 @@
+id: _figure_panel_figure6_7_
+uid: 7a3f036a
+title: 从figure到panel理顺整个figure6/7，可解释，若有不对的地方，再进行修正
+status: done
+due: '2025-12-03'
+start: '2025-12-03T09:00:00'
+end: '2025-12-03T11:00:00'
+duration: 2h
+project_uid: d696077e
+objective_uid: 5239c235
+area_uid: d5b88577
+acceptance_criteria:
+- 让整个figure6、7.yaml 可以被解释，逻辑通顺
+- 若figure6.7.ai 不符合逻辑，修改图片
+- 生产figure6,7 中文论文,解释a、b含义
+deliverable: []
+repeat_cycle: 不重复
+created_at: '2025-11-28'
+time_logs:
+- start: '2025-11-29T07:32:34'
+  end: '2025-12-02T07:44:24'
+  note: "生成paper.yaml figure 6、7 部分，整体阅读、矫正、掌握\n根据logical，理顺figure6、7，途中对照、修正ai\n\
+    最终生产figure6、7中文论文\n以panel为单位，logical-yaml-ai-中文论文，整体完成。\n基因集与脂质指标需要被重新界定（尤其是转运过程和膜环境）"
+- start: '2025-12-02T07:44:29'
+  end: '2025-12-02T16:43:59'
+  note: 完成figure 6，现在开始figure 7逻辑解释，完成，明天才能进行文章撰写和图片处理了
+- start: '2025-12-03T08:55:45'
+  end: '2025-12-03T08:56:06'
+  note: 完成figure 7 a，1.5h
+completed_at: '2025-12-04T07:14:52'
+time_spent_min: 4870

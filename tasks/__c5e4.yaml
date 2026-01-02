@@ -1,0 +1,16 @@
+id: __c5e4
+uid: c5e4db7d
+title: 完成重复与补充实验设计
+status: todo
+due: '2026-02-02'
+start: '2026-02-02T09:00:00'
+end: '2026-02-02T11:00:00'
+duration: 2h
+project_uid: ce098d21
+objective_uid: 9aaa0d5b
+area_uid: d5b88577
+acceptance_criteria: []
+deliverable: []
+repeat_cycle: 不重复
+created_at: '2025-11-11'
+desc: 里程碑

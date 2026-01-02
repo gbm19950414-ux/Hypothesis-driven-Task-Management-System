@@ -1,0 +1,18 @@
+title: 机制解释与文献对照-4
+status: done
+due: '2025-10-20'
+created_at: '2025-10-10'
+uid: cc95447d
+project_uid: 02ae0c3c
+objective_uid: 5239c235
+area_uid: d5b88577
+start: '2025-10-20T16:30:00'
+end: '2025-10-20T18:30:00'
+duration: 2h
+time_logs:
+- start: '2025-10-16 09:28:11.941672'
+  end: '2025-10-16 11:06:57.806308'
+  note: "讨论章节的1级结构是否合理？比重是否合适？\n合适，进行2级结构修改，已完成"
+acceptance_criteria:
+- 完成整个讨论部分的框架，具体到每句话应该怎么写
+deliverable: []

@@ -1,0 +1,55 @@
+week: 2025-W43
+sprint_goal: "以结果为导向的首次周计划"
+capacity:
+  deep_blocks: 45     # 60min/块，依据你下周可用深度工时折算
+  plan_blocks: 36     # 只用 70–80% 容量
+wip_limit: 3
+no_meeting_window: "13:30-17:00"
+
+hard_deadlines:
+  - date: 2025-10-22
+    item: "Figure 2 初稿"
+    required_blocks_this_week: 6
+
+outcomes:
+  - id: O1
+    name: "Figure 2 初稿提交"
+    acceptance: "6 子图+图例成稿，导出 PDF 通过自检清单"
+    due: 2025-10-22
+  - id: O2
+    name: "WB 材料脚本：每泳道灰度统计完成"
+    acceptance: "脚本生成 CSV + 1 张示例图，过自测"
+    due: 2025-10-24
+
+backlog_selected:
+  - id: T1
+    outcome: O1
+    size_blocks: 2
+    name: "子图 A–B 重绘 & 统一配色"
+  - id: T2
+    outcome: O1
+    size_blocks: 2
+    name: "图例与方法注释初稿"
+  - id: T3
+    outcome: O1
+    size_blocks: 2
+    name: "版式检查 & 导出自检"
+  - id: T4
+    outcome: O2
+    size_blocks: 2
+    name: "ROI→灰度汇总 CSV"
+  - id: T5
+    outcome: O2
+    size_blocks: 1
+    name: "示例图 & 读我"
+
+plan:
+  Mon: ["T1(1)", "T1(2)", "缓冲(1)"]
+  Tue: ["T2(1)", "T2(2)", "杂项/沟通(1)"]
+  Wed: ["T4(1)", "T4(2)", "缓冲(1)"]
+  Thu: ["T3(1)", "T3(2)", "T5(1)"]
+  Fri: ["补漏/提交(O1)", "回顾&下周草案(1)"]
+
+risks:
+  - desc: "样本/数据补拍可能延迟"
+    mitigation: "周三前确认素材是否齐全，缺口立刻改排 O2 块"

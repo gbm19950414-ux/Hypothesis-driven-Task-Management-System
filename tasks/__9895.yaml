@@ -1,0 +1,21 @@
+id: __9895
+uid: 989523bd
+title: 完成格式整理工作
+status: done
+due: '2025-11-20'
+start: '2025-11-20T22:30:00'
+end: '2025-11-21T00:30:00'
+duration: 2h
+project_uid: cf38d4c9
+objective_uid: 3d5e28ae
+area_uid: d2a2396b
+acceptance_criteria:
+- 找到合适的商家，按照需要的格式确定如何整理
+- 格式美观，合适出版
+- 封面漂亮，以假乱真
+deliverable: []
+repeat_cycle: 不重复
+created_at: '2025-11-03'
+time_logs: []
+completed_at: '2025-11-21T07:28:38'
+time_spent_min: 0

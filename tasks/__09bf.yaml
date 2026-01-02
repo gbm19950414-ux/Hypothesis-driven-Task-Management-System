@@ -1,0 +1,21 @@
+id: __09bf
+uid: 09bf64e5
+title: 导出推理模型并做评估
+desc: >
+  运行 bash scripts/08_exal_rec.sh 。 这一步会把训练得到的 best 权重导出成推理版（inference.pdmodel / inference.pdiparams），
+  方便后续独立推理或转成 ONNX。 同时在验证/测试集上计算 CER / 常见错字统计， 记录哪些字形/连写/标点仍是薄弱点，准备下一轮标注重点。
+status: done
+due: '2025-11-07'
+start: '2025-11-07T17:30:00'
+end: '2025-11-07T18:15:00'
+duration: 45min
+project_uid: cf38d4c9
+objective_uid: 3d5e28ae
+area_uid: d2a2396b
+acceptance_criteria: []
+deliverable: []
+repeat_cycle: 不重复
+created_at: '2025-10-27'
+time_logs: []
+completed_at: '2025-10-28T16:22:15'
+time_spent_min: 0
