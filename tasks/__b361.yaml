@@ -1,7 +1,7 @@
 id: __b361
 uid: b361ed45
 title: 完成讨论部分撰写
-status: todo
+status: done
 due: '2026-01-08'
 start: '2026-01-08T08:00:00'
 end: '2026-01-08T10:00:00'
@@ -13,3 +13,6 @@ acceptance_criteria: []
 deliverable: []
 repeat_cycle: 不重复
 created_at: '2025-12-26'
+time_logs: []
+completed_at: '2026-01-09T08:50:53'
+time_spent_min: 0

@@ -1,0 +1,54 @@
+plan:
+  # philosophy 决定“成败由谁裁决”
+  # 选择规则（只选一个）：
+  # - target：当你不知道路径，但需要方向与动机（探索 / 创新阶段）
+  # - evidence：当走错路成本很高，需要尽快证伪假设（科研 / 决策验证）
+  # - constraint：当时间或资源刚性，必须按期交付（截止期驱动）
+  #
+  # 换挡原则：
+  # - 不知道去哪 → target
+    # [target 主导填写规则]
+    # - desired_state：必须清晰、具体、可感知（最重要）
+    # - hypotheses：可以模糊，只需保证“方向合理”
+    # - validation：只做方向性校验，不设过硬阈值
+    # - current_state：只写关键摩擦，避免过度悲观
+    # - constraints：存在即可，不作为裁决标准
+  # - 害怕走错 → evidence
+    # [evidence 主导填写规则]
+    # - hypotheses：必须可证伪（核心）
+    # - validation.stop_rule：必须明确（出现即停）
+    # - desired_state：可以抽象，重点是“学到什么 / 排除什么”
+    # - current_state：重点写不确定性来源
+    # - constraints：用于限制沉没成本，不用于裁决成败
+  # - 来不及了 → constraint
+    # [constraint 主导填写规则]
+    # - constraints.deadline_or_budget：最高裁决权（最重要）
+    # - desired_state：必须被约束裁剪成“可交付版本”
+    # - hypotheses：降级为执行假设，不追求完美
+    # - validation：以“到点是否可用”为主
+    # - current_state：重点写资源缺口，而非理论不确定性
+    
+  philosophy: target | evidence | constraint   # 只能选一个作为主导
+
+  desired_state:
+    time_window: ""        # 如: 4 weeks / by 2026-02-01
+    observable_change: ""  # 必须可被第三方判断（↑ ↓ 出现 消失）
+
+  current_state:
+    hard_constraints: ""   # 时间 / 资源 / 权限
+    failure_mode: ""       # 最可能怎么失败
+    uncertainty: ""        # 最大不确定来源
+
+  hypotheses:              # ≤ 3 条
+    - action: ""
+      expected_effect: ""
+      time_to_observe: ""
+      falsified_if: ""
+
+  validation:
+    earliest_signal: ""    # 最早判断对/错的信号
+    stop_rule: ""          # 出现即停（必填）
+
+  constraints:
+    deadline_or_budget: ""
+    fallback_rule: "freeze_output_and_reallocate_time"

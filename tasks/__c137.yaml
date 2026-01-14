@@ -1,7 +1,7 @@
 id: __c137
 uid: c137fd9c
 title: 提交大论文初稿
-status: todo
+status: done
 due: '2026-01-14'
 start: '2026-01-14T08:00:00'
 end: '2026-01-14T10:00:00'
@@ -13,3 +13,6 @@ acceptance_criteria: []
 deliverable: []
 repeat_cycle: 不重复
 created_at: '2025-12-26'
+time_logs: []
+completed_at: '2026-01-14T07:38:08'
+time_spent_min: 0

@@ -2,9 +2,9 @@ id: __c5ce
 uid: c5cec21a
 title: 选择合适的体检中心，预约
 status: todo
-due: '2026-01-10'
-start: '2026-01-10T08:00:00'
-end: '2026-01-10T10:00:00'
+due: '2026-01-11'
+start: '2026-01-11T08:00:00'
+end: '2026-01-11T10:00:00'
 duration: 2h
 project_uid: 0d8d6e44
 objective_uid: fca16146
