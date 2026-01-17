@@ -1,7 +1,7 @@
 id: __f064
 uid: f064c338
 title: 寻找合适的杂志
-status: todo
+status: done
 due: '2026-01-13'
 start: '2026-01-13T08:00:00'
 end: '2026-01-13T10:00:00'
@@ -13,3 +13,6 @@ acceptance_criteria: []
 deliverable: []
 repeat_cycle: 不重复
 created_at: '2026-01-10'
+time_logs: []
+completed_at: '2026-01-15T06:50:21'
+time_spent_min: 0

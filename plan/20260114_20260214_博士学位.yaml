@@ -146,21 +146,26 @@ plan:
       supports_step: S1
       description: "基于既有数据，对当前组学结论进行一次完整再分析/再整理"
       output: "pdf、r、yaml文件"
-      done_if: "文件存在，且包含一次完整、可复查的组学结果整理（不要求结论正确）"
+      done_if: "分析整个流程都代表了目前对课题的最高理解、正确性"
       due: "2026-01-15"
+      done: "2026-01-16"
       timebox: "1day"
+      status: done
 
     - id: T2
       supports_step: S1
       description: "根据最新yaml文件，将新的组学结论以备注形式更新到中文正文草稿中"
       output: "docx文件"
-      done_if: "论文准确表达最新观点，并具有可读性"
+      done_if: "论文准确表达最新观点，并具有可读性。过程中理解整个流程"
       due: "2026-01-15"
       timebox: "4h"
+      status: todo
 
     - id: T3
       supports_step: S2
-      description: "基于当前组学结论，形成一个有限的候选机制假设"
+      description: 
+        首先明确组学结论得出的整体逻辑与方法：是否需要返回到基因集设定，考虑capacity、footprint，的出合理假设，验证方向？
+        基于当前组学结论，形成一个有限的候选机制假设
       output: "机制假设.yaml"
       done_if: "文件存在，且包含2个机制均附带支持证据与主要不确定点"
       due: "2026-01-16"
@@ -241,3 +246,22 @@ plan:
       done_if: "文件存在，且具有较高可读性"
       due: "2026-02-13"
       timebox: "4h"
+
+procedure:
+  - id: P1
+    supports_task: T1
+    focus: "确定组学章节主叙事与判准（这章要证明什么、关键节点是什么）"
+    done_if: "由于一开始的logical.yaml可能有问题，所以要首先与gpt讨论，获得正确的逻辑"
+    artifacts: [logical.yaml]
+    record: 
+      由于中介分析太不稳定，选择进行机制匹配分析
+      完成逻辑梳理
+
+  - id: P2
+    supports_task: T1
+    focus: "扫描所有步骤的合理性，能否为接下来的目的服务,若不能，想办法修正"
+    done_if: "完成所有panel与panel.yaml的重塑"
+    artifacts: ["scan_notes.md"]
+    record:
+      完成panel的重塑，但是还没有对panel.yaml重塑，
+      重塑yaml的过程本质上等于下一个任务中的撰写正文 和 理解整个流程，所以留到下一个任务一起处理

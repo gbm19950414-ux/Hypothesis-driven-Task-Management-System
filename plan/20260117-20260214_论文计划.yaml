@@ -11,14 +11,14 @@ plan:
 
   # philosophy 决定“成败由谁裁决”
   # 只能选一个作为主导，其余降级为辅助
-  philosophy: target | evidence | constraint
+  philosophy: constraint
 
   # =========================
   # 1. 目标与现状
   # =========================
 
   desired_state:
-    time_window: ""        # 如: "4 weeks" / "by 2026-02-01"
+    time_window: "4week"        # 如: "4 weeks" / "by 2026-02-01"
     observable_change: ""  # 第三方可判断的变化（出现 / 消失 / ↑ ↓）
 
   current_state:
@@ -71,11 +71,11 @@ plan:
 
     - id: T1
       supports_step: S1
-      description: ""
-      output: ""
-      done_if: ""
-      due: ""              # today / YYYY-MM-DD / YYYY-MM-DD~YYYY-MM-DD
-      timebox: ""          # 2h / 4h / 1day（仅防膨胀）
+      description: "建立论文计划"
+      output: "论文计划.yaml"
+      done_if: "论文计划进入可执行流程"
+      due: "2026-01-19"              # today / YYYY-MM-DD / YYYY-MM-DD~YYYY-MM-DD
+      timebox: "1h"          # 2h / 4h / 1day（仅防膨胀）
 
   # =========================
   # 6. Procedure（Task 内部执行引导，可选）

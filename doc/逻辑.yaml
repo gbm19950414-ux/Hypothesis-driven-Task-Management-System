@@ -1,0 +1,8 @@
+层级:
+  AOPT 提供稳定的层级骨架；
+  Hypothesis–Step–Task 提供在骨架内运行的认知引擎。
+
+Area: Plan scope # ✅ 完全一致（长期上下文）
+Objective: Hypothesis（主导） # ⚠️ 同层，但你升级了“性质”
+Project: Step（组合） # ✅ 功能一致
+Task: Task # ✅ 完全一致
