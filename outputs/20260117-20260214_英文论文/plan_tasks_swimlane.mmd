@@ -1,0 +1,25 @@
+flowchart LR
+  S1["S1: 基于现有 overall logical YAML + 每图 YAML，确认并冻结英文论文的唯一叙事主线（不重新探索）"]
+  S2["S2: 将每图 YAML 快速映射为英文 Results 的最小可读草稿（骨架句 + 段落顺序），并完成来源标注"]
+  S3["S3: 验证中文 Discussion 是否能被压缩并升级为英文期刊讨论"]
+  S4["S4: 从英文 Results + Discussion 反推英文 Introduction"]
+  T1["T1: 建立论文计划"]
+  S1 --> T1
+  T2["T2: 基于 overall logical YAML，写出英文论文的 scientific question 与一句话主线，并确认主图集合无需重构"]
+  S1 --> T2
+  T3["T3: 为每张主图生成英文 Results 骨架要点（从每图 YAML 提炼，不做语言润色）"]
+  S1 --> T3
+  T4["T4: 将各 figure 的英文要点按叙事顺序拼装为英文 Results v0（可读草稿，不追求语言质量）"]
+  S1 --> T4
+  T5["T5: 将 Results v0 重排为 section-by-section 结构，并为每段标注中文段落/图来源（映射表）"]
+  S2 --> T5
+  T6["T6: 完成 Results 的最低限度统一：术语表、缩写一致、图例/引用格式统一（仅 Results，不做全稿润色）"]
+  S2 --> T6
+  T7["T7: 从中文 Discussion YAML 中提取所有可用于英文论文的机制性论点"]
+  S3 --> T7
+  T8["T8: 压缩并筛选 Discussion 论点至 3–5 个核心论点，并确定 conceptual framing"]
+  S3 --> T8
+  T9["T9: 从英文 Results + Discussion 反推 Introduction 的单一 knowledge gap"]
+  S4 --> T9
+  T10["T10: 搭建英文 Introduction 三段式逻辑结构（不写完整英文）"]
+  S4 --> T10

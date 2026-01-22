@@ -1,0 +1,13 @@
+flowchart LR
+  H1["H1: 优先完成 Results 部分（图 + 文字）"]
+  H2["H2: 在现有结果基础上构建 Discussion 框架"]
+  H3["H3: 基于已完成 Results + Discussion 反向填充 Introduction"]
+  H4["H4: 统一语言、图例、补充材料，完成可批阅版本"]
+  S1["S1: 基于现有 overall logical YAML + 每图 YAML，确认并冻结英文论文的唯一叙事主线（不重新探索）"]
+  H1 --> S1
+  S2["S2: 将每图 YAML 快速映射为英文 Results 的最小可读草稿（骨架句 + 段落顺序），并完成来源标注"]
+  H1 --> S2
+  S3["S3: 验证中文 Discussion 是否能被压缩并升级为英文期刊讨论"]
+  H2 --> S3
+  S4["S4: 从英文 Results + Discussion 反推英文 Introduction"]
+  H3 --> S4

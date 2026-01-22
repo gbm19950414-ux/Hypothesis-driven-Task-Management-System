@@ -48,6 +48,7 @@ plan:
       expected_effect: ""
       time_to_observe: ""  # YYYY-MM-DD
       falsified_if: ""
+      status: ""           # todo | active | frozen | done，用于标记该假设在当前时间窗口内的执行状态
 
   # =========================
   # 4. Step 层（路径）
@@ -59,6 +60,8 @@ plan:
       supports_hypothesis: H1
       done_if: ""          # 达到即可冻结
       output: ""
+      status: ""           # todo | active | frozen | done，标记该路径当前是否仍在推进、已冻结或已完成
+      decision_deadline: "" # 在 constraint 主导下，最迟必须对该 Step 做出冻结或继续决策的时间点
 
   # =========================
   # 5. Task 层（1 day 证据）
@@ -68,6 +71,7 @@ plan:
     # Task 的唯一职责：
     # - 一天内留下“可冻结的执行证据”
     # - 必须推进某个 Step
+    # - status / done 字段用于记录现实进度，不参与成败裁决
 
     - id: T1
       supports_step: S1
@@ -76,14 +80,18 @@ plan:
       done_if: ""
       due: ""              # today / YYYY-MM-DD / YYYY-MM-DD~YYYY-MM-DD
       timebox: ""          # 2h / 4h / 1day（仅防膨胀）
+      status: ""           # todo | active | blocked | done | dropped，细粒度执行状态，用于反映现实进度
+      done: ""             # 实际完成日期（YYYY-MM-DD），与 due 解耦
 
   # =========================
   # 6. Procedure（Task 内部执行引导，可选）
   # =========================
 
-procedure:
-  - id: P1
-    supports_task: T1
-    focus: ""
-    done_if: ""
-    artifacts: []
+  procedure:
+    - id: P1
+      supports_task: T1
+      focus: ""
+      done_if: ""
+      artifacts: []
+      record: ""           # 记录关键决策、偏差或当时的真实判断（作为事后回溯证据）
+      status: ""           # todo | done，Procedure 是否已执行完成

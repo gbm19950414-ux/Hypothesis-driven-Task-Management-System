@@ -159,7 +159,7 @@ plan:
       done_if: "论文准确表达最新观点，并具有可读性。过程中理解整个流程"
       due: "2026-01-15"
       timebox: "4h"
-      status: todo
+      status: freeze
 
     - id: T3
       supports_step: S2
@@ -170,6 +170,7 @@ plan:
       done_if: "文件存在，且包含2个机制均附带支持证据与主要不确定点"
       due: "2026-01-16"
       timebox: "4h"
+      status: done
 
     - id: T4
       supports_step: S2
@@ -178,6 +179,7 @@ plan:
       done_if: "文件存在，且实验方案明确包含操纵对象、读出指标和关键对照"
       due: "2026-01-16"
       timebox: ""
+      status: done
 
     # ---- S3：冻结用于执行的实验方案版本 ----
     - id: T5
@@ -187,7 +189,7 @@ plan:
       done_if: "文件存在，且明确写出关键参数/对照/样本数；并标注版本为 final"
       due: "2026-01-19"
       timebox: "4h"
-
+      status: done
     - id: T6
       supports_step: S3
       description: "为 final 执行版生成执行清单：试剂/耗材/样本准备、设备预约、时间线与风险点"
@@ -195,7 +197,7 @@ plan:
       done_if: "文件存在，且包含试剂耗材清单、设备/时间安排、≥2 个风险点与应对"
       due: "2026-01-19"
       timebox: "2h"
-
+      status: active
     # ---- S4：完成实验执行并获得完整原始数据 ----
     - id: T7
       supports_step: S4
@@ -256,6 +258,7 @@ procedure:
     record: 
       由于中介分析太不稳定，选择进行机制匹配分析
       完成逻辑梳理
+    status: done
 
   - id: P2
     supports_task: T1
@@ -265,3 +268,68 @@ procedure:
     record:
       完成panel的重塑，但是还没有对panel.yaml重塑，
       重塑yaml的过程本质上等于下一个任务中的撰写正文 和 理解整个流程，所以留到下一个任务一起处理
+    status: done
+
+  - id: P3
+    supports_task: T2
+    focus: "pdf文件"
+    done_if: "所有pdf文件达到上图标准"
+    artifacts: ["figure5/6.ai"]
+    record:
+      首先逻辑要正确，首先看逻辑
+    status: done
+
+  - id: P4
+    supports_task: T2
+    focus: "yaml文件"
+    done_if: "所有说明yaml文件符合pdf文件传达意义"
+    artifacts: ["figure5/6.yaml"]
+    record:
+
+    status: done
+
+  - id: P5
+    supports_task: T2
+    focus: "doc文件"
+    done_if: "doc中的中文论文（最终说明）清晰传达yaml说明文件的内在含义"
+    artifacts: ["毕业论文最新版本.docx"]
+    record:
+      等待孙老师返回结果后再进行修改
+    status: todo
+
+  - id: P6
+    supports_task: T3
+    focus: "利用 AI 扩展可能的机制候选空间（不裁决）"
+    done_if: "列出 ≥3 个与当前组学结果一致的候选机制，每个附 1–2 条支持线索"
+    artifacts: ["mechanism_candidates_raw.md"]
+    status: done
+
+  - id: P7
+    supports_task: T3
+    focus: "基于自身理解与可验证性，对候选机制进行筛选与收敛"
+    done_if: "最终 mechanism.yaml 中保留 2 个机制，均标注支持证据与主要不确定点"
+    artifacts: ["mechanism.yaml"]
+    status: done
+    record: 
+      优化假设结构，确定精细度
+
+  - id: P8
+    supports_task: T3
+    focus: "与孙老师讨论，获得最终裁判与资源"
+    done_if: "完成讨论，开始资源准备、方法建立与样品收集"
+    artifacts: ["mechanism.yaml"]
+    status: freeze
+    record: 
+      优化假设结构，确定精细度
+
+  - id: P9
+    supports_task: T4
+    focus: "根据假设与验证逻辑，获得可以实际执行的实验方案"
+    done_if: "获得可执行的实验方案"
+    artifacts: ["实验方案.yaml"]
+    status: done
+    record: >
+      已经由假设生成了pipeline
+      pipeline生成了具体执行方案
+      接下来只需要准备好meterial和protocol就可以开始实验
+

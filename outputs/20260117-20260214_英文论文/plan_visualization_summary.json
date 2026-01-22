@@ -1,0 +1,176 @@
+{
+  "plan_path": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/20260117-20260214_英文论文.yaml",
+  "out_dir": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/20260117-20260214_英文论文",
+  "today": "2026-01-20",
+  "deadline": "2026-02-14",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "action": "优先完成 Results 部分（图 + 文字）",
+      "expected_effect": "形成一套可自洽的结果叙事主线",
+      "time_to_observe": "2026-01-24",
+      "falsified_if": "Results 写作过程中发现叙事无法自洽或证据链断裂"
+    },
+    {
+      "id": "H2",
+      "action": "在现有结果基础上构建 Discussion 框架",
+      "expected_effect": "形成可扩展到 3–5 段的机制讨论草稿",
+      "time_to_observe": "2026-01-30",
+      "falsified_if": "讨论只能重复结果描述，无法上升到机制或领域意义"
+    },
+    {
+      "id": "H3",
+      "action": "基于已完成 Results + Discussion 反向填充 Introduction",
+      "expected_effect": "形成逻辑闭合、问题驱动明确的引言",
+      "time_to_observe": "2026-02-05",
+      "falsified_if": "无法在引言中自然导向现有结果与讨论"
+    },
+    {
+      "id": "H4",
+      "action": "统一语言、图例、补充材料，完成可批阅版本",
+      "expected_effect": "获得一版结构完整、语言可读的英文论文",
+      "time_to_observe": "2026-02-12",
+      "falsified_if": "整体修改量超过 30% 或结构被导师推翻"
+    }
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "description": "基于现有 overall logical YAML + 每图 YAML，确认并冻结英文论文的唯一叙事主线（不重新探索）",
+      "supports_hypothesis": "H1",
+      "done_if": "在不新增/删除主图的情况下，英文论文可以被一句话概括，且所有选定 figure 都服务同一因果主线",
+      "output": "['英文论文的核心 scientific question（一句话）', '英文论文 Results 的 figure 列表（≤6 主图，按叙事顺序）', '被明确舍弃的中文章节/轴线清单']"
+    },
+    {
+      "id": "S2",
+      "description": "将每图 YAML 快速映射为英文 Results 的最小可读草稿（骨架句 + 段落顺序），并完成来源标注",
+      "supports_hypothesis": "H1",
+      "done_if": "英文 Results v0 可在不追求语言质量的前提下被完整读完，且每段均可追溯到对应 YAML/中文来源",
+      "output": "['英文 Results 的 section-by-section outline（按 figure 组织）', '每张 figure 的英文要点骨架（3–6 句，非润色）', '英文 Results v0 草稿（可从头读到尾）', '每个英文段落对应的中文段落/图来源']"
+    },
+    {
+      "id": "S3",
+      "description": "验证中文 Discussion 是否能被压缩并升级为英文期刊讨论",
+      "supports_hypothesis": "H2",
+      "done_if": "Discussion 不依赖中文长篇背景解释，也能独立成立",
+      "output": "['英文 Discussion 的 3–5 个核心论点', '每个论点对应的 Results 支撑', '至少 1 个超出中文论文叙述层级的 conceptual framing']"
+    },
+    {
+      "id": "S4",
+      "description": "从英文 Results + Discussion 反推英文 Introduction",
+      "supports_hypothesis": "H3",
+      "done_if": "Introduction 不依赖中文论文语境，面向国际读者自洽",
+      "output": "['英文 Introduction 的 3 段式逻辑（≤700 words）', '明确指出本文填补的单一 knowledge gap']"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T1",
+      "supports_step": "S1",
+      "description": "建立论文计划",
+      "output": "论文计划.yaml",
+      "done_if": "论文计划进入可执行流程",
+      "due": "2026-01-19",
+      "timebox": "1h"
+    },
+    {
+      "id": "T2",
+      "supports_step": "S1",
+      "description": "基于 overall logical YAML，写出英文论文的 scientific question 与一句话主线，并确认主图集合无需重构",
+      "output": "['scientific question（一句话）', '英文论文主线一句话（可直接用作 Results 开头/Intro 末句的承接）', '主图列表（≤6）与顺序（来自现有图 YAML）']",
+      "done_if": "无需新增/删除主图即可形成自洽主线，且一句话主线可被第三方复述",
+      "due": "2026-01-20",
+      "timebox": "1.5h"
+    },
+    {
+      "id": "T3",
+      "supports_step": "S1",
+      "description": "为每张主图生成英文 Results 骨架要点（从每图 YAML 提炼，不做语言润色）",
+      "output": "['每张 figure 的英文要点骨架（3–6 句）']",
+      "done_if": "所有主图均有英文要点骨架，且每句都能在对应 YAML 中定位到证据/结论",
+      "due": "2026-01-21",
+      "timebox": "3h"
+    },
+    {
+      "id": "T4",
+      "supports_step": "S1",
+      "description": "将各 figure 的英文要点按叙事顺序拼装为英文 Results v0（可读草稿，不追求语言质量）",
+      "output": "['英文 Results v0 草稿（可从头读到尾）']",
+      "done_if": "Results v0 主线连续、无明显断裂，读者不需要中文语境也能跟上",
+      "due": "2026-01-22",
+      "timebox": "3h"
+    },
+    {
+      "id": "T5",
+      "supports_step": "S2",
+      "description": "将 Results v0 重排为 section-by-section 结构，并为每段标注中文段落/图来源（映射表）",
+      "output": "['英文 Results section outline', 'Results 映射表（英文段落/figure ← 中文来源/YAML）']",
+      "done_if": "每个英文段落均有可追溯来源，且 outline 与 v0 草稿一致",
+      "due": "2026-01-23",
+      "timebox": "2h"
+    },
+    {
+      "id": "T6",
+      "supports_step": "S2",
+      "description": "完成 Results 的最低限度统一：术语表、缩写一致、图例/引用格式统一（仅 Results，不做全稿润色）",
+      "output": "['术语/缩写统一表（Results 适用）', '英文 Results v1（格式统一，可交付导师阅读）']",
+      "done_if": "Results 中关键术语与缩写一致，图例与引用格式统一，导师可直接批注",
+      "due": "2026-01-24",
+      "timebox": "2h"
+    },
+    {
+      "id": "T7",
+      "supports_step": "S3",
+      "description": "从中文 Discussion YAML 中提取所有可用于英文论文的机制性论点",
+      "output": "['候选 Discussion 论点清单']",
+      "done_if": "每个论点都能对应至少一个 Results 证据",
+      "due": "2026-01-26",
+      "timebox": "2h"
+    },
+    {
+      "id": "T8",
+      "supports_step": "S3",
+      "description": "压缩并筛选 Discussion 论点至 3–5 个核心论点，并确定 conceptual framing",
+      "output": "['英文 Discussion 核心论点结构']",
+      "done_if": "所有论点服务同一主线且不重复 Results 描述",
+      "due": "2026-01-27",
+      "timebox": "2h"
+    },
+    {
+      "id": "T9",
+      "supports_step": "S4",
+      "description": "从英文 Results + Discussion 反推 Introduction 的单一 knowledge gap",
+      "output": "['knowledge gap 一句话定义']",
+      "done_if": "该 gap 可自然导向 Results 第一图",
+      "due": "2026-01-29",
+      "timebox": "1.5h"
+    },
+    {
+      "id": "T10",
+      "supports_step": "S4",
+      "description": "搭建英文 Introduction 三段式逻辑结构（不写完整英文）",
+      "output": "['Introduction 三段式 outline']",
+      "done_if": "每一段都有明确功能且无中文语境依赖",
+      "due": "2026-01-30",
+      "timebox": "2h"
+    }
+  ],
+  "step_ranges_inferred": {
+    "S1": {
+      "start": "2026-01-19",
+      "end": "2026-01-22"
+    },
+    "S2": {
+      "start": "2026-01-23",
+      "end": "2026-01-24"
+    },
+    "S3": {
+      "start": "2026-01-26",
+      "end": "2026-01-27"
+    },
+    "S4": {
+      "start": "2026-01-29",
+      "end": "2026-01-30"
+    }
+  }
+}

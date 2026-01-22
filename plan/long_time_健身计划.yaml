@@ -1,0 +1,224 @@
+plan:
+  # =========================
+  # 0. 元认知注释（只读）
+  # =========================
+
+  # 量级判断问题：
+  # - Plan：是否值得投入一段人生时间（错了要尽快止损）
+  # - Hypothesis：因果判断是否成立（是否允许被证伪）
+  # - Step：路径是否可行（允许绕路 / 替换）
+  # - Task：今天是否留下证据（错了也没关系）
+
+  # philosophy 决定“成败由谁裁决”
+  # 只能选一个作为主导，其余降级为辅助
+  philosophy: constraint
+
+  # =========================
+  # 1. 目标与现状
+  # =========================
+
+  desired_state:
+    time_window: "长期维持"        # 如: "4 weeks" / "by 2026-02-01"
+    observable_change: "在既定时间与恢复约束下，持续维护并迭代一套，服务于当前训练目的的健身体系"  # 第三方可判断的变化（出现 / 消失 / ↑ ↓）
+
+  current_state:
+    hard_constraints: "时间、恢复能力与生活稳定性"
+    failure_mode: "训练体系不可持续（频繁中断 / 长期恢复不良 / 伤病）"
+    uncertainty: "当前训练组织方式在长期尺度下的可持续性与适应性"
+
+  # =========================
+  # 2. 校验与约束
+  # =========================
+
+  validation:
+    earliest_signal: "训练完成率、主观恢复感受与关键表现指标在周尺度内是否明显恶化"
+    stop_rule: "在既定时间与恢复约束下，出现持续性恢复失败或无法维持最低训练频率"
+
+  constraints:
+    deadline_or_budget: "长期（无固定终点）"
+    fallback_rule: "freeze_output_and_reallocate_time"
+
+  # =========================
+  # 3. 假设层（≤ 3）
+  # =========================
+
+  hypotheses:
+    - id: H1
+      action: "从一个低复杂度、易执行的初始训练组织方式出发，运行并验证一套基于周期反馈的调整机制，使训练计划能够在不推翻整体体系的前提下，持续适配当前时间、恢复与环境约束"
+      expected_effect: "在既定约束下，训练组织方式能够随反馈逐步演化而非频繁重构，主要训练节奏保持稳定，且系统整体可持续运行"
+      time_to_observe: "每8周"  # YYYY-MM-DD
+      falsified_if: "在多次参数层级调整与结构层级简化后，训练体系仍无法形成稳定节奏，需频繁整体重写或长期中断"
+      status: "active"           # todo | active | frozen | done，用于标记该假设在当前时间窗口内的执行状态
+
+  # =========================
+  # 4. Step 层（路径）
+  # =========================
+
+  steps:
+    - id: S1
+      description: "以最低复杂度的训练组织方式作为起点，建立并跑通一套可执行的初始训练结构"
+      supports_hypothesis: H1
+      done_if: "初始训练结构在既定时间与恢复约束下可连续运行多个训练周期，未出现系统性中断，且具备被描述、被冻结与被调整的清晰边界"
+      output: "一套已冻结的初始训练结构描述（各参数明确但非最优，可以获得一定进步但可能崩坏），作为后续调整与演化的基线版本"
+      status: "active"
+      decision_deadline: "4周内"
+    - id: S2
+      description: "在已冻结的初始训练结构基础上，建立周期反馈与调整规则，使训练结构能够在不整体重写的前提下进行有限演化"
+      supports_hypothesis: H1
+      done_if: "已形成一套可复用的周期反馈与调整逻辑，并成功用于至少一次训练结构的小幅调整，且未破坏整体训练节奏"
+      output: "一套已冻结的反馈—调整规则描述（判定信号类型、调整层级与冻结原则），作为后续演化的控制机制"
+      status: "todo"
+      decision_deadline: "8周内"
+
+  # =========================
+  # 5. Task 层（1 day 证据）
+  # =========================
+
+  tasks:
+    # Task 的唯一职责：
+    # - 一天内留下“可冻结的执行证据”
+    # - 必须推进某个 Step
+    # - status / done 字段用于记录现实进度，不参与成败裁决
+
+    - id: T1
+      supports_step: S1
+      description: "建立训练动作模版。经历4次训练，根据器械可用性、yl适应性、训练模版要求，设计获得4套动作模版"
+      output: "4天级别动作模版"
+      done_if: "动作模版生成"
+      due: "2026-01-22"              # today / YYYY-MM-DD / YYYY-MM-DD~YYYY-MM-DD
+      timebox: ""          # 2h / 4h / 1day（仅防膨胀）
+      status: "active"           # todo | active | blocked | done | dropped，细粒度执行状态，用于反映现实进度
+      done: "2026-01-22"             # 实际完成日期（YYYY-MM-DD），与 due 解耦
+    - id: T2
+      supports_step: S1
+      description: "在既定边界内完成多次训练执行，验证初始训练结构的可运行性"
+      output: "多次训练执行记录，证明结构在现实条件下可连续运行"
+      done_if: "训练未出现系统性中断，且执行节奏基本稳定"
+      due: "2026-02-07"
+      timebox: ""
+      status: "todo"
+      done: ""
+    - id: T3
+      supports_step: S1
+      description: "将当前可运行的训练结构整理并冻结为 v0 版本"
+      output: "初始训练结构 v0 的完整描述文档"
+      done_if: "训练结构被明确标记为 v0，并作为后续调整的唯一基线"
+      due: "2026-02-08"
+      timebox: "1h"
+      status: "todo"
+      done: ""
+    - id: T4
+      supports_step: S2
+      description: "计划并进行一次日反馈调整"
+      output: "日反馈调整文件"
+      done_if: "成功进行一次日反馈调整"
+      due: "2026-02-08"
+      timebox: "1h"
+      status: "todo"
+      done: ""
+    - id: T5
+      supports_step: S2
+      description: "回顾一个周期内的训练执行与恢复情况，提炼可用于判定调整的信号类型"
+      output: "周期反馈信号清单（不含量化阈值）"
+      done_if: "信号能够区分‘可维持’与‘需要调整’两类状态"
+      due: ""
+      timebox: "2h"
+      status: "todo"
+      done: ""
+    - id: T6
+      supports_step: S2
+      description: "定义不同类型反馈信号所对应的调整层级（参数级 / 结构级 / 冻结）"
+      output: "反馈信号 → 调整层级的映射规则"
+      done_if: "所有主要信号均有明确的调整响应，不涉及整体推翻"
+      due: ""
+      timebox: "2h"
+      status: "todo"
+      done: ""
+    - id: T7
+      supports_step: S2
+      description: "基于既定反馈规则，对训练结构进行一次小幅调整并运行验证"
+      output: "一次基于反馈的结构调整记录"
+      done_if: "调整未破坏整体节奏，且训练可继续运行"
+      due: ""
+      timebox: ""
+      status: "todo"
+      done: ""
+    - id: T8
+      supports_step: S2
+      description: "整理并冻结当前反馈—调整机制为 v1 控制规则"
+      output: "反馈—调整机制 v1 的完整描述文档"
+      done_if: "该机制可被复用而无需重新推理"
+      due: ""
+      timebox: "1h"
+      status: "todo"
+      done: ""
+
+  # =========================
+  # 6. Procedure（Task 内部执行引导，可选）
+  # =========================
+
+  procedure:
+    - id: P1
+      supports_task: T1
+      focus: "进行第二次训练，将两次训练对动作模版的修正记录下来"
+      done_if: "完成训练动作模版修正"
+      artifacts: [训练动作模版.xlsx]
+      record: > # 记录关键决策、偏差或当时的真实判断（作为事后回溯证据）
+        下次训练时候，不给具体的训练动作，而是带着动作需求去练，找到符合一切要求的动作，后续优化交给其它步骤       
+      status: "done"           # todo | done，Procedure 是否已执行完成
+
+    - id: P2
+      supports_task: T1
+      focus: "进行第3次训练，记录最适合的动作"
+      done_if: "完成训练动作模版C"
+      artifacts: [训练动作模版.xlsx]
+      record: > # 记录关键决策、偏差或当时的真实判断（作为事后回溯证据）
+
+      status: "done"           # todo | done，Procedure 是否已执行完成
+
+
+    - id: P4
+      supports_task: T1
+      focus: "进行第4次训练，记录最适合的动作"
+      done_if: "完成符合要求的训练动作模版D"
+      artifacts: [训练动作模版.xlsx]
+      record: > 
+        明确模版设计总则
+        将模版填入动作
+      status: "done"           # todo | done，Procedure 是否已执行完成
+
+    - id: P5
+      supports_task: T2
+      focus: "根据模版进行第一轮训练"
+      done_if: "完成符合要求的训练动作模版c,并评估模版可用性"
+      artifacts: [log.xlsx]
+      record: > 
+
+      status: "active"           # todo | done，Procedure 是否已执行完成
+
+    - id: P6
+      supports_task: T2
+      focus: "根据模版进行第一轮训练"
+      done_if: "完成符合要求的训练动作模版d,并评估模版可用性"
+      artifacts: [log.xlsx]
+      record: > 
+
+      status: "active"           # todo | done，Procedure 是否已执行完成
+
+    - id: P7
+      supports_task: T2
+      focus: "根据模版进行第一轮训练"
+      done_if: "完成符合要求的训练动作模版e,并评估模版可用性"
+      artifacts: [log.xlsx]
+      record: > 
+
+      status: "active"           # todo | done，Procedure 是否已执行完成
+
+    - id: P5
+      supports_task: T2
+      focus: "根据模版进行第一轮训练"
+      done_if: "完成符合要求的训练动作模版f,并评估模版可用性"
+      artifacts: [log.xlsx]
+      record: > 
+
+      status: "active"           # todo | done，Procedure 是否已执行完成
