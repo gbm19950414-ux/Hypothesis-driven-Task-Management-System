@@ -1,0 +1,125 @@
+{
+  "plan_path": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/long_time_健身计划.yaml",
+  "out_dir": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/long_time_健身计划",
+  "today": "2026-01-24",
+  "deadline": "",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "action": "从一个低复杂度、易执行的初始训练组织方式出发，运行并验证一套基于周期反馈的调整机制，使训练计划能够在不推翻整体体系的前提下，持续适配当前时间、恢复与环境约束",
+      "expected_effect": "在既定约束下，训练组织方式能够随反馈逐步演化而非频繁重构，主要训练节奏保持稳定，且系统整体可持续运行",
+      "time_to_observe": "每8周",
+      "falsified_if": "在多次参数层级调整与结构层级简化后，训练体系仍无法形成稳定节奏，需频繁整体重写或长期中断"
+    }
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "description": "以最低复杂度的训练组织方式作为起点，建立并跑通一套可执行的初始训练结构",
+      "supports_hypothesis": "H1",
+      "done_if": "初始训练结构在既定时间与恢复约束下可连续运行多个训练周期，未出现系统性中断，且具备被描述、被冻结与被调整的清晰边界",
+      "output": "一套已冻结的初始训练结构描述（各参数明确但非最优，可以获得一定进步但可能崩坏），作为后续调整与演化的基线版本",
+      "status": "active"
+    },
+    {
+      "id": "S2",
+      "description": "在已冻结的初始训练结构基础上，建立周期反馈与调整规则，使训练结构能够在不整体重写的前提下进行有限演化",
+      "supports_hypothesis": "H1",
+      "done_if": "已形成一套可复用的周期反馈与调整逻辑，并成功用于至少一次训练结构的小幅调整，且未破坏整体训练节奏",
+      "output": "一套已冻结的反馈—调整规则描述（判定信号类型、调整层级与冻结原则），作为后续演化的控制机制",
+      "status": "todo"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T1",
+      "supports_step": "S1",
+      "description": "建立训练动作模版。经历4次训练，根据器械可用性、yl适应性、训练模版要求，设计获得4套动作模版",
+      "output": "4天级别动作模版",
+      "done_if": "动作模版生成",
+      "due": "2026-01-22",
+      "timebox": "",
+      "status": "active"
+    },
+    {
+      "id": "T2",
+      "supports_step": "S1",
+      "description": "在既定边界内完成多次训练执行，验证初始训练结构的可运行性",
+      "output": "多次训练执行记录，证明结构在现实条件下可连续运行",
+      "done_if": "训练未出现系统性中断，且执行节奏基本稳定",
+      "due": "2026-01-22~2026-02-07",
+      "timebox": "",
+      "status": "todo"
+    },
+    {
+      "id": "T3",
+      "supports_step": "S1",
+      "description": "将当前可运行的训练结构整理并冻结为 v0 版本",
+      "output": "初始训练结构 v0 的完整描述文档",
+      "done_if": "训练结构被明确标记为 v0，并作为后续调整的唯一基线",
+      "due": "2026-02-08",
+      "timebox": "1h",
+      "status": "todo"
+    },
+    {
+      "id": "T4",
+      "supports_step": "S2",
+      "description": "计划并进行一次日反馈调整",
+      "output": "日反馈调整文件",
+      "done_if": "成功进行一次日反馈调整",
+      "due": "2026-02-08",
+      "timebox": "1h",
+      "status": "todo"
+    },
+    {
+      "id": "T5",
+      "supports_step": "S2",
+      "description": "回顾一个周期内的训练执行与恢复情况，提炼可用于判定调整的信号类型",
+      "output": "周期反馈信号清单（不含量化阈值）",
+      "done_if": "信号能够区分‘可维持’与‘需要调整’两类状态",
+      "due": "",
+      "timebox": "2h",
+      "status": "todo"
+    },
+    {
+      "id": "T6",
+      "supports_step": "S2",
+      "description": "定义不同类型反馈信号所对应的调整层级（参数级 / 结构级 / 冻结）",
+      "output": "反馈信号 → 调整层级的映射规则",
+      "done_if": "所有主要信号均有明确的调整响应，不涉及整体推翻",
+      "due": "",
+      "timebox": "2h",
+      "status": "todo"
+    },
+    {
+      "id": "T7",
+      "supports_step": "S2",
+      "description": "基于既定反馈规则，对训练结构进行一次小幅调整并运行验证",
+      "output": "一次基于反馈的结构调整记录",
+      "done_if": "调整未破坏整体节奏，且训练可继续运行",
+      "due": "",
+      "timebox": "",
+      "status": "todo"
+    },
+    {
+      "id": "T8",
+      "supports_step": "S2",
+      "description": "整理并冻结当前反馈—调整机制为 v1 控制规则",
+      "output": "反馈—调整机制 v1 的完整描述文档",
+      "done_if": "该机制可被复用而无需重新推理",
+      "due": "",
+      "timebox": "1h",
+      "status": "todo"
+    }
+  ],
+  "step_ranges_inferred": {
+    "S1": {
+      "start": "2026-01-22",
+      "end": "2026-02-08"
+    },
+    "S2": {
+      "start": "2026-02-08",
+      "end": "2026-02-08"
+    }
+  }
+}

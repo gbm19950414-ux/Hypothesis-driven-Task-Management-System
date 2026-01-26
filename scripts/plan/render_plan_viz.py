@@ -103,6 +103,7 @@ class Step:
     supports_hypothesis: str
     done_if: str
     output: str
+    status: str
 
 
 @dataclass
@@ -114,6 +115,7 @@ class Task:
     done_if: str
     due: str
     timebox: str
+    status: str
 
 
 def safe_get(d: dict, key: str, default: str = "") -> str:
@@ -188,14 +190,49 @@ def make_step_ranges(
                 end = parse_iso_date(h.time_to_observe.strip())
             step_ranges[s.id] = (None, end)
 
+
     return step_ranges
+
+
+def infer_step_statuses(steps: List[Step], tasks: List[Task]) -> Dict[str, str]:
+    """Infer a Step's status from its tasks when Step.status is not explicitly set."""
+    by_step: Dict[str, List[str]] = {}
+    for t in tasks:
+        by_step.setdefault(t.supports_step, []).append((t.status or "todo").strip().lower())
+
+    out: Dict[str, str] = {}
+    for s in steps:
+        explicit = (s.status or "").strip().lower()
+        if explicit:
+            out[s.id] = "freeze" if explicit == "frozen" else explicit
+            continue
+        statuses = by_step.get(s.id, [])
+        # No tasks -> default to todo
+        if not statuses:
+            out[s.id] = "todo"
+            continue
+        # Priority: active > todo > done > freeze
+        if any(st == "active" for st in statuses):
+            out[s.id] = "active"
+        elif any(st == "todo" for st in statuses):
+            out[s.id] = "todo"
+        elif all(st == "done" for st in statuses):
+            out[s.id] = "done"
+        elif all(st in ("freeze", "frozen") for st in statuses):
+            out[s.id] = "freeze"
+        else:
+            # Mixed done/freeze etc -> treat as todo (still has actionable ambiguity)
+            out[s.id] = "todo"
+    return out
 
 
 def render_steps_timeline_png(
     outdir: str,
     hypotheses: Dict[str, Hypothesis],
     steps: List[Step],
+    tasks: List[Task],
     step_ranges: Dict[str, Tuple[Optional[date], Optional[date]]],
+    today: Optional[date],
     deadline: Optional[date],
 ) -> str:
     """
@@ -209,6 +246,7 @@ def render_steps_timeline_png(
         return (s.supports_hypothesis or "", s.id or "")
 
     steps_sorted = sorted(steps, key=step_sort_key)
+    step_status = infer_step_statuses(steps_sorted, tasks)
 
     # Collect x limits
     all_dates: List[date] = []
@@ -229,6 +267,16 @@ def render_steps_timeline_png(
     fig_h = max(4.0, 0.45 * n + 1.8)
     fig, ax = plt.subplots(figsize=(12.5, fig_h))
 
+    def style_for_status(status: str) -> dict:
+        s = (status or "").strip().lower()
+        if s == "done":
+            return {"alpha": 0.25, "linewidth": 0.8}
+        if s == "freeze" or s == "frozen":
+            return {"alpha": 0.10, "linewidth": 0.8, "linestyle": "--", "hatch": "//"}
+        if s == "active":
+            return {"alpha": 0.95, "linewidth": 2.2}
+        return {"alpha": 0.55, "linewidth": 1.0}
+
     # Plot each step as one barh row
     y_positions = list(range(n))
     y_labels: List[str] = []
@@ -246,11 +294,27 @@ def render_steps_timeline_png(
 
         left = date_to_num(st)
         width = max(1, date_to_num(en) - date_to_num(st) + 1)  # inclusive day
-        ax.barh(y=i, width=width, left=left, height=0.55)
+        st_status = step_status.get(s.id, "todo")
+        style = style_for_status(st_status)
+        bars = ax.barh(
+            y=i,
+            width=width,
+            left=left,
+            height=0.55,
+            alpha=style.get("alpha", 0.6),
+            linewidth=style.get("linewidth", 1.0),
+            linestyle=style.get("linestyle", "-"),
+            color="0.75",
+        )
+        if style.get("hatch"):
+            for b in bars:
+                b.set_hatch(style["hatch"])
 
         short_desc = truncate_text(s.description, max_chars=28, placeholder="…")
-        # Put hypothesis id in label for quick grouping (no extra legend needed)
-        y_labels.append(f"{s.id} [{s.supports_hypothesis}]: {short_desc}")
+        tag = step_status.get(s.id, "todo")
+        if tag == "frozen":
+            tag = "freeze"
+        y_labels.append(f"[{tag}] {s.id} [{s.supports_hypothesis}]: {short_desc}")
 
     ax.set_yticks(y_positions)
     ax.set_yticklabels(y_labels, fontsize=9)
@@ -258,6 +322,22 @@ def render_steps_timeline_png(
 
     ax.set_title("Plan Timeline (Steps Gantt)", fontsize=13)
     ax.set_xlabel("Date")
+    from matplotlib.patches import Patch
+
+    legend_handles = [
+        Patch(label="active", alpha=0.95, facecolor="0.75"),
+        Patch(label="todo", alpha=0.55, facecolor="0.75"),
+        Patch(label="done", alpha=0.25, facecolor="0.75"),
+        Patch(label="freeze", alpha=0.10, facecolor="0.75", hatch="//"),
+    ]
+    ax.legend(
+        handles=legend_handles,
+        loc="upper right",
+        fontsize=8,
+        frameon=True,
+        title="status",
+        title_fontsize=8,
+    )
 
     ax.set_xlim(date_to_num(xmin) - 1, date_to_num(xmax) + 7)
 
@@ -283,6 +363,16 @@ def render_steps_timeline_png(
             f"deadline {deadline.isoformat()}",
             fontsize=9,
             va="top",
+        )
+    # Today vertical line
+    if today:
+        ax.axvline(date_to_num(today), linewidth=2.2, alpha=0.85)
+        ax.text(
+            date_to_num(today) + 0.2,
+            -0.1,
+            f"today {today.isoformat()}",
+            fontsize=9,
+            va="bottom",
         )
 
     # 留出更多左侧空间给很长的 y 轴标签（避免被裁切）
@@ -343,13 +433,42 @@ def render_tasks_swimlane_png(
 
     y_positions = list(range(n))
     y_labels: List[str] = []
+
+    def style_for_status(status: str) -> dict:
+        s = (status or "").strip().lower()
+        if s == "done":
+            return {"alpha": 0.25, "linewidth": 0.8}
+        if s == "freeze" or s == "frozen":
+            return {"alpha": 0.10, "linewidth": 0.8, "linestyle": "--", "hatch": "//"}
+        if s == "active":
+            return {"alpha": 0.95, "linewidth": 2.2}
+        # default: todo
+        return {"alpha": 0.55, "linewidth": 1.0}
+
     for i, (t, st, en) in enumerate(parsed_sorted):
         left = date_to_num(st)
         width = max(1, date_to_num(en) - date_to_num(st) + 1)
-        ax.barh(y=i, width=width, left=left, height=0.55)
+        style = style_for_status(t.status)
+        bars = ax.barh(
+            y=i,
+            width=width,
+            left=left,
+            height=0.55,
+            alpha=style.get("alpha", 0.6),
+            linewidth=style.get("linewidth", 1.0),
+            linestyle=style.get("linestyle", "-"),
+            color="0.75",
+        )
+        # Optional hatch for frozen tasks
+        if style.get("hatch"):
+            for b in bars:
+                b.set_hatch(style["hatch"])
 
         short_desc = truncate_text(t.description, max_chars=34, placeholder="…")
-        y_labels.append(f"{t.id} [{t.supports_step}]: {short_desc}")
+        tag = (t.status or "todo").strip().lower()
+        if tag == "frozen":
+            tag = "freeze"
+        y_labels.append(f"[{tag}] {t.id} [{t.supports_step}]: {short_desc}")
 
     ax.set_yticks(y_positions)
     ax.set_yticklabels(y_labels, fontsize=8)
@@ -357,6 +476,22 @@ def render_tasks_swimlane_png(
 
     ax.set_title("Tasks Timeline (Tasks Gantt)", fontsize=13)
     ax.set_xlabel("Date")
+    from matplotlib.patches import Patch
+
+    legend_handles = [
+        Patch(label="active", alpha=0.95),
+        Patch(label="todo", alpha=0.55),
+        Patch(label="done", alpha=0.25),
+        Patch(label="freeze", alpha=0.10, hatch="//"),
+    ]
+    ax.legend(
+        handles=legend_handles,
+        loc="upper right",
+        fontsize=8,
+        frameon=True,
+        title="status",
+        title_fontsize=8,
+    )
     ax.set_xlim(date_to_num(xmin) - 1, date_to_num(xmax) + 7)
 
     # --- 日期刻度与网格：每天淡网格线；每周重网格线 ---
@@ -381,6 +516,15 @@ def render_tasks_swimlane_png(
             fontsize=9,
             va="top",
         )
+    # Today vertical line
+    ax.axvline(date_to_num(today), linewidth=2.2, alpha=0.85)
+    ax.text(
+        date_to_num(today) + 0.2,
+        -0.1,
+        f"today {today.isoformat()}",
+        fontsize=9,
+        va="bottom",
+    )
 
     if unknown_due:
         ax.text(
@@ -494,11 +638,13 @@ def main():
                 supports_hypothesis=safe_get(s, "supports_hypothesis"),
                 done_if=safe_get(s, "done_if"),
                 output=safe_get(s, "output"),
+                status=safe_get(s, "status").strip().lower(),
             )
         )
 
     tasks: List[Task] = []
     for t in tasks_list:
+        status = safe_get(t, "status").strip().lower() or "todo"
         tasks.append(
             Task(
                 id=safe_get(t, "id"),
@@ -508,6 +654,7 @@ def main():
                 done_if=safe_get(t, "done_if"),
                 due=safe_get(t, "due"),
                 timebox=safe_get(t, "timebox"),
+                status=status,
             )
         )
 
@@ -516,7 +663,7 @@ def main():
     step_ranges = make_step_ranges(hypotheses, steps, tasks, today)
 
     # Render PNGs
-    step_png = render_steps_timeline_png(outdir, hypotheses, steps, step_ranges, deadline)
+    step_png = render_steps_timeline_png(outdir, hypotheses, steps, tasks, step_ranges, today, deadline)
     task_png = render_tasks_swimlane_png(outdir, steps, tasks, today, deadline)
 
     # Render Mermaid

@@ -150,7 +150,7 @@ plan:
       done_if: "所有主图均有英文要点骨架，且每句都能在对应 YAML 中定位到证据/结论"
       due: "2026-01-21"
       timebox: "3h"
-      status: active
+      status: done
 
     - id: T4
       supports_step: S1
@@ -160,6 +160,7 @@ plan:
       done_if: "Results v0 主线连续、无明显断裂，读者不需要中文语境也能跟上"
       due: "2026-01-22"
       timebox: "3h"
+      status: active
 
     - id: T5
       supports_step: S2
@@ -233,9 +234,27 @@ procedure:
     focus: "每张图的说明文字骨架"
     done_if: "根据每张图的说明文件,为每个逻辑单元设置3～6句骨架句"
     artifacts: [panel.english.yaml]
+    status: done
+    record: >
+      "已经完成了骨架句构建方法的逻辑，接下来是根据各个panel的说明文件，为每张图生成英文Results骨架句。"
+      "完成了ai生成，接下来是检查："
+      检查中文内容是否超出figure语义，如果是，回溯到引用字段进行检查、修正，并重写句子
+
+  - id: P3
+    supports_task: T4
+    focus: "顺序正确、组合完整的result部分"
+    done_if: "使用脚本与配置文件，自动生成result部分"
+    artifacts: [result.md]
     status: active
-    record: 
-      已经完成了骨架句构建方法的逻辑，接下来是根据各个panel的说明文件，为每张图生成英文Results骨架句。
-      检查步骤1:看每一句中文，问：“这句话在说的是不是这个 panel 本来要干的那件事？”
-      检查步骤2:“这个 source 指向的层级，和这句所在模块（M1/M2/M3…）是不是逻辑上合理？”
-      检查步骤3:阅读英文句子，中英文方向词对齐，以及是否有致命错误
+    record: >
+      增加中文对照
+      确保完整
+      确保顺序无误
+
+  - id: P4
+    supports_task: T4
+    focus: "表达方式完整的result部分"
+    done_if: "阅读整个result部分，确保表达方式没有大问题"
+    artifacts: [result.md]
+    status: active
+    record: >
