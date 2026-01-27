@@ -77,6 +77,7 @@ plan:
     stop_rule: ""          # 出现即停（必填）
 
   constraints:
+    start_date: "2026-01-14"
     deadline_or_budget: "2026-02-14"
     fallback_rule: "freeze_output_and_reallocate_time"
 
@@ -119,18 +120,21 @@ plan:
     done_if: "所有计划实验均执行完成，且原始数据完整保存"
     output: "原始实验数据（含元信息）"
     status: todo
+
   - id: S5
     description: "将原始实验数据转化为可解释的分析结果"
     supports_hypothesis: H2
     done_if: "至少生成一组可用于结论判断的分析结果（图/表）"
     output: "分析结果图表"
     status: todo
+
   - id: S6
     description: "将实验结果转化为论文正文中的结果描述"
     supports_hypothesis: H2
     done_if: "结果以符合论文风格的文本与图注形式写入正文"
     output: "论文正文实验结果段落"
     status: todo
+
   tasks:
     # 任务层的唯一职责：一天内留下“可冻结的执行证据”，推动某个 Step 前进。
       # - Task 必须挂靠一个 supports_step（否则就是噪音/拖延）
@@ -187,6 +191,9 @@ plan:
       due: "2026-01-16"
       timebox: ""
       status: done
+      record: >
+        和孙老师讨论后，认为实验是需要补充的，并且在时间线之下，只能进行一部分最必要的实验
+        
 
     # ---- S3：冻结用于执行的实验方案版本 ----
     - id: T5
@@ -202,26 +209,33 @@ plan:
       description: "为 final 执行版生成执行清单：试剂/耗材/样本准备、设备预约、时间线与风险点"
       output: "experiment/S3_exec_checklist.md"
       done_if: "文件存在，且包含试剂耗材清单、设备/时间安排、≥2 个风险点与应对"
-      due: "2026-01-19"
-      timebox: "2h"
+      due: "2026-01-27"
+      timebox: "3h"
+      load: h
+      urgency: h
       status: active
+
     # ---- S4：完成实验执行并获得完整原始数据 ----
     - id: T7
       supports_step: S4
       description: "按执行版完成首批实验"
       output: "raw_data/S4_batch1/"
       done_if: "文件夹存在且包含原始数据"
-      due: "2026-01-20~2026-01-23"
-      timebox: ""
+      due: "2026-01-27~2026-02-03"
+      timebox: "7d"
+      load: h
+      urgency: h
       status: todo
     - id: T8
       supports_step: S4
-      description: "完成剩余2批次实验并合并整理原始数据"
+      description: "完成剩余1批次实验并合并整理原始数据"
       output: "raw_data/S4_manifest.md"
       done_if: "实验原始数据文件存在"
-      due: "2026-01-23~2026-02-09"
-      timebox: ""
-      status: freeze
+      due: "2026-02-03~2026-02-09"
+      timebox: "14d"
+      load: h
+      urgency: h
+      status: todo
     # ---- S5：将原始实验数据转化为可解释的分析结果 ----
     - id: T9
       supports_step: S5
@@ -230,6 +244,8 @@ plan:
       done_if: "脚本存在且可运行；能读入全部数据并输出至少1个QC汇总与1个结果图/表"
       due: "2026-02-10"
       timebox: "1day"
+      load: h
+      urgency: h
       status: todo
 
     - id: T10
@@ -238,7 +254,9 @@ plan:
       output: ""
       done_if: "可上图级别结果图表"
       due: "2026-02-11"
-      timebox: ""
+      timebox: "1day"
+      load: h
+      urgency: h
       status: todo
 
     # ---- S6：将实验结果转化为论文正文中的结果描述 ----
@@ -249,6 +267,8 @@ plan:
       done_if: "docx 存在结果叙述 + 对应图表引用"
       due: "2026-02-12"
       timebox: "1day"
+      load: h
+      urgency: h
       status: todo
 
     - id: T12
@@ -257,7 +277,9 @@ plan:
       output: "manuscript/S6_figure_captions.md"
       done_if: "文件存在，且具有较高可读性"
       due: "2026-02-13"
-      timebox: "4h"
+      timebox: "1day"
+      load: h
+      urgency: h
       status: todo
       
 procedure:

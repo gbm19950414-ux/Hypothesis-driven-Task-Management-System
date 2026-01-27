@@ -1,7 +1,7 @@
 {
   "plan_path": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/20260114_20260214_组学验证.yaml",
   "out_dir": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/20260114_20260214_组学验证",
-  "today": "2026-01-24",
+  "today": "2026-01-27",
   "deadline": "2026-02-14",
   "hypotheses": [
     {
@@ -126,8 +126,8 @@
       "description": "为 final 执行版生成执行清单：试剂/耗材/样本准备、设备预约、时间线与风险点",
       "output": "experiment/S3_exec_checklist.md",
       "done_if": "文件存在，且包含试剂耗材清单、设备/时间安排、≥2 个风险点与应对",
-      "due": "2026-01-19",
-      "timebox": "2h",
+      "due": "2026-01-27",
+      "timebox": "3h",
       "status": "active"
     },
     {
@@ -136,19 +136,19 @@
       "description": "按执行版完成首批实验",
       "output": "raw_data/S4_batch1/",
       "done_if": "文件夹存在且包含原始数据",
-      "due": "2026-01-20~2026-01-23",
-      "timebox": "",
+      "due": "2026-01-27~2026-02-03",
+      "timebox": "7d",
       "status": "todo"
     },
     {
       "id": "T8",
       "supports_step": "S4",
-      "description": "完成剩余2批次实验并合并整理原始数据",
+      "description": "完成剩余1批次实验并合并整理原始数据",
       "output": "raw_data/S4_manifest.md",
       "done_if": "实验原始数据文件存在",
-      "due": "2026-01-23~2026-02-09",
-      "timebox": "",
-      "status": "freeze"
+      "due": "2026-02-03~2026-02-09",
+      "timebox": "14d",
+      "status": "todo"
     },
     {
       "id": "T9",
@@ -167,7 +167,7 @@
       "output": "",
       "done_if": "可上图级别结果图表",
       "due": "2026-02-11",
-      "timebox": "",
+      "timebox": "1day",
       "status": "todo"
     },
     {
@@ -187,7 +187,7 @@
       "output": "manuscript/S6_figure_captions.md",
       "done_if": "文件存在，且具有较高可读性",
       "due": "2026-02-13",
-      "timebox": "4h",
+      "timebox": "1day",
       "status": "todo"
     }
   ],
@@ -202,10 +202,10 @@
     },
     "S3": {
       "start": "2026-01-19",
-      "end": "2026-01-19"
+      "end": "2026-01-27"
     },
     "S4": {
-      "start": "2026-01-20",
+      "start": "2026-01-27",
       "end": "2026-02-09"
     },
     "S5": {

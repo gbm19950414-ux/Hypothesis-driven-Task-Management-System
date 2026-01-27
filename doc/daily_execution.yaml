@@ -98,3 +98,63 @@ maintenance:
     - "发现自己反复违背某一原则"
     - "现实约束发生长期变化（工作强度/精力结构）"
   update_rule: "只改原则，不加字段"
+
+  daily_loop_principle:
+  purpose: >
+    用最低维护成本，
+    在执行与现实之间保持一致，
+    避免计划僵化或过度重构。
+
+  layer_revision_rules:
+    task:
+      allowed_when: "每日执行结束后"
+      rule: "必须更新 status 与 freeze 结果，是唯一的日常调整对象"
+
+    step:
+      allowed_when:
+        - "连续多日出现执行偏差"
+        - "既有路径无法继续推进或明显失效"
+      forbidden_when: "单日执行不顺或情绪性判断"
+      rule: "仅在路径层面失效时修正，不参与每日维护"
+
+    hypothesis:
+      allowed_when:
+        - "被现实证据直接证伪"
+        - "无法继续支撑任何可行 step"
+      forbidden_when: "尚未形成证伪证据的执行困难"
+      rule: "修正意味着因果判断改变，不得频繁发生"
+
+    plan:
+      allowed_when:
+        - "外部硬约束发生变化（deadline / 资源）"
+        - "失败代价评估发生根本改变"
+      forbidden_when: "日常执行滞后或短期压力"
+      rule: "不参与日常维持，仅在战略层重审"
+
+daily_execution:
+  focus: "推进当前可执行且最重要的任务"
+  source:
+    - "需要做什么（计划约束 / deadline）"
+    - "可以做什么（精力 / 环境）"
+  rule:
+    - "只从 active / todo 中选择"
+    - "优先匹配精力窗口，而非重排计划"
+    - "日初是调度，不是重规划"
+    - "每天挑选最多3个任务完成"
+
+daily_maintenance:
+  timing: "当日执行结束后"
+  scope:
+    task: "必须更新（status / freeze）"
+    step: "仅在连续偏差时调整"
+    hypothesis: "仅在被证伪或重构时调整"
+  rule:
+    - "先对齐现实，再讨论设计是否错误"
+    - "优先冻结执行资格，而不是修改结构"
+
+
+
+invariant:
+  - "位置代表原计划，状态代表当前现实"
+  - "每日维护不引入新目标"
+  - "结构性修改不在疲劳状态下进行"

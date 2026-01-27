@@ -30,6 +30,9 @@ import yaml
 # 固定输出目录（按你的 life_os 结构钉死）
 FIXED_OUTDIR = "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs"
 
+# Unified bar color for timelines and legend (matplotlib default blue)
+BASE_BAR_COLOR = "#1f77b4"  # match legend (blue)
+
 
 # ---- Matplotlib 字体设置：避免中文显示为方框 ----
 def setup_cjk_font() -> None:
@@ -56,8 +59,24 @@ def setup_cjk_font() -> None:
     plt.rcParams["axes.unicode_minus"] = False
 
 
+
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 RANGE_RE = re.compile(r"^(?P<start>\d{4}-\d{2}-\d{2})~(?P<end>\d{4}-\d{2}-\d{2})$")
+
+
+def natural_id_key(s: str):
+    """Natural sort key for ids like T1, T2, T10 (so T10 comes after T2)."""
+    s = (s or "").strip()
+    parts = re.split(r"(\d+)", s)
+    key = []
+    for p in parts:
+        if not p:
+            continue
+        if p.isdigit():
+            key.append(int(p))
+        else:
+            key.append(p.lower())
+    return tuple(key)
 
 
 def parse_iso_date(s: str) -> date:
@@ -241,11 +260,8 @@ def render_steps_timeline_png(
     - Y axis: names (each Step is a row)
     This avoids text overlap by not placing long labels on bars.
     """
-    # Order steps by hypothesis id, then step id (stable & readable)
-    def step_sort_key(s: Step) -> Tuple[str, str]:
-        return (s.supports_hypothesis or "", s.id or "")
-
-    steps_sorted = sorted(steps, key=step_sort_key)
+    # Order steps by id (natural order: S2 < S10)
+    steps_sorted = sorted(steps, key=lambda s: natural_id_key(s.id))
     step_status = infer_step_statuses(steps_sorted, tasks)
 
     # Collect x limits
@@ -304,7 +320,7 @@ def render_steps_timeline_png(
             alpha=style.get("alpha", 0.6),
             linewidth=style.get("linewidth", 1.0),
             linestyle=style.get("linestyle", "-"),
-            color="0.75",
+            color=BASE_BAR_COLOR,
         )
         if style.get("hatch"):
             for b in bars:
@@ -325,10 +341,10 @@ def render_steps_timeline_png(
     from matplotlib.patches import Patch
 
     legend_handles = [
-        Patch(label="active", alpha=0.95, facecolor="0.75"),
-        Patch(label="todo", alpha=0.55, facecolor="0.75"),
-        Patch(label="done", alpha=0.25, facecolor="0.75"),
-        Patch(label="freeze", alpha=0.10, facecolor="0.75", hatch="//"),
+        Patch(label="active", alpha=0.95, facecolor=BASE_BAR_COLOR),
+        Patch(label="todo", alpha=0.55, facecolor=BASE_BAR_COLOR),
+        Patch(label="done", alpha=0.25, facecolor=BASE_BAR_COLOR),
+        Patch(label="freeze", alpha=0.10, facecolor=BASE_BAR_COLOR, hatch="//"),
     ]
     ax.legend(
         handles=legend_handles,
@@ -408,12 +424,8 @@ def render_tasks_swimlane_png(
             continue
         parsed.append((t, rng[0], rng[1]))
 
-    # Order by step then task id for readability
-    def task_sort_key(item: Tuple[Task, date, date]) -> Tuple[str, str]:
-        t, _, _ = item
-        return (t.supports_step or "", t.id or "")
-
-    parsed_sorted = sorted(parsed, key=task_sort_key)
+    # Order tasks by id (natural order: T2 < T10)
+    parsed_sorted = sorted(parsed, key=lambda item: natural_id_key(item[0].id))
 
     # x limits
     all_dates: List[date] = []
@@ -457,7 +469,7 @@ def render_tasks_swimlane_png(
             alpha=style.get("alpha", 0.6),
             linewidth=style.get("linewidth", 1.0),
             linestyle=style.get("linestyle", "-"),
-            color="0.75",
+            color=BASE_BAR_COLOR,
         )
         # Optional hatch for frozen tasks
         if style.get("hatch"):
@@ -479,10 +491,10 @@ def render_tasks_swimlane_png(
     from matplotlib.patches import Patch
 
     legend_handles = [
-        Patch(label="active", alpha=0.95),
-        Patch(label="todo", alpha=0.55),
-        Patch(label="done", alpha=0.25),
-        Patch(label="freeze", alpha=0.10, hatch="//"),
+        Patch(label="active", alpha=0.95, facecolor=BASE_BAR_COLOR),
+        Patch(label="todo", alpha=0.55, facecolor=BASE_BAR_COLOR),
+        Patch(label="done", alpha=0.25, facecolor=BASE_BAR_COLOR),
+        Patch(label="freeze", alpha=0.10, facecolor=BASE_BAR_COLOR, hatch="//"),
     ]
     ax.legend(
         handles=legend_handles,

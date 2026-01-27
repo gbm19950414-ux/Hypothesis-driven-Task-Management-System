@@ -2,7 +2,7 @@ flowchart LR
   H1["H1: 优先完成 Results 部分（图 + 文字）"]
   H2["H2: 在现有结果基础上构建 Discussion 框架"]
   H3["H3: 基于已完成 Results + Discussion 反向填充 Introduction"]
-  H4["H4: 统一语言、图例、补充材料，完成可批阅版本"]
+  H4["H4: 补齐必要模块并冻结生成路径，形成可直接交付导师批阅的英文论文"]
   S1["S1: 基于现有 overall logical YAML + 每图 YAML，确认并冻结英文论文的唯一叙事主线（不重新探索）"]
   H1 --> S1
   S2["S2: 将每图 YAML 快速映射为英文 Results 的最小可读草稿（骨架句 + 段落顺序），并完成来源标注"]
@@ -11,3 +11,12 @@ flowchart LR
   H2 --> S3
   S4["S4: 从英文 Results + Discussion 反推英文 Introduction"]
   H3 --> S4
+  S5["S5: 补齐所有缺失的必要内容模块， 确保论文在结构上是“完整的”，而非完美的。
+"]
+  H4 --> S5
+  S6["S6: 确立 Introduction / Discussion 的生成路径与文献引用机制， 防止进入无限补文献或结构漂移。
+"]
+  H4 --> S6
+  S7["S7: 将所有模块组装为一份导师可直接批阅的完整论文文档。
+"]
+  H4 --> S7

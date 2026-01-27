@@ -1,0 +1,27 @@
+version: "1.0"
+max_tasks_per_day: 3
+
+# 你的 plan 文件路径（每个文件里有 tasks 列表，每个 task 有 status/urgency/load/timebox 等字段）
+plans:
+  - id: paper_en
+    name: "英文论文"
+    path: "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/20260117-20260214_英文论文.yaml"
+  - id: exm
+    name: "组学验证"
+    path: "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/20260114_20260214_组学验证.yaml"
+  # 继续往下加
+  # - id: xxx
+  #   name: "xxx"
+  #   path: "/path/to/xxx.yaml"
+
+output:
+  format: "md"
+  path: "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/today_plan.md"
+
+time_window:
+  - start: "07:00"
+    end: "11:00"
+    energy: h
+  - start: "12:00"
+    end: "18:00"
+    energy: l

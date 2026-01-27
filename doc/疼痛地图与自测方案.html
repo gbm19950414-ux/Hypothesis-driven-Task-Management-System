@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>疼痛地图与自测方案</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1
+id="t2膝前疼痛检测方案与自测记录aba4-完整版">T2｜膝前疼痛检测方案与自测记录（A+B+A4
+完整版）</h1>
+<blockquote>
+<p>文件层级：Task（T2）服务对象：S1（机制初判） → S2（训练计划
+v1）核心目标：</p>
+<ol type="1">
+<li><strong>区分更可能的机制 / 部位（A 类）</strong></li>
+<li><strong>排除不应继续训练型路径的情况（A4）</strong></li>
+<li><strong>在当前机制下确定可加载 vs 需回避窗口（B 类）</strong></li>
+</ol>
+</blockquote>
+<hr />
+<h2 id="一检测目的">一、检测目的</h2>
+<ul>
+<li>不追求医学确诊</li>
+<li>目标是把”膝前疼”压缩为：
+<ul>
+<li>更可能的力学机制</li>
+<li>可执行的训练约束条件</li>
+</ul></li>
+<li>若出现胫股关节明确阳性信号 → <strong>暂停训练型推进</strong></li>
+</ul>
+<hr />
+<h2 id="二检测通用原则必须遵守">二、检测通用原则（必须遵守）</h2>
+<ul>
+<li>❗ 疼痛评分 ≥ <strong>5 / 10</strong> → 立即停止该测试</li>
+<li>❗ 不做爆发、不做疲劳测试</li>
+<li>❗ <strong>24h 反应优先级 &gt; 当下感觉</strong></li>
+<li>❗ 所有测试都应 <strong>可重复、可描述</strong></li>
+</ul>
+<hr />
+<h2 id="三疼痛地图静态定位">三、疼痛地图（静态定位）</h2>
+<h3 id="主要痛点">3.1 主要痛点</h3>
+<ul>
+<li>文字描述（精确到区域）：
+<ul>
+<li>例如：髌骨下缘正中 / 偏内侧 / 偏外侧</li>
+</ul></li>
+<li>形态：□ 点状 □ 条索样 □ 片状</li>
+<li>是否随伸直明显加重： □ 是 □ 否</li>
+</ul>
+<h3 id="按压反应轻压即可">3.2 按压反应（轻压即可）</h3>
+<ul>
+<li>髌骨下缘中央： □ 无 □ 轻 □ 明显</li>
+<li>髌韧带中段： □ 无 □ 轻 □ 明显</li>
+<li>髌下脂肪垫区域： □ 无 □ 轻 □ 明显</li>
+</ul>
+<blockquote>
+<p>备注：</p>
+</blockquote>
+<hr />
+<h1 id="a-类机制-部位区分测试">A 类｜机制 / 部位区分测试</h1>
+<blockquote>
+<p>目标：<strong>在不预设机制的前提下，压缩机制空间</strong></p>
+</blockquote>
+<hr />
+<h2 id="a1伸膝末端-vs-中等屈曲角对比核心">A1｜伸膝末端 vs
+中等屈曲角对比（核心）</h2>
+<p><strong>目的</strong> 区分：低屈曲角张力/压力主导 vs
+中等屈曲角同样不耐受</p>
+<p><strong>测试方式</strong></p>
+<ul>
+<li>A1-1：坐姿，从约 <strong>30° → 接近伸直</strong>，缓慢伸膝</li>
+<li>A1-2：固定在约 <strong>45° 屈膝</strong>，等长用力 5–10 秒</li>
+</ul>
+<p><strong>记录</strong></p>
+<ul>
+<li>A1-1 即时疼痛（0–10）：____</li>
+<li>A1-2 即时疼痛（0–10）：____</li>
+<li>疼痛主要位置：________</li>
+<li>次日 24h 反应： □ 好转 □ 无变化 □ 更痛</li>
+</ul>
+<p><strong>判读提示</strong></p>
+<ul>
+<li>末端明显更痛、45°可耐受 → 支持低角度问题</li>
+<li>两者相近或 45°更痛 → 机制未收敛，需保守</li>
+</ul>
+<hr />
+<h2 id="a2直膝-vs-微屈膝踮脚膝-vs-踝区分">A2｜直膝 vs 微屈膝踮脚（膝 vs
+踝区分）</h2>
+<p><strong>目的</strong> 判断踮脚痛来自膝前稳定需求，还是踝/跟腱本体</p>
+<p><strong>测试方式</strong></p>
+<ul>
+<li>A2-1：直膝单脚踮脚</li>
+<li>A2-2：微屈膝（≈20°）单脚踮脚</li>
+</ul>
+<p><strong>记录</strong></p>
+<ul>
+<li>A2-1 疼痛（0–10）：____ 位置：________</li>
+<li>A2-2 疼痛（0–10）：____ 位置：________</li>
+<li>次日 24h 反应： □ 好转 □ 无变化 □ 更痛</li>
+</ul>
+<p><strong>判读提示</strong></p>
+<ul>
+<li>直膝更痛、痛在膝前 → 支持膝前结构</li>
+<li>两者都痛、痛在跟腱 → 踝因素需重新纳入</li>
+</ul>
+<hr />
+<h2 id="a3完全伸直-vs-轻度屈膝静态站立脂肪垫筛查">A3｜完全伸直 vs
+轻度屈膝静态站立（脂肪垫筛查）</h2>
+<p><strong>目的</strong> 筛查髌下脂肪垫夹挤可能</p>
+<p><strong>测试方式</strong></p>
+<ul>
+<li>A3-1：完全伸直站立 20–30 秒</li>
+<li>A3-2：轻度屈膝站立 20–30 秒</li>
+</ul>
+<p><strong>记录</strong></p>
+<ul>
+<li>A3-1 不适（0–10）：____</li>
+<li>A3-2 不适（0–10）：____</li>
+<li>不适差异明显： □ 是 □ 否</li>
+</ul>
+<p><strong>判读提示</strong></p>
+<ul>
+<li>伸直明显更不适 → 脂肪垫优先级↑</li>
+</ul>
+<hr />
+<h2
+id="a4胫股关节排除性筛查rule-out">A4｜胫股关节排除性筛查（rule-out）</h2>
+<blockquote>
+<p>角色说明： <strong>不是为了”证明胫股关节是主因”，
+而是判断”是否不适合继续训练型路径”。</strong></p>
+</blockquote>
+<hr />
+<h3 id="a4-1深屈膝静态耐受非旋转">A4-1｜深屈膝静态耐受（非旋转）</h3>
+<p><strong>目的</strong> 筛查胫股关节在高屈曲位是否明显不耐受</p>
+<p><strong>测试方式</strong></p>
+<ul>
+<li>双脚站立</li>
+<li>缓慢下蹲至 <strong>当前舒适的最深位</strong>（不强求）</li>
+<li>停留 5–10 秒</li>
+</ul>
+<p><strong>记录</strong></p>
+<ul>
+<li>即时不适（0–10）：____</li>
+<li>是否有卡住 / 顶住感： □ 是 □ 否</li>
+<li>次日 24h 反应： □ 好转 □ 无变化 □ 更痛</li>
+</ul>
+<p><strong>判读提示</strong></p>
+<ul>
+<li>无明显不适 → 支持剪枝</li>
+<li>明显不适 / 卡顿 → 胫股关节优先级↑</li>
+</ul>
+<hr />
+<h3
+id="a4-2坐姿轻度旋转感受极小幅度">A4-2｜坐姿轻度旋转感受（极小幅度）</h3>
+<p><strong>目的</strong> 筛查旋转是否为关键触发因素（半月板线索）</p>
+<p><strong>测试方式</strong></p>
+<ul>
+<li>坐姿，膝屈约 90°</li>
+<li>脚尖做 <strong>极小幅度</strong> 内旋 / 外旋</li>
+<li>不加负重、不追求幅度</li>
+</ul>
+<p><strong>记录</strong></p>
+<ul>
+<li>内旋不适（0–10）：____</li>
+<li>外旋不适（0–10）：____</li>
+<li>是否有特异性刺痛/卡感： □ 是 □ 否</li>
+</ul>
+<p><strong>判读提示</strong></p>
+<ul>
+<li>无明显反应 → 半月板可能性低</li>
+<li>明显不适 → 需谨慎，暂停训练型推进</li>
+</ul>
+<hr />
+<h3 id="a4-3单脚承重稳定感非疼痛">A4-3｜单脚承重稳定感（非疼痛）</h3>
+<p><strong>目的</strong> 筛查功能性不稳（韧带/控制问题）</p>
+<p><strong>测试方式</strong></p>
+<ul>
+<li>单脚站立 20–30 秒</li>
+<li>不做屈伸、不晃动</li>
+</ul>
+<p><strong>记录</strong></p>
+<ul>
+<li>是否明显不稳/恐惧： □ 是 □ 否</li>
+</ul>
+<p><strong>判读提示</strong></p>
+<ul>
+<li>稳定 → 支持非韧带不稳</li>
+<li>明显不稳 → 需提高警惕</li>
+</ul>
+<hr />
+<h2 id="a-类小结机制倾向判断">A 类小结｜机制倾向判断</h2>
+<blockquote>
+<p>请选择<strong>当前更支持的一项</strong>（允许不确定）</p>
+</blockquote>
+<ul>
+<li>□ 髌韧带张力主导</li>
+<li>□ 髌股关节低屈曲角压力主导</li>
+<li>□ 髌下脂肪垫夹挤</li>
+<li>□ 踝 / 跟腱相关</li>
+<li>□ <strong>胫股关节主导（需重新评估）</strong></li>
+<li>□ 仍不明确（采取保守策略）</li>
+</ul>
+<hr />
+<h1 id="b-类加载窗口测试">B 类｜加载窗口测试</h1>
+<blockquote>
+<p>前提：<strong>A4 未出现明确”停止信号”</strong></p>
+</blockquote>
+<hr />
+<h2
+id="b1低屈曲角加载耐受性风险窗口验证">B1｜低屈曲角加载耐受性（风险窗口验证）</h2>
+<ul>
+<li>动作：________</li>
+<li>ROM / 次数：________</li>
+<li>即时疼痛（0–10）：____</li>
+<li>24h 反应： □ 好转 □ 无变化 □ 更痛</li>
+</ul>
+<hr />
+<h2
+id="b2中等屈曲角加载耐受性安全窗口候选">B2｜中等屈曲角加载耐受性（安全窗口候选）</h2>
+<ul>
+<li>动作：________</li>
+<li>形式： □ 等长 □ 受控 ROM</li>
+<li>即时疼痛（0–10）：____</li>
+<li>24h 反应： □ 好转 □ 无变化 □ 更痛</li>
+</ul>
+<hr />
+<h2 id="b3稳定性需求测试可选">B3｜稳定性需求测试（可选）</h2>
+<ul>
+<li>动作：________</li>
+<li>支撑方式： □ 双侧 □ 单侧</li>
+<li>即时疼痛（0–10）：____</li>
+<li>24h 反应： □ 好转 □ 无变化 □ 更痛</li>
+</ul>
+<hr />
+<h2 id="b-类小结窗口判定">B 类小结｜窗口判定</h2>
+<h3 id="高风险窗口暂时回避">高风险窗口（暂时回避）</h3>
+<h3 id="潜在可加载窗口">潜在可加载窗口</h3>
+<hr />
+<h2 id="六阶段性结论供-s2-使用">六、阶段性结论（供 S2 使用）</h2>
+<ul>
+<li>当前最支持的机制：—</li>
+<li>是否支持 H1（训练调节可解决）：□ 是 □ 否 □ 不确定</li>
+<li>是否需要立即降载 / 停训： □ 否 □ 是（原因：________）</li>
+</ul>
+<hr />
+<h2 id="七下一步决策">七、下一步决策</h2>
+<ul>
+<li>□ 进入 S2：制定训练计划 v1</li>
+<li>□ 保守运行，延长观察</li>
+<li>□ 出现异常信号，考虑医疗评估</li>
+</ul>
+<hr />
+<blockquote>
+<p>记录日期：________ 执行人：________</p>
+</blockquote>
+<hr />
+</body>
+</html>
