@@ -213,7 +213,10 @@ plan:
       timebox: "3h"
       load: h
       urgency: h
-      status: active
+      status: done
+      record:
+        完成了假设--实验pipline分类--run sheet编写流程，接下来将它用最短路径细化，指导接下来的实验执行
+        run-sheet是否有必要？还是直接按照run来进行就行？
 
     # ---- S4：完成实验执行并获得完整原始数据 ----
     - id: T7
@@ -221,21 +224,21 @@ plan:
       description: "按执行版完成首批实验"
       output: "raw_data/S4_batch1/"
       done_if: "文件夹存在且包含原始数据"
-      due: "2026-01-27~2026-02-03"
+      due: "2026-01-28~2026-02-03"
       timebox: "7d"
       load: h
       urgency: h
-      status: todo
+      status: active
     - id: T8
       supports_step: S4
       description: "完成剩余1批次实验并合并整理原始数据"
       output: "raw_data/S4_manifest.md"
       done_if: "实验原始数据文件存在"
-      due: "2026-02-03~2026-02-09"
+      due: "2026-02-04~2026-02-09"
       timebox: "14d"
       load: h
       urgency: h
-      status: todo
+      status: freeze
     # ---- S5：将原始实验数据转化为可解释的分析结果 ----
     - id: T9
       supports_step: S5

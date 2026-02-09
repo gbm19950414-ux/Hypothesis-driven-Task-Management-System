@@ -87,17 +87,19 @@ plan:
       done_if: "动作模版生成"
       due: "2026-01-22"              # today / YYYY-MM-DD / YYYY-MM-DD~YYYY-MM-DD
       timebox: ""          # 2h / 4h / 1day（仅防膨胀）
-      status: "active"           # todo | active | blocked | done | dropped，细粒度执行状态，用于反映现实进度
+      status: "done"           # todo | active | blocked | done | dropped，细粒度执行状态，用于反映现实进度
       done: "2026-01-22"             # 实际完成日期（YYYY-MM-DD），与 due 解耦
     - id: T2
       supports_step: S1
       description: "在既定边界内完成多次训练执行，验证初始训练结构的可运行性"
       output: "多次训练执行记录，证明结构在现实条件下可连续运行"
-      done_if: "训练未出现系统性中断，且执行节奏基本稳定"
+      done_if: >
+        "训练未出现系统性中断，且执行节奏基本稳定"
+        动作模版最小边界：可重复执行、可逼近力竭、可记录进步、风险可控
       due: "2026-01-22~2026-02-07"
       timebox: ""
-      status: "todo"
-      done: ""
+      status: "done"
+      done: "2026-02-07"
     - id: T3
       supports_step: S1
       description: "将当前可运行的训练结构整理并冻结为 v0 版本"
@@ -203,23 +205,59 @@ plan:
       done_if: "完成符合要求的训练动作模版d,并评估模版可用性"
       artifacts: [log.xlsx]
       record: > 
-
-      status: "active"           # todo | done，Procedure 是否已执行完成
+        模版可用，训练完成
+      status: "done"           # todo | done，Procedure 是否已执行完成
 
     - id: P7
       supports_task: T2
       focus: "根据模版进行第一轮训练"
-      done_if: "完成符合要求的训练动作模版e,并评估模版可用性"
+      done_if: "完成符合要求的训练动作模版c,并评估模版可用性"
       artifacts: [log.xlsx]
       record: > 
+        完成了模版的动作选择，下一轮才能看进步决定覆盖范围是否合适了
+      status: "done"           # todo | done，Procedure 是否已执行完成
 
-      status: "active"           # todo | done，Procedure 是否已执行完成
-
-    - id: P5
+    - id: P8
       supports_task: T2
       focus: "根据模版进行第一轮训练"
-      done_if: "完成符合要求的训练动作模版f,并评估模版可用性"
+      done_if: "完成符合要求的训练动作模版d,并评估模版可用性"
+      artifacts: [log.xlsx]
+      record: > 
+        已经完成模版，但是仍有一堆问题要解决
+      status: "done"           # todo | done，Procedure 是否已执行完成
+
+    - id: P9
+      supports_task: T2
+      focus: "根据模版进行第2轮训练"
+      done_if: "完成符合要求的训练动作模版a,并评估是否可以达到“在可接受的疲劳范围内，进步斜率长期为正且不衰减”"
       artifacts: [log.xlsx]
       record: > 
 
-      status: "active"           # todo | done，Procedure 是否已执行完成
+      status: "done"           # todo | done，Procedure 是否已执行完成
+
+    - id: P10
+      supports_task: T2
+      focus: "根据模版进行第2轮训练"
+      done_if: "完成符合要求的训练动作模版b,并评估是否可以达到“在可接受的疲劳范围内，进步斜率长期为正且不衰减”"
+      artifacts: [log.xlsx]
+      record: > 
+
+      status: "done"           # todo | done，Procedure 是否已执行完成
+
+    - id: P11
+      supports_task: T2
+      focus: "根据模版进行第2轮训练"
+      done_if: "完成符合要求的训练动作模版c,并评估是否可以达到“在可接受的疲劳范围内，进步斜率长期为正且不衰减”"
+      artifacts: [log.xlsx]
+      record: > 
+
+      status: "done"           # todo | done，Procedure 是否已执行完成
+
+    - id: P12
+      supports_task: T2
+      focus: "根据模版进行第2轮训练"
+      done_if: "完成符合要求的训练动作模版d,并评估是否可以达到“在可接受的疲劳范围内，进步斜率长期为正且不衰减”"
+      artifacts: [log.xlsx]
+      record: > 
+
+      status: "done"           # todo | done，Procedure 是否已执行完成

@@ -1,7 +1,7 @@
 {
   "plan_path": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/long_time_健身计划.yaml",
   "out_dir": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/long_time_健身计划",
-  "today": "2026-01-24",
+  "today": "2026-02-09",
   "deadline": "",
   "hypotheses": [
     {
@@ -46,7 +46,7 @@
       "supports_step": "S1",
       "description": "在既定边界内完成多次训练执行，验证初始训练结构的可运行性",
       "output": "多次训练执行记录，证明结构在现实条件下可连续运行",
-      "done_if": "训练未出现系统性中断，且执行节奏基本稳定",
+      "done_if": "\"训练未出现系统性中断，且执行节奏基本稳定\" 动作模版最小边界：可重复执行、可逼近力竭、可记录进步、风险可控\n",
       "due": "2026-01-22~2026-02-07",
       "timebox": "",
       "status": "todo"

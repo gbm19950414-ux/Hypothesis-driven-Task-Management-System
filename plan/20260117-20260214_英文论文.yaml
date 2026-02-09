@@ -290,7 +290,7 @@ plan:
       timebox: "3h"
       load: l
       urgency: l
-      status: todo
+      status: done
 
     - id: T13
       supports_step: S5
@@ -302,7 +302,12 @@ plan:
       due: "2026-02-02"
       load: l
       urgency: l
-      status: todo
+      status: done
+      record: >
+        建立method.yaml 骨架，把中文 Methods 剪切成“assay 模块对应在骨架下面
+        gpt将对应模块的正文部分压缩组合，以一句话一句话的形式，标注地位返回
+        阅读一遍原文，确定骨架与文字内容都没问题
+        建立脚本，输出docx文件
 
     - id: T14
       supports_step: S6
@@ -317,7 +322,7 @@ plan:
       timebox: "3h"
       load: h
       urgency: l
-      status: todo
+      status: freeze
 
     - id: T15
       supports_step: S6
@@ -330,7 +335,7 @@ plan:
       timebox: "1h"
       load: h
       urgency: l
-      status: todo
+      status: done
 
     - id: T16
       supports_step: S7
@@ -342,8 +347,33 @@ plan:
       timebox: "3h"
       load: l
       urgency: l
+      status: done
+
+    - id: T17
+      supports_step: S7
+      description: "阅读整篇英文文档，标注所有需要修改的地方（不修改，只标注）"
+      output:
+        - "英文论文_v1.0_for_review.docx"
+      done_if: "导师可直接开始批注，无需你额外解释"
+      due: "2026-02-12"
+      timebox: "3h"
+      load: l
+      urgency: l
+      status: done
+    - id: T18
+      supports_step: S7
+      description: "进行论文可读性审校：标注并修复所有影响阅读流畅度的问题（不改结构）"
+      output:
+        - "英文论文_v1.1_readability_pass.docx"
+        - "含段落级逻辑批注的导师审阅版.docx"
+      done_if: >
+        - 全文可顺畅读完无明显卡顿
+        - 所有原始“读不顺”标注已处理
+        - 段落层级问题已批注但未重构结构
+      record: >
+        该任务在新增图片加入后完成
+      timebox: "3h"
       status: todo
-      
   # =========================
   # 6. Procedure（Task 内部执行引导，可选）
   # =========================

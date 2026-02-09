@@ -1,7 +1,7 @@
 {
   "plan_path": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/20260117-20260214_英文论文.yaml",
   "out_dir": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/20260117-20260214_英文论文",
-  "today": "2026-01-27",
+  "today": "2026-02-09",
   "deadline": "2026-02-14",
   "hypotheses": [
     {
@@ -200,7 +200,7 @@
       "done_if": "Results 部分不存在缺图或空 legend",
       "due": "2026-01-30",
       "timebox": "3h",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T13",
@@ -210,7 +210,7 @@
       "done_if": "所有实验在逻辑上可复现，无中文残留",
       "due": "2026-02-02",
       "timebox": "3h",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T14",
@@ -220,7 +220,7 @@
       "done_if": "明确： - Results 结构冻结 - Intro / Discussion 仅允许段内修改\n",
       "due": "2026-02-05",
       "timebox": "3h",
-      "status": "todo"
+      "status": "freeze"
     },
     {
       "id": "T15",
@@ -230,7 +230,7 @@
       "done_if": "后续新增引用无需手动调整格式",
       "due": "2026-02-08",
       "timebox": "1h",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T16",

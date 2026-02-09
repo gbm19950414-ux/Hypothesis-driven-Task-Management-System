@@ -164,4 +164,4 @@ plan:
       done_if: "完成一次测试，获得测试结果"
       artifacts: [填写完成的测试方案.pdf]
       record: ""           # 记录关键决策、偏差或当时的真实判断（作为事后回溯证据）
-      status: "active"           # todo | done，Procedure 是否已执行完成
+      status: "done"           # todo | done，Procedure 是否已执行完成

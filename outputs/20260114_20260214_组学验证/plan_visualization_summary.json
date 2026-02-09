@@ -1,7 +1,7 @@
 {
   "plan_path": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/20260114_20260214_组学验证.yaml",
   "out_dir": "/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/20260114_20260214_组学验证",
-  "today": "2026-01-27",
+  "today": "2026-02-09",
   "deadline": "2026-02-14",
   "hypotheses": [
     {
@@ -128,7 +128,7 @@
       "done_if": "文件存在，且包含试剂耗材清单、设备/时间安排、≥2 个风险点与应对",
       "due": "2026-01-27",
       "timebox": "3h",
-      "status": "active"
+      "status": "done"
     },
     {
       "id": "T7",
@@ -136,9 +136,9 @@
       "description": "按执行版完成首批实验",
       "output": "raw_data/S4_batch1/",
       "done_if": "文件夹存在且包含原始数据",
-      "due": "2026-01-27~2026-02-03",
+      "due": "2026-01-28~2026-02-03",
       "timebox": "7d",
-      "status": "todo"
+      "status": "active"
     },
     {
       "id": "T8",
@@ -146,7 +146,7 @@
       "description": "完成剩余1批次实验并合并整理原始数据",
       "output": "raw_data/S4_manifest.md",
       "done_if": "实验原始数据文件存在",
-      "due": "2026-02-03~2026-02-09",
+      "due": "2026-02-04~2026-02-09",
       "timebox": "14d",
       "status": "todo"
     },
@@ -205,7 +205,7 @@
       "end": "2026-01-27"
     },
     "S4": {
-      "start": "2026-01-27",
+      "start": "2026-01-28",
       "end": "2026-02-09"
     },
     "S5": {
