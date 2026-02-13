@@ -112,28 +112,28 @@ plan:
     supports_hypothesis: H2
     done_if: "存在一份标注为 final 的实验方案，包含关键参数与对照"
     output: "最终实验方案（执行版）"
-    status: active
+    status: done
     
   - id: S4
     description: "完成实验执行并获得完整原始数据"
     supports_hypothesis: H2
     done_if: "所有计划实验均执行完成，且原始数据完整保存"
     output: "原始实验数据（含元信息）"
-    status: todo
+    status: done
 
   - id: S5
     description: "将原始实验数据转化为可解释的分析结果"
     supports_hypothesis: H2
     done_if: "至少生成一组可用于结论判断的分析结果（图/表）"
     output: "分析结果图表"
-    status: todo
+    status: done
 
   - id: S6
     description: "将实验结果转化为论文正文中的结果描述"
     supports_hypothesis: H2
     done_if: "结果以符合论文风格的文本与图注形式写入正文"
     output: "论文正文实验结果段落"
-    status: todo
+    status: done
 
   tasks:
     # 任务层的唯一职责：一天内留下“可冻结的执行证据”，推动某个 Step 前进。
@@ -228,7 +228,7 @@ plan:
       timebox: "7d"
       load: h
       urgency: h
-      status: active
+      status: done
     - id: T8
       supports_step: S4
       description: "完成剩余1批次实验并合并整理原始数据"
@@ -249,7 +249,7 @@ plan:
       timebox: "1day"
       load: h
       urgency: h
-      status: todo
+      status: done
 
     - id: T10
       supports_step: S5
@@ -260,7 +260,7 @@ plan:
       timebox: "1day"
       load: h
       urgency: h
-      status: todo
+      status: done
 
     # ---- S6：将实验结果转化为论文正文中的结果描述 ----
     - id: T11
@@ -272,7 +272,7 @@ plan:
       timebox: "1day"
       load: h
       urgency: h
-      status: todo
+      status: done
 
     - id: T12
       supports_step: S6
@@ -283,7 +283,7 @@ plan:
       timebox: "1day"
       load: h
       urgency: h
-      status: todo
+      status: done
       
 procedure:
   - id: P1
