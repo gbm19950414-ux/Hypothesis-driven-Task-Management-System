@@ -9,37 +9,8 @@ plan:
   # - Step：路径是否可行（允许绕路 / 替换）
   # - Task：今天是否留下证据（错了也没关系）
 
-  # philosophy 决定“成败由谁裁决”
-  # 只能选一个作为主导，其余降级为辅助
-  philosophy: target | evidence | constraint
-
   # =========================
-  # 1. 目标与现状
-  # =========================
-
-  desired_state:
-    time_window: ""        # 如: "4 weeks" / "by 2026-02-01"
-    observable_change: ""  # 第三方可判断的变化（出现 / 消失 / ↑ ↓）
-
-  current_state:
-    hard_constraints: ""   # 时间 / 资源 / 权限
-    failure_mode: ""       # 最可能的失败方式
-    uncertainty: ""        # 最大不确定来源
-
-  # =========================
-  # 2. 校验与约束
-  # =========================
-
-  validation:
-    earliest_signal: ""    # 最早能判断方向对/错的信号
-    stop_rule: ""          # 出现即停（必填，尤其在 evidence 主导下）
-
-  constraints:
-    deadline_or_budget: "" # YYYY-MM-DD / 预算描述
-    fallback_rule: "freeze_output_and_reallocate_time"
-
-  # =========================
-  # 3. 假设层（≤ 3）
+  # 1. 假设层（≤ 3）
   # =========================
 
   hypotheses:
@@ -51,7 +22,7 @@ plan:
       status: ""           # todo | active | frozen | done，用于标记该假设在当前时间窗口内的执行状态
 
   # =========================
-  # 4. Step 层（路径）
+  # 2. Step 层（路径）
   # =========================
 
   steps:
@@ -64,7 +35,7 @@ plan:
       decision_deadline: "" # 在 constraint 主导下，最迟必须对该 Step 做出冻结或继续决策的时间点
 
   # =========================
-  # 5. Task 层（1 day 证据）
+  # 3. Task 层（1 day 证据）
   # =========================
 
   tasks:
@@ -83,15 +54,3 @@ plan:
       status: ""           # todo | active | blocked | done | dropped，细粒度执行状态，用于反映现实进度
       done: ""             # 实际完成日期（YYYY-MM-DD），与 due 解耦
 
-  # =========================
-  # 6. Procedure（Task 内部执行引导，可选）
-  # =========================
-
-  procedure:
-    - id: P1
-      supports_task: T1
-      focus: ""
-      done_if: ""
-      artifacts: []
-      record: ""           # 记录关键决策、偏差或当时的真实判断（作为事后回溯证据）
-      status: ""           # todo | done，Procedure 是否已执行完成

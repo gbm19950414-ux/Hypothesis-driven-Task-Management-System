@@ -1,0 +1,65 @@
+# plan_init_checklist.yaml
+# 用途：新建任何计划前的“初始化清单”
+# 目标：在 10–15 分钟内，明确裁决逻辑与运作模式，避免写出四不像计划
+
+plan_init:
+  meta:
+    name: "获得博士毕业证"                # 计划名（临时即可）
+    owner: "龚宝铭"
+    created: "2026-02-26"             # YYYY-MM-DD
+    context: "需要在3个月内，完成博士毕业答辩"             # 触发背景：问题/机会/风险/不满
+
+  # =========================
+  # 1) 目标与现状
+  # =========================
+  desired_state:
+    statement: "完成博士毕业答辩并获得学位证"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）
+    observable_signal: "答辩通过并收到学位证"   # 第三方可判断的变化（出现/消失/↑↓）
+
+  current_state:
+    facts: "距离完成毕业答辩仅3个月"               # 关键事实（资源/能力/限制）
+    bottlenecks: "时间"         # 主要卡点
+    uncertainty: "时间"         # 最大不确定来源
+    risk_if_wrong: "无法按时拿到毕业证"       # 走错路的代价
+
+  # =========================
+  # 2) 选择计划哲学（裁决标准）
+  # =========================
+  philosophy:
+    primary: "constraint"             # target | evidence | constraint（选一个主导）
+    reason: "时间是唯一不可再生资源，必须严格约束"              # 为什么选它？
+    failure_definition: "未在3个月内完成答辩"  # 什么算失败？（未达目标/被证伪/未按时）
+
+  # =========================
+  # 3) 选择任务生成器（运作模式）
+  # =========================
+  generator:
+    type: "execution"                # change(PHST) | execute(Execution) | maintain(Ops)
+    reason: "需要在3个月内完成答辩，因此需要低不确定性，在约束状态下确保产出"              # 为什么选这个？
+    expected_cadence: "每天执行任务"    # 节律：低频变革 / 高频执行 / 周期维护
+
+  # =========================
+  # 4) 行动假设（Action -> Effect）
+  # =========================
+  hypothesis:
+    action: "按照步骤进行，完成毕业答辩"              # 我将做什么？
+    expected_effect: "每周完成至少 1 个关键任务，逐步推进答辩准备"     # 预期会观察到什么变化/证据/结果？
+    scope_limit: "仅验证是否能按计划推进答辩准备"         # 本轮只验证什么？不验证什么？
+
+  # =========================
+  # 5) 校验机制（Validation / Stop Rule）
+  # =========================
+  validation:
+    success_signal: "按时完成指定任务"      # 看到什么算“方向对/成立”？
+    falsified_if: "任务延迟完成"        # 出现什么算“失败/被证伪/应停止”？
+    review_point: "每周五下午 5 点"        # 何时检查？（日期/周次/里程碑）
+
+  # =========================
+  # 6) 约束（Time / Resource Box）
+  # =========================
+  constraints:
+    time_box: "3 months"            # 如: "2 weeks" / "by 2026-03-15"
+    resource_budget: ""     # 时间/精力/金钱/并行度
+    must_not_do: ""         # 明确禁止/暂不做的事
+    fallback_rule: "freeze_or_downscope"  # 失败时的默认回退策略
+

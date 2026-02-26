@@ -1,0 +1,11 @@
+execution_plan:
+  name: ""
+  time_window: ""
+  objective: ""
+  tasks:
+    - id: E1
+      description: ""
+      output: ""     # 文件/记录/指标/链接（允许为空，但鼓励填）
+      done_if: ""
+      timebox: ""
+      status: todo

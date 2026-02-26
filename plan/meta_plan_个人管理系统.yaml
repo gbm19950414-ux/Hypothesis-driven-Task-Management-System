@@ -18,35 +18,29 @@ plan:
   # =========================
 
   desired_state:
-    time_window: "rolling / ongoing（持续运行与维护；用滚动验收而非一次性截止）"
+    time_window: "rolling / ongoing（运行态治理；滚动验收，不设终点）"
     observable_change: >
-      "在任意连续 4 周窗口内：
-      ① ≥20/28 天能在 60 秒内从任务池选出首任务并启动一个 timebox；
-      ② Weekly Review 每周一次且单次≤90min；
-      ③ 至少 3 个领域（科研/训练/生活）各有 ≥1 个活跃项目，且每周都有 Steps/Tasks 的可冻结输出证据；
-      ④ 维护系统所占用的可用时间≤25%。"
-
+      在任意连续 4 周内：
+      ① 每周一次 Weekly Review，单次 ≤ 90min；
+      ② ≥70% 的工作日可在 60 秒内选出首任务并启动 timebox；
+      ③ ≥3 个领域（科研/训练/生活）各有 ≥1 个活跃项目，且每周至少各产生 1 个可冻结输出；
+      ④ 系统维护时间占可用时间 ≤ 25%。
   current_state:
-    hard_constraints: > # 时间 / 资源 / 权限
-      时间：工作日可分配 20–40min/天做系统维护；每周可给系统更新 60–90min。
-      载体：Mac + VSCode + YAML/Markdown；
-      约束：任务受地点/精力/身体状态约束。
-    failure_mode: > # 最可能的失败方式
-      系统变成‘记录负担’而非‘决策引擎’：字段过多、更新频繁导致震荡；
-      发散输入（阅读/灵感）不落地成任务；
-      任务堆积/僵尸项目增多。"       
-    uncertainty: > # 最大不确定来源
-      "最小可用结构的边界在哪里（多少字段/标签刚好够用）；
-      ‘日常捕获’与‘周更整合’的最佳节律；多项目并行下是否需要更强的优先级与冻结机制。"        
-
+    hard_constraints: >
+      时间：工作日 20–40min/天；每周 60–90min 维护。
+      载体：Mac + VSCode + YAML/Markdown。
+      现实约束：任务受地点/精力/身体状态影响。
+    failure_mode: >
+      系统变成记录负担而非决策引擎（字段膨胀、更新震荡、任务堆积）。
+    uncertainty: >
+      MVP 的最小字段集边界；日捕获与周整合的最佳节律；多项目并行是否需要更强的冻结/优先级机制。
   # =========================
   # 2. 校验与约束
   # =========================
 
   validation:
-    earliest_signal: "在连续 7 天内，至少 5 天能在 60 秒内从系统选出当日首个任务并完成一个 timebox 内的输出；Weekly Review 第一次执行在 90min 内完成。"    # 最早能判断方向对/错的信号
-    stop_rule: "作为长期运行计划不以‘完成’判定成败，而以滚动健康度裁决：若任意连续 4 周内出现以下任一项，则触发结构性回退/删减：a) Weekly Review 平均>120min；b) 维护系统占用>40%可用时间；c) ≥2 周无法在 60 秒内选出首任务；d) 活跃项目中 ≥50% 连续两周无可冻结输出。触发后：冻结新增模块→删减字段/标签→回退到 MVP（仅 Steps+Tasks+due）直至指标恢复。"
-
+    earliest_signal: "7 天内 ≥5 天能在 60 秒内选出首任务并完成 1 个 timebox；第一次 Weekly Review ≤ 90min。"
+    stop_rule: "滚动治理而非一次性完成：若任意连续 4 周出现任一项——a) Weekly Review 平均 >120min；b) 维护时间 >40%；c) 连续 ≥2 周无法在 60 秒内选出首任务；d) 活跃项目中 ≥50% 连续两周无可冻结输出——则冻结新增模块→删减字段→回退到 MVP（仅 Steps+Tasks+due）直至指标恢复。"
   constraints:
     deadline_or_budget: "里程碑：MVP 2026-03-08；稳定化 2026-04-05；之后进入滚动治理（每 4 周一次健康度验收），不设终止日期"
     fallback_rule: "freeze_output_and_reallocate_time"
@@ -82,6 +76,13 @@ plan:
   # =========================
 
   steps:
+    - id: S_run
+      description: "系统运行态治理：Weekly Review 中的结构维护（新建/拆分/合并 Plan，冻结/归档项目）"
+      supports_hypothesis: H1
+      done_if: "系统能在不增加维护负担的情况下，持续吸收新项目并保持活跃项目数量稳定"
+      output: "每周 review 中有明确的结构调整记录（如新 plan / 冻结 plan / 合并 plan）"
+      status: "future"
+
     - id: S1
       description: "定义 PPMS v1 的最小结构与目录：计划文件（yaml）+ Inbox + Weekly Review 模板 + 当周任务池"
       supports_hypothesis: H1
@@ -134,7 +135,7 @@ plan:
       done_if: "3 个模板文件都能被填写且不报 YAML/Markdown 格式问题"
       due: "2026-02-18"
       timebox: "2h"
-      status: "active"
+      status: "done"
       done: ""
 
     - id: T2
@@ -144,19 +145,41 @@ plan:
       done_if: "规则写清楚且当天完成 5 条捕获（每条含触发场景/可能影响）"
       due: "2026-02-19"
       timebox: "20min"
-      status: "todo"
+      status: "done"
       done: ""
 
-    - id: T3
+    - id: T3a
       supports_step: S2
-      description: "完成第一次 Weekly Review：从 Inbox 里筛选、转化并生成本周 Tasks（≥5 个）"
-      output: "weekly_review_2026-02-22.md + 本周任务池（含 due/timebox）"
-      done_if: "Review ≤ 90min；产出≥5 个 Tasks；并为 1 个活跃项目明确下周 3 个关键 Tasks"
+      description: "Weekly Review - 收集与筛选：从 Mac 备忘录挑出本周需要处理的条目，复制到 inbox（处理缓冲区）并做最小归类"
+      output: "inbox（处理缓冲区）新增本周条目（≥10）且每条含：触发场景/想法/可能影响"
+      done_if: "inbox 中 ≥10 条；每条至少有‘可能影响（对应哪个 plan/系统/决策）’"
       due: "2026-02-22"
-      timebox: "90min"
-      status: "todo"
+      timebox: "20min"
+      status: "done"
       done: ""
 
+    - id: T3b
+      supports_step: S2
+      description: "Weekly Review - 更新 Plan：用 inbox 条目更新受影响的 1–3 个活跃 plan（补/改 hypotheses、steps、或新增/删除 tasks）"
+      output: "1–3 个 plan 文件已更新（有具体改动痕迹）"
+      done_if: "至少 1 个 plan 的 steps 或 tasks 有新增/删减/重排；并在 plan 或 review 里写明‘为何调整’一句话"
+      due: "2026-02-22"
+      timebox: "45min"
+      status: "done"
+      record: >
+        接下来要跟新各个计划生产层逻辑，不仅是inbox，还要考虑目前的进展，逐一完成
+      done: ""
+
+    - id: T3c
+      supports_step: S2
+      description: "Weekly Review - 派生本周任务：从更新后的各 plan 中抽取本周 3–7 个关键 tasks（可执行、可冻结证据），写入 weekly_review"
+      output: "weekly_review_YYYY-MM-DD.md + 本周关键任务清单（3–7 个）"
+      done_if: "清单中每个 task 都有：明确 output + timebox；并写出‘本周不做清单’"
+      due: "2026-02-22"
+      timebox: "30min"
+      status: todo
+      done: ""
+      
     - id: T4
       supports_step: S3
       description: "为任务系统加入最小标签规范：energy/leverage/timing，并给现有任务打标签（至少 15 条）"
@@ -164,7 +187,7 @@ plan:
       done_if: "≥15 条任务完成标签；你能在 60 秒内从中选出当日首任务"
       due: "2026-02-24"
       timebox: "45min"
-      status: "todo"
+      status: todo
       done: ""
 
     - id: T5
@@ -207,23 +230,40 @@ plan:
       status: "todo"
       done: ""
 
-  # =========================
-  # 6. Procedure（Task 内部执行引导，可选）
-  # =========================
+    - id: T9
+      supports_step: S_run
+      description: "建立『三观持续提升』项目计划（世界观/价值观/职业选择），并定义可执行与可复盘机制"
+      output:
+        - "project_worldview_values_career_v1.yaml"
+        - "原则与阅读/学习清单（附来源与版本号）"
+        - "首轮 4 周行动清单（每周可冻结产出）"
+      done_if: >
+        1) 已创建并提交 project_worldview_values_career_v1.yaml；
+        2) 计划中至少包含 3 个 Steps（世界观/价值观/职业选择），每个 Step ≥5 个 Tasks；
+        3) 世界观部分：包含『了解真实历史』的学习路径与至少 5 个可信来源（书/课程/档案/史料）；
+        4) 价值观部分：已写入两条核心原则（不替他人规划人生；人生是等价交换与责任边界），并各自配套 2–3 个可执行练习或反思任务；
+        5) 职业选择部分：已给出一个可复盘的决策框架（输入/权重/约束/输出）与 3 个验证性任务；
+        6) 计划中所有 Tasks 均有 output / done_if / timebox。
+      record: >
+        - 建立过程的设计决策记录（为何这样分 Steps / 取舍了什么）
+        - 关键参考资料清单与链接
+        - 首次执行一周后的回顾要点（是否可执行/是否过载/需要删减的字段）
+        
+        任何人都不能也没有能力给其他人的人生作出规划，因为人生轨迹是初始条件与基于个人价值观的选择共同塑造的，而这一过程是独特、无法复制的。建议只应当停留在个人价值观的塑造上，以帮助他人更好地了解自己，做出的下一个选择更正确。
+        人生是等价交换，通过选择承担一部分责任，来获得一部分好处，过多的责任会耗尽人的精力，不再有情绪照顾他人感受、完善自己的工作质量。掌握好自己的斤两，承担适度的责任，让自己能用最佳的精力完成，获得适当的报酬，可持续地循环。
+      timebox: "3h"
+      status: todo
 
-  procedure:
-    - id: P1
-      supports_task: T3
-      focus: "Weekly Review（90min）：1) 收集：清空 Inbox；2) 筛选：按杠杆/时序；3) 转化：每条落到 Step/Task；4) 排期：只保留本周可执行 3–7 个关键任务；5) 冻结：明确本周不做什么"
-      done_if: "产出本周关键 Tasks（≥5）并写明‘本周不做清单’；review 总时长≤90min"
-      artifacts: ["weekly_review_YYYY-MM-DD.md", "this_week_tasks.md"]
-      record: ""
-      status: "todo"
+    - id: T10
+      supports_step: S_run
+      description: "根据邮件建立新plan，规划答辩事宜，同时建立新plan，继续优化实验设计"
+      output:
+        - "博士毕业答辩计划.yaml"
+        - "博士毕业学位计划.yaml"
+      done_if: >
+        - 答辩计划包含答辩时间、答辩委员会成员、答辩流程与准备事项等；
+        - 学位计划包含后续实验设计优化的具体步骤与时间安排。
+      record: >
 
-    - id: P2
-      supports_task: T5
-      focus: "Daily Pick（≤60s）：先看约束（地点/精力/身体状态）→ 过滤不可行任务 → 在剩余中选 leverage 最高且 timing 最敏感的 1 个 → 设 timebox 启动"
-      done_if: "每天记录 1 条：选了什么、为什么、是否顺利、是否需要降级"
-      artifacts: ["daily_pick_log.md"]
-      record: ""
-      status: "todo"
+      timebox: "3h"
+      status: todo

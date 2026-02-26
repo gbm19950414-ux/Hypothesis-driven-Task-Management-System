@@ -1,0 +1,8 @@
+﻿plan_name,plan_file,generator,task_id,status,due,description,objective_id,step_id,condition,done_if,output,verdict,result_ref,result_summary
+寻找工作,/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/plan_寻找工作.yaml,execution,T1,todo,2026-03-01,定义求职对齐维度：确定用于评估就业方向的字段（如工作内容、技能要求、门槛、发展路径、薪资区间、节奏、地域、风险等），并产出模板文件,o1,,,获得行业调研表,,,,
+寻找工作,/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/plan_寻找工作.yaml,execution,T4,todo,2026-03-04,定义自我评估维度与结构（能力/经验/偏好/价值取向/约束），并产出自我评估模板文件,o2,,,获得自我评估表,,,,
+博士毕业答辩,/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/plan_毕业答辩.yaml,execution,T1,todo,2026-03-06,请孙老师完成意见表草稿拟定，并确定意见表及签名是否需要线下手写,o1,,与孙老师约定会面,导师签字完成且已在 3 月 6 日当天提交并登记,,,,
+博士毕业答辩,/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/plan_毕业答辩.yaml,execution,T4,todo,2026-03-26,询问盲审论文一轮审阅状态，催促完成,o2,,与孙老师约定会面,管理系统中已提交定稿电子版盲审论文,,,,
+博士毕业论文投稿、接收,/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/plan_学位证书.yaml,execution,T1,todo,2026-03-26,催促导师完成英文论文一轮审阅，重新确认投稿期刊是否为iscience,o1,,见到孙老师,博士毕业论文完成并已开始投稿,,,,
+plan_EphB1,/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/plan_EphB1.yaml,unknown,RUN01_C_T1_total_phospholipid_and_lipid_droplet_proxy,todo,,可选：Bartlett 总磷脂量 + BODIPY 脂滴染色作为 D 的 proxy（总磷脂↓ + 脂滴/TG proxy↑）,,s7,,proxy 读数完成且可解释（含固定成像/读板参数）,Bartlett 总磷脂结果 + BODIPY 图像/定量 + QC 记录,,,
+plan_EphB1,/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/plan/plan_EphB1.yaml,unknown,RUN04_A_T1_PI3Ki_changes_NAO_link_test,todo,,PI3K 抑制（overnight）后进行 NAO 染色（±ΔΨm 对照），测试 NAO 是否按假设方向变化,,s10,,NAO 变化方向明确（支持/不支持）并记录混杂控制,PI3Ki vs vehicle：NAO（±ΔΨm）对照图与统计,unclear,06_figures/results/20260203_NAO_a.pdf,PI3K 抑制在 WT 与 HO 背景下均可显著降低 NAO 强度，提示PI3K通路障碍确实可以降低NAO读数，且该效应与基因缺失造成的PI3K通路障碍不同。

@@ -1,0 +1,332 @@
+# plan_init_checklist.yaml
+# 用途：新建任何计划前的“初始化清单”
+# 目标：在 10–15 分钟内，明确裁决逻辑与运作模式，避免写出四不像计划
+
+
+desired_state:
+  statement: "探索Ephb1缺失为什么会导致IL-1B释放水平的降低"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）
+  observable_signal: "增加Ephb1缺失导致IL-1B释放水平降低中间链条的理解"   # 第三方可判断的变化（出现/消失/↑↓）
+
+current_state:
+  facts: "时间不足"               # 关键事实（资源/能力/限制）
+  bottlenecks: "时间"         # 主要卡点
+  uncertainty: "实验结果的不确定性"         # 最大不确定来源
+  risk_if_wrong: "浪费资源"       # 走错路的代价
+
+# =========================
+# 2) 选择计划哲学（裁决标准）
+# =========================
+philosophy:
+  primary: "evidence"             # target | evidence | constraint（选一个主导）
+  reason: "实验的严谨性是第一要务"              # 为什么选它？
+  failure_definition: "假设被证伪"  # 什么算失败？（未达目标/被证伪/未按时）
+
+# =========================
+# 3) 选择任务生成器（运作模式）
+# =========================
+generator:
+  type: "PHST"                # change(PHST) | execute(Execution) | maintain(Ops)
+  reason: "实验严谨性是第一要务"              # 为什么选这个？
+
+# =========================
+# 4) 行动假设（Action -> Effect）
+# =========================
+hypothesis:
+  action: "构建并测试一条工作模型,优先稳固关键节点并验证信息增益最大的因果链路"
+  expected_effect: "获得至少 1–2 条被强力支持或被证伪的关键因果链路，并将相关节点的证据等级提升到可复现/可解释水平"
+  scope_limit: "本轮只聚焦于：节点稳固（Node Hardening）与 1–2 条关键链路（如 A↔B、B→C）的因果验证；不承诺一次性跑通全链条或做全面叙事收敛"
+
+# =========================
+# 5) 校验机制（Validation / Stop Rule）
+# =========================
+validation:
+  success_signal: "至少一个关键节点达到 N1/N2 证据等级，且至少一条关键链路通过正反向操纵获得方向一致的因果证据（或被明确证伪并迫使模型更新）"
+  falsified_if: "在时间盒内，多批次/正交 readout 仍无法稳定复现关键节点，或关键链路在可行操纵下反复不支持工作模型方向"
+  review_point: "每两周一次阶段回顾（更新 evidence_level / priority），每月一次模型重排与资源再分配评审"
+
+# =========================
+# 6) 约束（Time / Resource Box）
+# =========================
+constraints:
+  time_box: "3 months"
+  resource_budget: "以低到中成本实验为主；仅对 priority=1 的关键链路开放高成本验证"
+  must_not_do: "节点未达到 N1 证据等级前，不进行全链条高成本因果验证；不以叙事完整度替代证据强度"
+  fallback_rule: "若关键节点无法稳固或关键链路被证伪，则下调该路径优先级，回退到节点稳固或重构工作模型"
+
+# =========================
+# 1. 假设层（≤ 3）
+# =========================
+
+hypotheses:
+  - id: h1_X_to_A
+    statement: "EphB1 缺失（KO）会牵引 PI3K–AKT–mTOR capacity signature（转录层）下降"
+    expected_effect: "KO 在多批次 RNA 数据中的 PI3K capacity 分数稳定下降，且 qPCR 对 capacity 基因集的下调趋势得到验证"
+    falsified_if: "PI3K capacity 在多批次中不稳定或方向不一致（方向投票不通过），或 qPCR 无法复现下调"
+    status: abandoned
+
+  - id: h2_A_to_B
+    statement: "EphB1 缺失（KO）会导致 通路即时输出（蛋白/磷酸化）下降"
+    expected_effect: "在匹配刺激条件下，KO 相比 WT 的 p-AKT/p-S6 峰值、AUC 或最大响应幅度下降"
+    falsified_if: "多批次*正交 readout 下，KO 的通路输出不下降或与 capacity 方向持续不一致"
+    status: done
+
+  - id: h3_B_to_C
+    statement: "PI3K 输出下降 能够驱动 磷脂合成受限并伴随分解/周转增强的转录重编程（flux/turnover 轴）"
+    expected_effect: "抑制 PI3K/AKT/mTOR → 合成轴相关基因下移，并出现周转增强相关转录迹象；激活可部分或完全逆转该方向"
+    falsified_if: "在可行的抑制/激活操纵下，flux/turnover 轴及关键节点的方向不随 PI3K 输出改变"
+    status: suspend
+
+  - id: h4_C_to_D
+    statement: "磷脂通量层面的‘合成受限 + 周转增强’足以解释 膜磷脂库的稳态净缩水（多类磷脂下降、TG 代偿上升）"
+    expected_effect: "在控制技术因素后，脂质组显示多类膜磷脂净下降且 TG 上升，并与转录通量轴方向一致"
+    falsified_if: "在控制提取/归一化/细胞数等因素后，脂质组不显示膜磷脂净下降或与转录轴方向不一致"
+    status: suspend
+
+  - id: h5_D_to_E
+    statement: "膜磷脂库的缩水会转化为 CL 可及性/功能池下降（以 NAO 等 readout 反映），二者方向一致但可非线性"
+    expected_effect: "在控制线粒体数量与 ΔΨm 后，膜磷脂减少伴随 NAO 可及性信号下降；补充前体可部分恢复"
+    falsified_if: "在控制线粒体数量与 ΔΨm 后，NAO 信号与脂质组表型仍无一致方向或不可被前体补救"
+    status: suspend
+
+  - id: h6
+    direction: B to E
+    statement: "PI3K输出下降 能够驱动 CL可及性/功能池下降"
+    expected_effect: 
+      抑制 PI3K S473之后，WT呈现膜磷脂减少伴随 NAO 可及性信号下降
+      或
+      激活PI3K S473之后，HO呈现膜磷脂增加伴随 NAO 可及性信号上升
+    falsified_if: "操纵PI3K后，NAO信号与膜磷脂表型仍无一致方向或不可被前体补救"
+    status: todo
+
+# =========================
+# 2. Step 层（路径）
+# =========================
+steps:
+  # =========================
+  # X -> A  （h1_X_to_A）
+  # =========================
+  - id: s1
+    kind: node
+    description: "稳固节点 A（PI3K capacity signature）：多批次 RNA 方向投票 + qPCR 正交验证"
+    hypothesis_id: h1_X_to_A
+    done_if: "多批次 capacity 分数方向一致（投票通过）且 qPCR 对 capacity 基因集下调趋势得到验证"
+    output: "capacity 分数汇总表 + qPCR 汇总图/表"
+    status: done
+
+  - id: s2
+    kind: causal
+    description: "确认现象归因于 EphB1 KO 语境：排除明显混杂（批次/条件/归一化）并冻结结论"
+    hypothesis_id: h1_X_to_A
+    done_if: "在可比条件下 KO 的 capacity 下降结论可冻结（支持/不支持），并写入证据等级"
+    output: "结论页（支持/证伪/不确定）+ 混杂排查记录"
+    status: done
+
+  # =========================
+  # A -> B  （h2_A_to_B）
+  # =========================
+  - id: s3
+    kind: node
+    description: "稳固节点 B（通路即时输出）：建立 time-course 与 dose-response，确保 KO/WT 在匹配条件下差异可复现"
+    hypothesis_id: h2_A_to_B
+    done_if: "≥2 批次、≥2 个 readout（p-AKT/p-S6/FOXO targets）方向一致，形成冻结结论"
+    output: "WB 定量图、time-course/dose-response 曲线与汇总表"
+    status: done
+
+  - id: s4
+    kind: causal
+    description: "因果裁决 A→B：在统一饥饿起点下比较 WT/KO 的峰值、AUC、max；排除相位差异"
+    hypothesis_id: h2_A_to_B
+    done_if: "因为该现象来自ephb1缺失基因小鼠，所以该step天生成立"
+    output: ""
+    status: done
+
+  # =========================
+  # B -> C  （h3_B_to_C）
+  # =========================
+  - id: s5
+    kind: node
+    description: "稳固节点 C（flux/turnover 转录轴）：多批次 RNA-seq + qPCR 验证脂质通量/周转轴方向与效应量"
+    hypothesis_id: h3_B_to_C
+    done_if: "转录轴方向在多批次稳定，且关键瓶颈基因 qPCR 与轴方向一致"
+    output: "转录轴打分表/方向投票 + qPCR 汇总"
+    status: todo
+
+  - id: s6
+    kind: causal
+    description: "因果裁决 B→C：药理/遗传操纵 PI3K/AKT/mTOR，观察转录轴的可复制与可逆性"
+    hypothesis_id: h3_B_to_C
+    done_if: "抑制/激活引起转录轴按预测方向变化或明确否定，并更新证据等级"
+    output: "操纵-转录轴对照图与统计 + 结论页"
+    status: todo
+
+  # =========================
+  # C -> D  （h4_C_to_D）
+  # =========================
+  - id: s7
+    kind: node
+    description: "稳固节点 D（膜磷脂库稳态表型）：多批次脂质组确认膜磷脂净下降与 TG 上升，并与转录通量轴方向一致"
+    hypothesis_id: h4_C_to_D
+    done_if: "在控制提取/归一化/细胞数等因素后，脂质组表型稳定且与转录轴方向一致"
+    output: "脂质组汇总图表 + 技术控制/QC 记录"
+    status: todo
+
+  - id: s8
+    kind: causal
+    description: "因果裁决 C→D：通过通路操纵（如 PI3K 抑制）测试是否可复制膜磷脂净缩水与 TG 代偿趋势"
+    hypothesis_id: h4_C_to_D
+    done_if: "操纵能推动脂质组按预测方向变化或明确否定，并更新证据等级"
+    output: "操纵-脂质组对照图与统计 + 结论页"
+    status: todo
+
+  # =========================
+  # D -> E  （h5_D_to_E）
+  # =========================
+  - id: s9
+    kind: node
+    description: "稳固节点 E（NAO/CL readout 解释边界）：控制线粒体数量与 ΔΨm，排除膜电位主导 NAO 信号"
+    hypothesis_id: h5_D_to_E
+    done_if: "在控制 ΔΨm 与线粒体数量后，NAO 解释边界明确（可用/不可用/需条件）"
+    output: "NAO vs ΔΨm 对照图 + 解释边界结论页"
+    status: todo
+
+  - id: s10
+    kind: causal
+    description: "因果裁决 D→E：通过限制合成/补充前体/改变膜环境等方式测试膜磷脂库变化是否驱动 NAO/CL 可及性变化"
+    hypothesis_id: h5_D_to_E
+    done_if: "膜磷脂变化与 NAO 方向一致且可被前体部分救援，或明确否定该关系，并更新证据等级"
+    output: "干预-NAO/脂质组对照图与统计 + 结论页"
+    status: todo
+
+# =========================
+# 3. Task 层（1 day 证据）
+# =========================
+
+tasks:
+  # 说明：task.id 以 pipeline / runsheet 的 branch 前缀对齐（RUNxx_Y），后缀 Tn 表示该 branch 下的日级可执行任务
+  # =========================
+  # RUN01_A  | qPCR panels（PI3K capacity / FOXO / flux-turnover） | EV002/EV005/EV008
+  # =========================
+  - id: RUN01_A_T2_qpcr_capacity_panel_validation
+    step_id: s1
+    description: "选择 capacity 基因集进行 qPCR 正交验证（KO vs WT）"
+    output: "qPCR 汇总表/图"
+    done_if: "qPCR 趋势与 RNA 分数方向一致"
+    result_ref: "06_figures/results/20260206_qPCR/panel_PI3K capacity.png"
+    result_summary: "在 PI3K capacity 轴的一个组成节点（Rps6kb2）上呈现方向一致且具有统计学意义的下调"
+    verdict: "unclear"   # support | refute | unclear
+    status: done
+
+  # =========================
+  # RUN02_A | WB phospho PI3K outputs（timecourse + dose） | EV004a/EV004b
+  # =========================
+  - id: RUN02_A_T1_WB_timecourse_batch1
+    step_id: s3
+    description: "设计并跑 WT/KO 的 FBS 再喂养 time-course（p-AKT/p-S6），完成一次批次 WB 与定量"
+    output: "WB 图与定量表（batch1）"
+    done_if: "曲线完成并有可比定量"
+    result_ref: 
+      06_figures/results/20260204_wb_batch_1/20260204_wb_batch_1.pdf
+      06_figures/results/20260204_wb_batch_2/20260204_wb_batch_2.pdf
+      06_figures/results/20260204_wb_batch_3/20260204_wb_batch_3.pdf
+    result_summary: 
+      总体而言，在血清再喂养诱导的 PI3K–AKT–mTOR 信号动力学中，EphB1 缺失未显著改变 p-AKT(T308) 与 p-S6 的整体动力学，但呈现出 AKT(S473) 中期回升不足 的可重复趋势，而 4EBP1/p-4EBP1 轴需要进一步技术控制与定量验证。
+      这暗示在常态下，mTORC2 对 S473 的持续磷酸化能力下降，或 S473 特异性去磷酸化（如 PHLPP/PP2A 方向）相对增强
+    verdict: "support"   # support | refute | unclear
+    status: done
+
+  - id: RUN02_A_T3_qpcr_FOXO_targets_orthogonal_readout
+    step_id: s3
+    description: "检测 FOXO 靶基因（qPCR）作为 AKT 抑制解除的正交 readout"
+    output: "qPCR 结果表"
+    done_if: "方向与 WB readout 可对照"
+    result_ref: 
+      06_figures/results/20260206_qPCR/panel_pi3k footprint.png
+    result_summary: 
+      在基线条件下 EphB1 缺失并未引起 AKT/FOXO footprint 轴或 flux limitation 轴的广泛同步改变（多数节点为 ns）
+      但是该实验设计存在问题，与基因敲除导致的akt抑制动力学不同，所以该实验结果不能达成该假设的预期效应，无法支持或否定该假设。
+    verdict: "unclear"   # support | refute | unclear
+    status: suspend
+
+  # =========================
+  # RUN03_A | PI3K inhibition recapitulates flux/turnover qPCR | EV009
+  # =========================
+
+  - id: RUN03_A_T2_qpcr_bottleneck_nodes_validation
+    step_id: s5
+    description: "选择瓶颈基因进行 qPCR 验证（≥1 批次）"
+    output: "qPCR 验证表"
+    done_if: "与转录轴方向一致"
+    result_ref: 
+      06_figures/results/20260206_qPCR/panel_Flux limit.png
+      06_figures/results/20260206_qPCR/panel_Rerouting to tg.png
+    result_summary: 
+      在基线条件下 EphB1 缺失并未引起flux limitation 轴的广泛同步改变（多数节点为 ns）
+      但是在rerouting/turnover 相关节点（Dgat2、Mgll）上呈现方向一致且具有统计学意义的下调
+    verdict: unclear   # support | refute | unclear
+    status: suspend
+
+  - id: RUN03_A_T3_PI3Ki_or_AKT_mTOR_modulation_test
+    step_id: s6
+    description: "使用 PI3K 抑制剂或 AKT/mTOR 操纵，检测转录轴变化的复制与可逆性"
+    output: "操纵对照与转录轴变化图"
+    done_if: "得到支持或否定因果的结果"
+    result_ref: 
+      06_figures/results/20260206_qPCR/panel_PI3Ki_Flux limit.png
+      06_figures/results/20260206_qPCR/panel_PI3Ki_Rerouting to tg.png
+    result_summary: 
+      在 WT 背景下，降低 PI3K 输出引发脂质合成通路全轴性一致升高，提示 PI3K 抑制同时增强了 TG 周转与部分磷脂合成相关转录程序，这一方向与 HO 脂质组中观察到的 TG 增加、磷脂减少的表型并不一致，说明 Copanlisib 处理并不能有效模拟 HO 状态下的 PI3K 信号轴
+    verdict: unclear   # support | refute | unclear
+    status: suspend
+
+  # =========================
+  # RUN04_A/B/C | manipulate D then read E（NAO） | EV017/EV018/EV019
+  # =========================
+  - id: RUN04_A_T1_PI3Ki_changes_NAO_link_test
+    step_id: s10
+    description: "PI3K 抑制（overnight）后进行 NAO 染色（±ΔΨm 对照），测试 NAO 是否按假设方向变化"
+    output: "PI3Ki vs vehicle：NAO（±ΔΨm）对照图与统计"
+    done_if: "NAO 变化方向明确（支持/不支持）并记录混杂控制"
+    result_ref: 
+      06_figures/results/20260203_NAO_a.pdf
+    result_summary: 
+      PI3K 抑制在 WT 与 HO 背景下均可显著降低 NAO 强度，提示PI3K通路障碍确实可以降低NAO读数，且该效应与基因缺失造成的PI3K通路障碍不同。
+    verdict: unclear   # support | refute | unclear      status: todo
+    status: todo
+
+  - id: RUN04_B_T1_limit_PC_PE_synthesis_induces_D_and_decreases_NAO
+    step_id: s10
+    description: "限制 PC/PE 合成（或原料供给/合成酶限制）后 NAO 染色（±ΔΨm 对照），测试 D→E"
+    output: "限制合成：NAO（±ΔΨm）对照图与统计"
+    done_if: "NAO 是否随 D 表型方向下降得到裁决"
+
+    status: suspend
+
+  - id: RUN04_C_T1_precursor_supplement_rescues_D_and_restores_NAO
+    step_id: s10
+    description: "补充前体（choline/ethanolamine 等）进行 rescue，观察 NAO 是否回拉（±ΔΨm 对照）"
+    output: "补充前体 rescue：NAO（±ΔΨm）对照图与统计"
+    done_if: "NAO 回拉是否与 D 被救回一致得到裁决"
+
+    status: suspend
+
+  # =========================
+  # RUN01_C | optional proxies for D（总磷脂↓ + 脂滴/TG proxy↑） | EV013
+  # =========================
+  - id: RUN01_C_T1_total_phospholipid_and_lipid_droplet_proxy
+    step_id: s7
+    description: "可选：Bartlett 总磷脂量 + BODIPY 脂滴染色作为 D 的 proxy（总磷脂↓ + 脂滴/TG proxy↑）"
+    output: "Bartlett 总磷脂结果 + BODIPY 图像/定量 + QC 记录"
+    done_if: "proxy 读数完成且可解释（含固定成像/读板参数）"
+
+    status: todo
+
+  # =========================
+  # RUN05_A | optional B->D direct evidence（PI3K inhibition lipidomics/proxy） | EV014
+  # =========================
+  - id: RUN05_A_T1_PI3Ki_lipid_pool_lipidomics_or_proxy
+    step_id: s8
+    description: "可选增强：PI3K 抑制后做脂质组（或先做 proxy：Bartlett+BODIPY），评估是否复制‘总磷脂↓/TG↑’趋势"
+    output: "PI3Ki：脂质组（或 proxy）对照图与统计"
+    done_if: "操纵推动预期方向或明确否定"
+
+    status: suspend

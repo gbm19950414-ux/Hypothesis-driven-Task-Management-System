@@ -376,45 +376,17 @@ plan:
         该任务在新增图片加入后完成；仅进行段内可读性优化。
         任何结构性或论证层级调整一律以批注形式记录，留待老师反馈后处理。
       timebox: "3h"
+      status: done
+    - id: T19
+      supports_step: S7
+      description: "完成论文撰写后，根据邮件建立新plan，规划答辩事宜，同时建立新plan，继续优化实验设计"
+      output:
+        - "博士毕业答辩计划.yaml"
+        - "博士毕业学位计划.yaml"
+      done_if: >
+        - 答辩计划包含答辩时间、答辩委员会成员、答辩流程与准备事项等；
+        - 学位计划包含后续实验设计优化的具体步骤与时间安排。
+      record: >
+
+      timebox: "3h"
       status: todo
-  # =========================
-  # 6. Procedure（Task 内部执行引导，可选）
-  # =========================
-
-procedure:
-  - id: P1
-    supports_task: T3
-    focus: "每张图的逻辑转折"
-    done_if: "根据logical,为每个逻辑单元设置一句逻辑转折语"
-    artifacts: [ligical.english.yaml]
-    status: done
-  - id: P2
-    supports_task: T3
-    focus: "每张图的说明文字骨架"
-    done_if: "根据每张图的说明文件,为每个逻辑单元设置3～6句骨架句"
-    artifacts: [panel.english.yaml]
-    status: done
-    record: >
-      "已经完成了骨架句构建方法的逻辑，接下来是根据各个panel的说明文件，为每张图生成英文Results骨架句。"
-      "完成了ai生成，接下来是检查："
-      检查中文内容是否超出figure语义，如果是，回溯到引用字段进行检查、修正，并重写句子
-
-  - id: P3
-    supports_task: T4
-    focus: "顺序正确、组合完整的result部分"
-    done_if: "使用脚本与配置文件，自动生成result部分"
-    artifacts: [result.md]
-    status: done
-    record: >
-      增加中文对照
-      确保完整
-      确保顺序无误
-
-  - id: P4
-    supports_task: T4
-    focus: "表达方式完整的result部分"
-    done_if: "阅读整个result部分，确保表达方式没有大问题"
-    artifacts: [result.md]
-    status: active
-    record: >
-
