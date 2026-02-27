@@ -1,0 +1,83 @@
+execution_plan:
+  name: 健身-2026增肌周期_01
+  philosophy: constraint-led
+  cycle: 4-week
+
+  meta:
+    period_start: 2026-03-01
+    period_end: 2026-03-28
+
+  objective:
+
+    # =========================
+    # O1 训练执行
+    # =========================
+    - id: O1
+      type: stimulus
+      statement: 完成4周训练计划（总训练量达标）
+      due: 2026-03-28
+      done_if: >
+        每周训练次数 ≥ 4；
+        胸/背/腿总组数达标；
+        无连续两周训练中断
+
+    # =========================
+    # O2 饮食与恢复
+    # =========================
+    - id: O2
+      type: support
+      statement: 维持增肌期营养与恢复条件
+      due: 2026-03-28
+      done_if: >
+        平均蛋白 ≥ 1.8g/kg；
+        热量维持在目标区间；
+        睡眠 ≥ 7h/晚（周均）
+
+    # =========================
+    # O3 周期回顾与校准
+    # =========================
+    - id: O3
+      type: review
+      statement: 完成周期趋势评估并决定下周期调整
+      due: 2026-03-28
+      done_if: >
+        体重趋势分析完成；
+        力量曲线记录完成；
+        是否进入下一周期或deload有明确裁决
+
+  tasks:
+
+    # -------------------------
+    # 训练 tasks
+    # -------------------------
+    - id: T_W1_D1
+      objective_id: O1
+      description: 上肢A训练
+      due: 2026-03-01
+      status: suspend
+
+    - id: T_W1_D2
+      objective_id: O1
+      description: 下肢A训练
+      due: 2026-03-02
+      status: suspend
+
+    # …按周展开
+
+    # -------------------------
+    # 饮食追踪 tasks
+    # -------------------------
+    - id: T_W1_Nutrition_Log
+      objective_id: O2
+      description: 记录本周平均蛋白与热量
+      due: 2026-03-07
+      status: suspend
+
+    # -------------------------
+    # 回顾 task（低频）
+    # -------------------------
+    - id: T_Review_W4
+      objective_id: O3
+      description: 4周周期趋势分析与结构调整
+      due: 2026-03-28
+      status: suspend

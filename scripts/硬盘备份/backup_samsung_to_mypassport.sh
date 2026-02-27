@@ -14,7 +14,10 @@ set -euo pipefail
 # Notes:
 #   - Default is backing up to BOTH destination disks (all).
 #   - Mirror mode is dangerous; prefer clone for the secondary/offline disk.
-
+# 默认用法：mirror到旅游盘：
+#  /Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/scripts/硬盘备份/backup_samsung_to_mypassport.sh mirror --dry-run I_UNDERSTAND_DELETE_IN_DST --dst 旅游
+# 预期返回：[Mirror] Keep destination identical to source...
+# /Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/scripts/硬盘备份/backup_samsung_to_mypassport.sh mirror I_UNDERSTAND_DELETE_IN_DST --dst 旅游
 SRC="/Volumes/Samsung_SSD_990_PRO_2TB_Media"
 
 # ---- Destinations (support multiple backup disks) ----
