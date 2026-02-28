@@ -1,22 +1,10 @@
 #!/bin/bash
 set -euo pipefail
-
-# Backup Samsung SSD -> multiple destinations (MyPassport, 旅游) using rsync.
-#
-# Usage:
-#   ./backup_samsung_to_mypassport.sh clone [--dry-run] [--dst MyPassport|旅游|all]
-#   ./backup_samsung_to_mypassport.sh mirror [--dry-run] I_UNDERSTAND_DELETE_IN_DST [--dst MyPassport|旅游|all]
-#
-# Modes:
-#   clone  : first safe copy (NO deletion on destination)
-#   mirror : keep destination identical to source INSIDE each backup folder (will delete extra files under DST)
-#
-# Notes:
-#   - Default is backing up to BOTH destination disks (all).
-#   - Mirror mode is dangerous; prefer clone for the secondary/offline disk.
 # 默认用法：mirror到旅游盘：
+# 预先看一下会动哪些文件：
 #  /Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/scripts/硬盘备份/backup_samsung_to_mypassport.sh mirror --dry-run I_UNDERSTAND_DELETE_IN_DST --dst 旅游
 # 预期返回：[Mirror] Keep destination identical to source...
+# 正式执行mirror到旅游盘：
 # /Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/scripts/硬盘备份/backup_samsung_to_mypassport.sh mirror I_UNDERSTAND_DELETE_IN_DST --dst 旅游
 SRC="/Volumes/Samsung_SSD_990_PRO_2TB_Media"
 

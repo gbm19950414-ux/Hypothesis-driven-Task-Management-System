@@ -1,0 +1,32 @@
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN["PLAN: Plan"]:::plan
+EP["EXEC: 博士毕业论文投稿、接收"]:::plan
+PLAN --> EP
+OBJ_o1["o1<br/>due: 2026-03-26<br/>完成博士毕业论文并开始投稿"]:::obj
+EP --> OBJ_o1
+OBJ_o2["o2<br/>due: 2026-04-10<br/>等待投稿结果返回"]:::obj
+EP --> OBJ_o2
+OBJ_o3["o3<br/>due: 2026-05-10<br/>完成投稿意见相关的修改，并提交最终版本"]:::obj
+EP --> OBJ_o3
+OBJ_o1 ~~~ OBJ_o2
+OBJ_o2 ~~~ OBJ_o3
+TASK_T1["✓ T1<br/>催促导师完成英文论文一轮审阅，重新确认投稿期刊是否为iscience"]:::done
+OBJ_o1 --> TASK_T1
+TASK_T2["T2<br/>了解目标期刊的要求"]:::task
+OBJ_o1 --> TASK_T2
+TASK_T2.2["T2.2<br/>根据期刊要求与论文生产流程，完成论文防拒稿修正"]:::task
+OBJ_o1 --> TASK_T2.2
+TASK_T2.3["T2.3<br/>整理好所有内容，发送给导师做最终check"]:::task
+OBJ_o1 --> TASK_T2.3
+TASK_T3["T3<br/>完成投稿"]:::task
+OBJ_o1 --> TASK_T3
+TASK_T1 ~~~ TASK_T2
+TASK_T2 ~~~ TASK_T2.2
+TASK_T2.2 ~~~ TASK_T2.3
+TASK_T2.3 ~~~ TASK_T3

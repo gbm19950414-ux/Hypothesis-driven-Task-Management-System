@@ -56,6 +56,14 @@ constraints:
 # =========================
 # 1. 假设层（≤ 3）
 # =========================
+problem:
+model:
+  X: "EphB1 缺失（KO）"
+  A: "PI3K–AKT–mTOR capacity signature 下降（转录层）"
+  B: "PI3K–AKT–mTOR 即时活性/输出下降（蛋白/磷酸化层）"
+  C: "磷脂通量失衡：合成受限 + 分解/周转增强（RNA flux/turnover 轴）"
+  D: "膜磷脂库净缩水（PC/PE/PI/PS/PG/CL 下降；TG 上升）"
+  E: "CL 可及性/功能池下降（NAO 等 readout），影响膜相关执行阈值/效应强度"
 
 hypotheses:
   - id: h1_X_to_A
@@ -87,7 +95,13 @@ hypotheses:
     expected_effect: "在控制线粒体数量与 ΔΨm 后，膜磷脂减少伴随 NAO 可及性信号下降；补充前体可部分恢复"
     falsified_if: "在控制线粒体数量与 ΔΨm 后，NAO 信号与脂质组表型仍无一致方向或不可被前体补救"
     status: suspend
-
+  - id: h5.1
+    direction: X to B
+    statement: "EphB1基因缺失 导致 PI3K输出下降"
+    expected_effect: 
+      控制Ephb1后后，PI3K输出下降
+    falsified_if: "操纵PI3K后，NAO信号与膜磷脂表型仍无一致方向或不可被前体补救"
+    status: todo
   - id: h6
     direction: B to E
     statement: "PI3K输出下降 能够驱动 CL可及性/功能池下降"
@@ -97,11 +111,23 @@ hypotheses:
       激活PI3K S473之后，HO呈现膜磷脂增加伴随 NAO 可及性信号上升
     falsified_if: "操纵PI3K后，NAO信号与膜磷脂表型仍无一致方向或不可被前体补救"
     status: todo
-
+  - id: h7
+    depends_on: [h8]
+    direction: B to D
+    statement: "PI3K-AKT信号通路S473磷酸化水平的降低 导致 膜磷脂库的稳态净缩水（多类磷脂下降、TG 代偿上升）"
+    expected_effect: "在使用AKT473的特异性抑制剂后，染色显示多类膜磷脂净下降且 TG 上升，并与转录通量轴方向一致"
+    falsified_if: "在控制提取/归一化/细胞数等因素后，脂质组不显示膜磷脂净下降或与转录轴方向不一致"
+    status: todo
+  - id: h8
+    direction: X to D
+    statement: "EphB1基因缺失 导致 小鼠腹腔巨噬细胞 膜磷脂库的稳态净缩水"
+    expected_effect: "控制Ephb1后，小鼠腹腔巨噬细胞磷脂减少，TG增加"
+    falsified_if: "控制Ephb1后，小鼠腹腔巨噬细胞磷脂库稳态无明显缩水或方向相反"
+    status: todo
 # =========================
 # 2. Step 层（路径）
 # =========================
-steps:
+steps:  # Evidence Unit
   # =========================
   # X -> A  （h1_X_to_A）
   # =========================
@@ -188,7 +214,6 @@ steps:
     done_if: "在控制 ΔΨm 与线粒体数量后，NAO 解释边界明确（可用/不可用/需条件）"
     output: "NAO vs ΔΨm 对照图 + 解释边界结论页"
     status: todo
-
   - id: s10
     kind: causal
     description: "因果裁决 D→E：通过限制合成/补充前体/改变膜环境等方式测试膜磷脂库变化是否驱动 NAO/CL 可及性变化"
@@ -196,12 +221,48 @@ steps:
     done_if: "膜磷脂变化与 NAO 方向一致且可被前体部分救援，或明确否定该关系，并更新证据等级"
     output: "干预-NAO/脂质组对照图与统计 + 结论页"
     status: todo
-
+  - id: s11
+    kind: causal
+    description: "因果裁决 D→E：通过限制合成/补充前体/改变膜环境等方式测试膜磷脂库变化是否驱动 NAO/CL 可及性变化"
+    hypothesis_id: h5_D_to_E
+    done_if: "膜磷脂变化与 NAO 方向一致且可被前体部分救援，或明确否定该关系，并更新证据等级"
+    output: "干预-NAO/脂质组对照图与统计 + 结论页"
+    status: todo
+  - id: s12
+    kind: adequaty
+    description: "WB检测 HO p-AKT(s473)相对于WT的变化趋势"
+    hypothesis_id: h5.1
+    status: todo
+  - id: s13
+    kind: necessity
+    description: "在 KO 背景下，尝试 提升 B（S473/mTORC2 输出），看 E 是否恢复"
+    hypothesis_id: h6
+    status: todo
+  - id: s14
+    kind: adequaty
+    description: "在WT 背景下，尝试 抑制 B（S473/mTORC2 输出），看 E 是否受损"
+    hypothesis_id: h6
+    status: todo
+  - id: s15
+    kind: adequaty
+    description: "在 KO 背景下，染色检测磷脂与TG比例是否减少"
+    hypothesis_id: h8
+    status: todo
+  - id: s16
+    kind: adequaty
+    description: "在 KO 背景下，尝试 提升 B（S473/mTORC2 输出），看 D 是否恢复"
+    hypothesis_id: h7
+    status: todo
+  - id: s17
+    kind: necessity
+    description: "在WT 背景下，尝试 抑制 B（S473/mTORC2 输出），看 D 是否受损"
+    hypothesis_id: h7
+    status: todo
 # =========================
 # 3. Task 层（1 day 证据）
 # =========================
 
-tasks:
+tasks:  # Experiment
   # 说明：task.id 以 pipeline / runsheet 的 branch 前缀对齐（RUNxx_Y），后缀 Tn 表示该 branch 下的日级可执行任务
   # =========================
   # RUN01_A  | qPCR panels（PI3K capacity / FOXO / flux-turnover） | EV002/EV005/EV008
@@ -330,3 +391,52 @@ tasks:
     done_if: "操纵推动预期方向或明确否定"
 
     status: suspend
+
+  - id: T1
+    step_id: s12
+    description: "取出细胞后定量，直接裂解保存、上样检测"
+    status: todo
+
+  - id: T2
+    step_id: s12
+    description: "取出细胞后重复血清饥饿、refeed实验，选择45min收样品进行检测"
+    status: todo
+    
+  - id: T3
+    step_id: s13
+    description: "KO 背景下筛选/确定 1 个可行条件，使 p-AKT(S473) 明显上升（救援操纵的可行性验证）"
+    status: todo
+
+  - id: T4
+    step_id: s13
+    depends_on: [T3]   # 若你系统支持 task-level depends_on
+    description: "在 KO 背景下应用已选救援条件：检验 B↑ 是否导致 E（NAO）回拉（含 ΔΨm/mito mass/viability 校正项）"
+    status: todo
+
+  - id: T5
+    step_id: s14
+    description: "WT 背景下筛选/确定 1 个可行抑制条件，使 p-AKT(S473) 明显下降（抑制操纵的可行性验证，避免强毒性）"
+    status: todo
+
+  - id: T6
+    step_id: s14
+    depends_on: [T5]
+    description: "WT 背景下应用已选抑制条件：检验 B↓ 是否导致 E（NAO）下降（并行 ΔΨm/mito mass/viability 以便校正与解释）"
+    status: todo
+
+  - id: T8
+    step_id: s15
+    description: "KO vs WT：Bartlett 总磷脂 + BODIPY 脂滴 proxy（含细胞数/总蛋白归一化与基础 QC），得到第一批次方向结论"
+    status: todo
+
+  - id: T10
+    step_id: s16
+    depends_on: [T3, T9]
+    description: "KO 背景下应用已选救援条件（来自 s13 的 T3）：在确认 p-AKT(S473) 上升的前提下，测 D proxy（Bartlett + BODIPY），观察是否回拉"
+    status: todo
+
+  - id: T12
+    step_id: s17
+    depends_on: [T5, T9]
+    description: "WT 背景下应用已选抑制条件（来自 s14 的 T5）：在确认 p-AKT(S473) 下降的前提下，测 D proxy（Bartlett + BODIPY），观察是否受损（总磷脂↓/脂滴↑）"
+    status: todo

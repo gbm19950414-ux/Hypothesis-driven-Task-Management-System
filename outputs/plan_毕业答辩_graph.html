@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Plan Graph - 获得博士毕业证</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+           margin: 0; padding: 16px; background:#fafafa; }
+    .wrap { max-width: 1400px; margin: 0 auto; }
+    .hint { color:#555; font-size: 13px; margin: 0 0 10px 0; }
+    .box { background:#fff; border:1px solid #ddd; border-radius: 12px; padding: 12px; overflow:auto; }
+    .legend { font-size: 13px; color:#333; margin: 10px 0 0; }
+    code { background:#f3f3f3; padding:2px 6px; border-radius: 6px; }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, flowchart: { curve: "linear" } });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <p class="hint">
+      实线箭头：层级树（Plan → Objective → Task）｜
+      虚线箭头：<code>depends_on</code> ｜ 排列方向：<code>LR</code>
+      （TB：上为先；LR：左为先）
+    </p>
+    <div class="box">
+      <pre class="mermaid">
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN[&quot;PLAN: 获得博士毕业证&lt;br/&gt;需要在3个月内，完成博士毕业答辩&quot;]:::plan
+EP[&quot;EXEC: 博士毕业答辩&quot;]:::plan
+PLAN --&gt; EP
+OBJ_o1[&quot;o1&lt;br/&gt;due: 2026-03-06&lt;br/&gt;请导师填写《生命科学学院博士生学位论文预审及学位评定分委会专家组意见表1》（见附件），…&quot;]:::obj
+EP --&gt; OBJ_o1
+OBJ_o2[&quot;o2&lt;br/&gt;due: 2026-03-26&lt;br/&gt;2026年4月9日前学生必须在管理系统中提交定稿的电子版盲审版学位论文。此电子版论文用…&quot;]:::obj
+EP --&gt; OBJ_o2
+OBJ_o3[&quot;o3&lt;br/&gt;due: 2026-04-02&lt;br/&gt;2026年4月9日前导师登录“研究生学位论文导师审核系统”审核学生电子版学位论文。（操…&quot;]:::obj
+EP --&gt; OBJ_o3
+OBJ_o4[&quot;o4&lt;br/&gt;due: 2026-05-26&lt;br/&gt;2026年5月31日前完成答辩安排确认，2026年6月7日前完成学位论文答辩，并在系统…&quot;]:::obj
+EP --&gt; OBJ_o4
+OBJ_o1 ~~~ OBJ_o2
+OBJ_o2 ~~~ OBJ_o3
+OBJ_o3 ~~~ OBJ_o4
+TASK_T8[&quot;T8&lt;br/&gt;due: 2026-02-28&lt;br/&gt;整体过一遍论文，修正表达方式以及零散内容，形成论文第二稿&quot;]:::task
+OBJ_o2 --&gt; TASK_T8
+TASK_T9[&quot;T9&lt;br/&gt;due: 2026-03-02&lt;br/&gt;将论文交给ghm进行一次修正，如果来不及，则提前一天提交孙老师&quot;]:::task
+OBJ_o2 --&gt; TASK_T9
+TASK_T10[&quot;T10&lt;br/&gt;due: 2026-03-03&lt;br/&gt;等待审阅意见&quot;]:::task
+OBJ_o2 --&gt; TASK_T10
+TASK_T11[&quot;T11&lt;br/&gt;due: 2026-03-04&lt;br/&gt;孙老师返回意见，以及填写意见表&quot;]:::task
+OBJ_o2 --&gt; TASK_T11
+TASK_T12[&quot;T12&lt;br/&gt;due: 2026-03-05&lt;br/&gt;根据反馈意见，做最后修改&quot;]:::task
+OBJ_o2 --&gt; TASK_T12
+TASK_T3[&quot;T3&lt;br/&gt;due: 2026-03-06&lt;br/&gt;3 月 6 日当天提交至C109室登记答辩&quot;]:::task
+OBJ_o1 --&gt; TASK_T3
+TASK_T1[&quot;✓ T1&lt;br/&gt;请孙老师完成意见表草稿拟定，并确定意见表及签名是否需要线下手写&quot;]:::done
+OBJ_o1 --&gt; TASK_T1
+TASK_T2[&quot;T2&lt;br/&gt;根据需要，线上或线下找吴老师完成意见表填写与签名&quot;]:::task
+OBJ_o1 --&gt; TASK_T2
+TASK_T4[&quot;✓ T4&lt;br/&gt;询问盲审论文一轮审阅状态，催促完成&quot;]:::done
+OBJ_o2 --&gt; TASK_T4
+TASK_T5[&quot;✓ T5&lt;br/&gt;根据审阅情况，计划进行论文修改&quot;]:::done
+OBJ_o2 --&gt; TASK_T5
+TASK_T8 ~~~ TASK_T9
+TASK_T9 ~~~ TASK_T10
+TASK_T10 ~~~ TASK_T11
+TASK_T11 ~~~ TASK_T12
+TASK_T12 ~~~ TASK_T4
+TASK_T4 ~~~ TASK_T5
+TASK_T3 ~~~ TASK_T1
+TASK_T1 ~~~ TASK_T2
+TASK_T2 -. depends_on .-&gt; TASK_T11
+TASK_T3 -. depends_on .-&gt; TASK_T2
+      </pre>
+    </div>
+    <p class="legend">输出文件：/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/plan_毕业答辩_graph.html</p>
+  </div>
+</body>
+</html>

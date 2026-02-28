@@ -82,16 +82,36 @@ execution_plan:
       objective_id: o1
       condition: "见到孙老师"
       description: "催促导师完成英文论文一轮审阅，重新确认投稿期刊是否为iscience"
-      status: todo
+      status: done
+      records: 确定投稿期刊为iscience，孙老师没时间审阅，自己完成审阅后投稿
+
     - id: T2
       objective_id: o1
       depends_on: T1
-      condition: "获得审阅完成后的英文论文"
-      description: "完成英文论文的修正与投稿准备，交付老师进行最终审阅"
+      condition: ""
+      description: "了解目标期刊的要求"
+      records: 
       status: todo
-    - id: T3
+
+    - id: T2.2
       objective_id: o1
       depends_on: T2
+      condition: ""
+      description: "根据期刊要求与论文生产流程，完成论文防拒稿修正"
+      records: 
+      status: todo
+
+    - id: T2.3
+      objective_id: o1
+      depends_on: T2.2
+      condition: ""
+      description: "整理好所有内容，发送给导师做最终check"
+      records: 
+      status: todo
+
+    - id: T3
+      objective_id: o1
+      depends_on: T2.3
       condition: "最终审阅完成"
       description: "完成投稿"
       status: todo

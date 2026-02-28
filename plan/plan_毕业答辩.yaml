@@ -91,10 +91,11 @@ execution_plan:
       objective_id: o1
       condition: "与孙老师约定会面"
       description: "请孙老师完成意见表草稿拟定，并确定意见表及签名是否需要线下手写"
-      status: todo
+      status: done
+      records: "孙老师需要看到论文完成稿件后，邮件发送电子版意见表，填写后找吴老师签字"
     - id: T2
       objective_id: o1
-      depends_on: [T1]
+      depends_on: [T11]
       condition: "孙老师意见表拟定完成"
       description: "根据需要，线上或线下找吴老师完成意见表填写与签名"
       status: todo
@@ -108,10 +109,42 @@ execution_plan:
       objective_id: o2
       condition: "与孙老师约定会面"
       description: "询问盲审论文一轮审阅状态，催促完成"
-      status: todo
+      records: "孙老师表示已完成审阅，接下来将论文填入系统模版，然后根据之前的修改意见进行整体修改与润色，需要在一周内完成"
+      status: done
     - id: T5
       objective_id: o2
       condition: "论文一轮审阅完成"
-      depends_on: [T4]
+      depends_on: []
       description: "根据审阅情况，计划进行论文修改"
+      status: done
+
+    - id: T8
+      objective_id: o2
+      due: 2026-02-28
+      description: "整体过一遍论文，修正表达方式以及零散内容，形成论文第二稿"
+      status: todo
+      records: >
+        首先将论文意见整理，明确要修改的问题有哪些
+        根据论文生成顺序，整理问题修正顺序
+        逐一完成问题修正，形成第二稿
+        
+    - id: T9
+      objective_id: o2
+      due: 2026-03-02
+      description: "将论文交给ghm进行一次修正，如果来不及，则提前一天提交孙老师"
+      status: todo
+    - id: T10
+      objective_id: o2
+      due: 2026-03-03
+      description: "等待审阅意见"
+      status: todo
+    - id: T11
+      objective_id: o2
+      due: 2026-03-04
+      description: "孙老师返回意见，以及填写意见表"
+      status: todo
+    - id: T12
+      objective_id: o2
+      due: 2026-03-05
+      description: "根据反馈意见，做最后修改"
       status: todo

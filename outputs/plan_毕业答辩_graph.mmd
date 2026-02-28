@@ -1,0 +1,51 @@
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN["PLAN: 获得博士毕业证<br/>需要在3个月内，完成博士毕业答辩"]:::plan
+EP["EXEC: 博士毕业答辩"]:::plan
+PLAN --> EP
+OBJ_o1["o1<br/>due: 2026-03-06<br/>请导师填写《生命科学学院博士生学位论文预审及学位评定分委会专家组意见表1》（见附件），…"]:::obj
+EP --> OBJ_o1
+OBJ_o2["o2<br/>due: 2026-03-26<br/>2026年4月9日前学生必须在管理系统中提交定稿的电子版盲审版学位论文。此电子版论文用…"]:::obj
+EP --> OBJ_o2
+OBJ_o3["o3<br/>due: 2026-04-02<br/>2026年4月9日前导师登录“研究生学位论文导师审核系统”审核学生电子版学位论文。（操…"]:::obj
+EP --> OBJ_o3
+OBJ_o4["o4<br/>due: 2026-05-26<br/>2026年5月31日前完成答辩安排确认，2026年6月7日前完成学位论文答辩，并在系统…"]:::obj
+EP --> OBJ_o4
+OBJ_o1 ~~~ OBJ_o2
+OBJ_o2 ~~~ OBJ_o3
+OBJ_o3 ~~~ OBJ_o4
+TASK_T8["T8<br/>due: 2026-02-28<br/>整体过一遍论文，修正表达方式以及零散内容，形成论文第二稿"]:::task
+OBJ_o2 --> TASK_T8
+TASK_T9["T9<br/>due: 2026-03-02<br/>将论文交给ghm进行一次修正，如果来不及，则提前一天提交孙老师"]:::task
+OBJ_o2 --> TASK_T9
+TASK_T10["T10<br/>due: 2026-03-03<br/>等待审阅意见"]:::task
+OBJ_o2 --> TASK_T10
+TASK_T11["T11<br/>due: 2026-03-04<br/>孙老师返回意见，以及填写意见表"]:::task
+OBJ_o2 --> TASK_T11
+TASK_T12["T12<br/>due: 2026-03-05<br/>根据反馈意见，做最后修改"]:::task
+OBJ_o2 --> TASK_T12
+TASK_T3["T3<br/>due: 2026-03-06<br/>3 月 6 日当天提交至C109室登记答辩"]:::task
+OBJ_o1 --> TASK_T3
+TASK_T1["✓ T1<br/>请孙老师完成意见表草稿拟定，并确定意见表及签名是否需要线下手写"]:::done
+OBJ_o1 --> TASK_T1
+TASK_T2["T2<br/>根据需要，线上或线下找吴老师完成意见表填写与签名"]:::task
+OBJ_o1 --> TASK_T2
+TASK_T4["✓ T4<br/>询问盲审论文一轮审阅状态，催促完成"]:::done
+OBJ_o2 --> TASK_T4
+TASK_T5["✓ T5<br/>根据审阅情况，计划进行论文修改"]:::done
+OBJ_o2 --> TASK_T5
+TASK_T8 ~~~ TASK_T9
+TASK_T9 ~~~ TASK_T10
+TASK_T10 ~~~ TASK_T11
+TASK_T11 ~~~ TASK_T12
+TASK_T12 ~~~ TASK_T4
+TASK_T4 ~~~ TASK_T5
+TASK_T3 ~~~ TASK_T1
+TASK_T1 ~~~ TASK_T2
+TASK_T2 -. depends_on .-> TASK_T11
+TASK_T3 -. depends_on .-> TASK_T2
