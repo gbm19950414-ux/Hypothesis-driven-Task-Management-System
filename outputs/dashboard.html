@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Plan Dashboard</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --panel: #ffffff;
+      --border: #e5e5e5;
+      --text: #111;
+      --muted: #666;
+      --active: #111;
+    }
+    body { margin: 0; background: var(--bg); color: var(--text);
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+                        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+    .topbar { padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--panel); }
+    .topbar .hint { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .layout { display: grid; grid-template-columns: 360px 1fr; height: calc(100vh - 58px); }
+    .sidebar { border-right: 1px solid var(--border); overflow: auto; background: var(--panel); }
+    .content { overflow: hidden; }
+    .list { padding: 10px; display: grid; gap: 10px; }
+    .item { width: 100%; text-align: left; border: 1px solid var(--border); background: #fff;
+             border-radius: 12px; padding: 10px 12px; cursor: pointer; }
+    .item:hover { border-color: #cfcfcf; }
+    .item.active { border-color: #111; box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+    .title { font-size: 14px; font-weight: 600; line-height: 1.3; }
+    .meta { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.3; }
+    .frame { width: 100%; height: 100%; border: 0; background: var(--bg); }
+    .empty { padding: 24px; color: var(--muted); }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; grid-template-rows: 280px 1fr; }
+      .sidebar { border-right: 0; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div><strong>Plan Dashboard</strong> · outputs/</div>
+    <div class="hint">左侧选择一个计划，右侧 iframe 预览对应的 Mermaid 图（单页仍可直接打开）。</div>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="list">
+        <button class="item active" data-src="plan_学位证书_graph.html">
+  <div class="title">Plan</div>
+  <div class="meta">博士毕业论文投稿、接收 · O 0/3 · T 1/5</div>
+</button>
+<button class="item" data-src="plan_EphB1_graph.html">
+  <div class="title">探索Ephb1缺失为什么会导致IL-1B释放水平的降低</div>
+  <div class="meta">PHST · O 4/17 · T 2/19</div>
+</button>
+<button class="item" data-src="plan_毕业答辩_graph.html">
+  <div class="title">获得博士毕业证</div>
+  <div class="meta">博士毕业答辩 · O 0/4 · T 4/11</div>
+</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <iframe id="viewer" class="frame" src="plan_学位证书_graph.html" loading="lazy"></iframe>
+    </main>
+  </div>
+
+  <script>
+    const buttons = Array.from(document.querySelectorAll('.item'));
+    const viewer = document.getElementById('viewer');
+
+    function setActive(btn) {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const src = btn.getAttribute('data-src');
+        if (src) {
+          viewer.setAttribute('src', src);
+          setActive(btn);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -17,6 +17,8 @@ philosophy: evidence
 # =========================
 
 desired_state:
+  statement: "建立一套可运行、可维护、可演化的个人管理系统，使日常决策与任务执行更高效、稳定"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）
+
   time_window: "rolling / ongoing（运行态治理；滚动验收，不设终点）"
   observable_change: >
     在任意连续 4 周内：

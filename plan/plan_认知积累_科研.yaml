@@ -1,75 +1,77 @@
-ResearchAccumulativePlan:
 
-  meta:
-    name: 科研认知积累
-    purpose: >
-      扩展理论视野，提升模型抽象能力，
-      为未来假设构建提供材料。
-    boundary:
-      - 不直接服务当前实验
-      - 不纳入主任务池
-      - 不设deadline
-    non_goal:
-      - 不产出论文
-      - 不做结构整合
-      - 不替代PHST
+desired_state:
+  statement: "扩展科研理论视野，提升模型抽象能力"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）
 
-  directions:
-    - id: d1
-      name: 证据与因果推断
-      description: >
-        提升对因果链条、证据强度与替代解释的判断能力，
-        理解相关、必要、充分之间的区别。
+meta:
+  name: 科研认知积累
+  purpose: >
+    扩展理论视野，提升模型抽象能力，
+    为未来假设构建提供材料。
+  boundary:
+    - 不直接服务当前实验
+    - 不纳入主任务池
+    - 不设deadline
+  non_goal:
+    - 不产出论文
+    - 不做结构整合
+    - 不替代PHST
 
-    - id: d2
-      name: 机制地图
-      description: >
-        扩展并更新核心通路与相关系统的整体结构理解，
-        关注节点之间的多路径连接与边界条件。
+directions:
+  - id: d1
+    name: 证据与因果推断
+    description: >
+      提升对因果链条、证据强度与替代解释的判断能力，
+      理解相关、必要、充分之间的区别。
 
-    - id: d3
-      name: 系统与失效模式
-      description: >
-        理解实验系统的工程约束与常见artifact，
-        提升对数据可信度与可重复性的敏感度。
+  - id: d2
+    name: 机制地图
+    description: >
+      扩展并更新核心通路与相关系统的整体结构理解，
+      关注节点之间的多路径连接与边界条件。
 
-  streams:
+  - id: d3
+    name: 系统与失效模式
+    description: >
+      理解实验系统的工程约束与常见artifact，
+      提升对数据可信度与可重复性的敏感度。
 
-    - id: m1
-      mode: 基础结构阅读（书籍 / 教材优先）
-      direcions_id: [d1]
-      focus: 建立稳定因果与机制框架
-      tasks:
-        - 系统阅读一本实验设计或因果推断入门书
-        - 系统阅读一本分子/细胞生物学核心教材（选相关章节精读）
-      output: >
-        每本书形成 1 页结构笔记（核心模型 + 因果逻辑框架）
-      depends_on: null
+streams:
 
-    - id: m2
-      mode: 综述整合阅读（高质量 review）
-      direcions_id: [d2]
-      focus: 扩展机制地图与模型边界
-      tasks:
-        - 精读领域内高引用综述
-        - 对比 2 篇综述的模型差异
-      output: >
-        更新机制地图节点或新增 1 个替代模型
-      depends_on: null
+  - id: m1
+    mode: 基础结构阅读（书籍 / 教材优先）
+    direcions_id: [d1]
+    focus: 建立稳定因果与机制框架
+    tasks:
+      - 系统阅读一本实验设计或因果推断入门书
+      - 系统阅读一本分子/细胞生物学核心教材（选相关章节精读）
+    output: >
+      每本书形成 1 页结构笔记（核心模型 + 因果逻辑框架）
+    depends_on: null
 
-    - id: m3
-      mode: 原始论文三模式训练
-      direcions_id: [d1, d2, d3]
-      focus: 因果拆解 + 机制定位 + 失效扫描
-      tasks:
-        - 选 1 篇高质量原始论文进行三模式拆解
-        - 记录 3 个潜在脆弱点或替代解释
-      output: >
-        生成 1 条因果评估记录（strength / alternative / vulnerability）
-      depends_on: [m1, m2]
+  - id: m2
+    mode: 综述整合阅读（高质量 review）
+    direcions_id: [d2]
+    focus: 扩展机制地图与模型边界
+    tasks:
+      - 精读领域内高引用综述
+      - 对比 2 篇综述的模型差异
+    output: >
+      更新机制地图节点或新增 1 个替代模型
+    depends_on: null
 
-  quarterly_reflection:
-    questions:
-      - 最近输入是否过度集中于当前课题？
-      - 是否有新的模型进入认知结构？
-      - 是否出现潜在假设萌芽？
+  - id: m3
+    mode: 原始论文三模式训练
+    direcions_id: [d1, d2, d3]
+    focus: 因果拆解 + 机制定位 + 失效扫描
+    tasks:
+      - 选 1 篇高质量原始论文进行三模式拆解
+      - 记录 3 个潜在脆弱点或替代解释
+    output: >
+      生成 1 条因果评估记录（strength / alternative / vulnerability）
+    depends_on: [m1, m2]
+
+quarterly_reflection:
+  questions:
+    - 最近输入是否过度集中于当前课题？
+    - 是否有新的模型进入认知结构？
+    - 是否出现潜在假设萌芽？

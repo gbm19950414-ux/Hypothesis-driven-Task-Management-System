@@ -1,392 +1,392 @@
-plan:
-  # =========================
-  # 0. 元认知注释（只读）
-  # =========================
 
-  # 量级判断问题：
-  # - Plan：是否值得投入一段人生时间（错了要尽快止损）
-  # - Hypothesis：因果判断是否成立（是否允许被证伪）
-  # - Step：路径是否可行（允许绕路 / 替换）
-  # - Task：今天是否留下证据（错了也没关系）
+# =========================
+# 0. 元认知注释（只读）
+# =========================
 
-  # philosophy 决定“成败由谁裁决”
-  # 只能选一个作为主导，其余降级为辅助
-  philosophy: constraint
+# 量级判断问题：
+# - Plan：是否值得投入一段人生时间（错了要尽快止损）
+# - Hypothesis：因果判断是否成立（是否允许被证伪）
+# - Step：路径是否可行（允许绕路 / 替换）
+# - Task：今天是否留下证据（错了也没关系）
 
-  # =========================
-  # 1. 目标与现状
-  # =========================
+# philosophy 决定“成败由谁裁决”
+# 只能选一个作为主导，其余降级为辅助
+philosophy: constraint
 
-  desired_state:
-    time_window: "4week"        # 如: "4 weeks" / "by 2026-02-01"
-    observable_change: "获得一篇可以交给老师批阅的英文论文"  # 第三方可判断的变化（出现 / 消失 / ↑ ↓）
+# =========================
+# 1. 目标与现状
+# =========================
 
-  current_state:
-    hard_constraints: "4week"   # 时间 / 资源 / 权限
-    failure_mode: "时间来不及"       # 最可能的失败方式
-    uncertainty: "可用时间多少"        # 最大不确定来源
+desired_state:
+  time_window: "4week"        # 如: "4 weeks" / "by 2026-02-01"
+  observable_change: "获得一篇可以交给老师批阅的英文论文"  # 第三方可判断的变化（出现 / 消失 / ↑ ↓）
 
-  # =========================
-  # 2. 校验与约束
-  # =========================
+current_state:
+  hard_constraints: "4week"   # 时间 / 资源 / 权限
+  failure_mode: "时间来不及"       # 最可能的失败方式
+  uncertainty: "可用时间多少"        # 最大不确定来源
 
-  validation:              
-    earliest_signal: ""    # 最早能判断方向对/错的信号
-    stop_rule: ""          # 出现即停（必填，尤其在 evidence 主导下）
+# =========================
+# 2. 校验与约束
+# =========================
 
-  constraints:
-    deadline_or_budget: "2026-02-14" # YYYY-MM-DD / 预算描述
-    fallback_rule: "freeze_output_and_reallocate_time"
+validation:              
+  earliest_signal: ""    # 最早能判断方向对/错的信号
+  stop_rule: ""          # 出现即停（必填，尤其在 evidence 主导下）
 
-  # =========================
-  # 3. 假设层（≤ 3）
-  # =========================
+constraints:
+  deadline_or_budget: "2026-02-14" # YYYY-MM-DD / 预算描述
+  fallback_rule: "freeze_output_and_reallocate_time"
 
-  hypotheses:
-    - id: H1
-      action: "优先完成 Results 部分（图 + 文字）"
-      expected_effect: "形成一套可自洽的结果叙事主线"
-      time_to_observe: "2026-01-24"
-      falsified_if: "Results 写作过程中发现叙事无法自洽或证据链断裂"
-    - id: H2
-      action: "在现有结果基础上构建 Discussion 框架"
-      expected_effect: "形成可扩展到 3–5 段的机制讨论草稿"
-      time_to_observe: "2026-01-30"
-      falsified_if: "讨论只能重复结果描述，无法上升到机制或领域意义"
-    - id: H3
-      action: "基于已完成 Results + Discussion 反向填充 Introduction"
-      expected_effect: "形成逻辑闭合、问题驱动明确的引言"
-      time_to_observe: "2026-02-05"
-      falsified_if: "无法在引言中自然导向现有结果与讨论"
-    - id: H4
-      action: "补齐必要模块并冻结生成路径，形成可直接交付导师批阅的英文论文"
-      expected_effect: "获得一版结构完整、生成路径受控的英文论文（for review）"
-      time_to_observe: "2026-02-12"
-      falsified_if: "仍存在缺失模块或需要向导师解释‘哪里还没写完’"
+# =========================
+# 3. 假设层（≤ 3）
+# =========================
 
-  # =========================
-  # 4. Step 层（路径）
-  # =========================
-  steps:
-    - id: S1
-      description: "基于现有 overall logical YAML + 每图 YAML，确认并冻结英文论文的唯一叙事主线（不重新探索）"
-      supports_hypothesis: H1
-      input:
-        - "overall logical YAML（中文论文 Results 主线）"
-        - "每张主图对应的 YAML（图级结论/证据/因果）"
-      output:
-        - "英文论文的核心 scientific question（一句话）"
-        - "英文论文 Results 的 figure 列表（≤6 主图，按叙事顺序）"
-        - "被明确舍弃的中文章节/轴线清单"
-      done_if: "在不新增/删除主图的情况下，英文论文可以被一句话概括，且所有选定 figure 都服务同一因果主线"
-    - id: S2
-      description: "将每图 YAML 快速映射为英文 Results 的最小可读草稿（骨架句 + 段落顺序），并完成来源标注"
-      supports_hypothesis: H1
-      input:
-        - "每张主图对应的 YAML"
-        - "overall logical YAML"
-      output:
-        - "英文 Results 的 section-by-section outline（按 figure 组织）"
-        - "每张 figure 的英文要点骨架（3–6 句，非润色）"
-        - "英文 Results v0 草稿（可从头读到尾）"
-        - "每个英文段落对应的中文段落/图来源"
-      done_if: "英文 Results v0 可在不追求语言质量的前提下被完整读完，且每段均可追溯到对应 YAML/中文来源"
-    - id: S3
-      description: "验证中文 Discussion 是否能被压缩并升级为英文期刊讨论"
-      supports_hypothesis: H2
-      input:
-        - "中文 Discussion YAML"
-        - "英文 Results outline"
-      output:
-        - "英文 Discussion 的 3–5 个核心论点"
-        - "每个论点对应的 Results 支撑"
-        - "至少 1 个超出中文论文叙述层级的 conceptual framing"
-      done_if: "Discussion 不依赖中文长篇背景解释，也能独立成立"
-    - id: S4
-      description: "从英文 Results + Discussion 反推英文 Introduction"
-      supports_hypothesis: H3
-      input:
-        - "英文 Results + Discussion outline"
-        - "中文 Introduction YAML"
-      output:
-        - "英文 Introduction 的 3 段式逻辑（≤700 words）"
-        - "明确指出本文填补的单一 knowledge gap"
-      done_if: "Introduction 不依赖中文论文语境，面向国际读者自洽"
+hypotheses:
+  - id: H1
+    action: "优先完成 Results 部分（图 + 文字）"
+    expected_effect: "形成一套可自洽的结果叙事主线"
+    time_to_observe: "2026-01-24"
+    falsified_if: "Results 写作过程中发现叙事无法自洽或证据链断裂"
+  - id: H2
+    action: "在现有结果基础上构建 Discussion 框架"
+    expected_effect: "形成可扩展到 3–5 段的机制讨论草稿"
+    time_to_observe: "2026-01-30"
+    falsified_if: "讨论只能重复结果描述，无法上升到机制或领域意义"
+  - id: H3
+    action: "基于已完成 Results + Discussion 反向填充 Introduction"
+    expected_effect: "形成逻辑闭合、问题驱动明确的引言"
+    time_to_observe: "2026-02-05"
+    falsified_if: "无法在引言中自然导向现有结果与讨论"
+  - id: H4
+    action: "补齐必要模块并冻结生成路径，形成可直接交付导师批阅的英文论文"
+    expected_effect: "获得一版结构完整、生成路径受控的英文论文（for review）"
+    time_to_observe: "2026-02-12"
+    falsified_if: "仍存在缺失模块或需要向导师解释‘哪里还没写完’"
 
-    - id: S5
-      description: >
-        补齐所有缺失的必要内容模块，
-        确保论文在结构上是“完整的”，而非完美的。
-      supports_hypothesis: H4
-      input:
-        - "英文 Results 当前版本（含图占位）"
-        - "英文 Introduction / Discussion 草稿"
-      output:
-        - "内容完整但未冻结的英文论文草稿"
-      done_if: >
-        Results / Methods / Introduction / Discussion 均存在，
-        且不存在“TODO / 缺段 / 缺图”的结构性空洞。
+# =========================
+# 4. Step 层（路径）
+# =========================
+steps:
+  - id: S1
+    description: "基于现有 overall logical YAML + 每图 YAML，确认并冻结英文论文的唯一叙事主线（不重新探索）"
+    supports_hypothesis: H1
+    input:
+      - "overall logical YAML（中文论文 Results 主线）"
+      - "每张主图对应的 YAML（图级结论/证据/因果）"
+    output:
+      - "英文论文的核心 scientific question（一句话）"
+      - "英文论文 Results 的 figure 列表（≤6 主图，按叙事顺序）"
+      - "被明确舍弃的中文章节/轴线清单"
+    done_if: "在不新增/删除主图的情况下，英文论文可以被一句话概括，且所有选定 figure 都服务同一因果主线"
+  - id: S2
+    description: "将每图 YAML 快速映射为英文 Results 的最小可读草稿（骨架句 + 段落顺序），并完成来源标注"
+    supports_hypothesis: H1
+    input:
+      - "每张主图对应的 YAML"
+      - "overall logical YAML"
+    output:
+      - "英文 Results 的 section-by-section outline（按 figure 组织）"
+      - "每张 figure 的英文要点骨架（3–6 句，非润色）"
+      - "英文 Results v0 草稿（可从头读到尾）"
+      - "每个英文段落对应的中文段落/图来源"
+    done_if: "英文 Results v0 可在不追求语言质量的前提下被完整读完，且每段均可追溯到对应 YAML/中文来源"
+  - id: S3
+    description: "验证中文 Discussion 是否能被压缩并升级为英文期刊讨论"
+    supports_hypothesis: H2
+    input:
+      - "中文 Discussion YAML"
+      - "英文 Results outline"
+    output:
+      - "英文 Discussion 的 3–5 个核心论点"
+      - "每个论点对应的 Results 支撑"
+      - "至少 1 个超出中文论文叙述层级的 conceptual framing"
+    done_if: "Discussion 不依赖中文长篇背景解释，也能独立成立"
+  - id: S4
+    description: "从英文 Results + Discussion 反推英文 Introduction"
+    supports_hypothesis: H3
+    input:
+      - "英文 Results + Discussion outline"
+      - "中文 Introduction YAML"
+    output:
+      - "英文 Introduction 的 3 段式逻辑（≤700 words）"
+      - "明确指出本文填补的单一 knowledge gap"
+    done_if: "Introduction 不依赖中文论文语境，面向国际读者自洽"
 
-    - id: S6
-      description: >
-        确立 Introduction / Discussion 的生成路径与文献引用机制，
-        防止进入无限补文献或结构漂移。
-      supports_hypothesis: H4
-      input:
-        - "Intro / Discussion 当前草稿"
-      output:
-        - "Intro / Discussion 的结构冻结 outline"
-        - "自动化文献引用方式（BibTex / Zotero / 引用占位规则）"
-      done_if: >
-        Introduction 与 Discussion 的段落结构被冻结，
-        后续修改仅允许在段内进行，不新增段落。
+  - id: S5
+    description: >
+      补齐所有缺失的必要内容模块，
+      确保论文在结构上是“完整的”，而非完美的。
+    supports_hypothesis: H4
+    input:
+      - "英文 Results 当前版本（含图占位）"
+      - "英文 Introduction / Discussion 草稿"
+    output:
+      - "内容完整但未冻结的英文论文草稿"
+    done_if: >
+      Results / Methods / Introduction / Discussion 均存在，
+      且不存在“TODO / 缺段 / 缺图”的结构性空洞。
 
-    - id: S7
-      description: >
-        将所有模块组装为一份导师可直接批阅的完整论文文档。
-      supports_hypothesis: H4
-      input:
-        - "Results / Methods / Introduction / Discussion 完整文本"
-      output:
-        - "英文论文 v1.0（for supervisor review, .docx）"
-      done_if: >
-        文档可被导师从头读到尾并逐段评论，
-        且不需要额外说明“哪里还没写完”。
+  - id: S6
+    description: >
+      确立 Introduction / Discussion 的生成路径与文献引用机制，
+      防止进入无限补文献或结构漂移。
+    supports_hypothesis: H4
+    input:
+      - "Intro / Discussion 当前草稿"
+    output:
+      - "Intro / Discussion 的结构冻结 outline"
+      - "自动化文献引用方式（BibTex / Zotero / 引用占位规则）"
+    done_if: >
+      Introduction 与 Discussion 的段落结构被冻结，
+      后续修改仅允许在段内进行，不新增段落。
 
-  # =========================
-  # 5. Task 层（1 day 证据）
-  # =========================
+  - id: S7
+    description: >
+      将所有模块组装为一份导师可直接批阅的完整论文文档。
+    supports_hypothesis: H4
+    input:
+      - "Results / Methods / Introduction / Discussion 完整文本"
+    output:
+      - "英文论文 v1.0（for supervisor review, .docx）"
+    done_if: >
+      文档可被导师从头读到尾并逐段评论，
+      且不需要额外说明“哪里还没写完”。
 
-  tasks:
-    # Task 的唯一职责：
-    # - 一天内留下“可冻结的执行证据”
-    # - 必须推进某个 Step
+# =========================
+# 5. Task 层（1 day 证据）
+# =========================
 
-    - id: T1
-      supports_step: S1
-      description: "建立论文计划"
-      output: "论文计划.yaml"
-      done_if: "论文计划进入可执行流程"
-      due: "2026-01-19"              # today / YYYY-MM-DD / YYYY-MM-DD~YYYY-MM-DD
-      timebox: "1h"          # 2h / 4h / 1day（仅防膨胀）
-      status: done
-      
-    - id: T2
-      supports_step: S1
-      description: "基于 overall logical YAML，写出英文论文的 scientific question 与一句话主线，并确认主图集合无需重构"
-      output:
-        - "scientific question（一句话）"
-        - "英文论文主线一句话（可直接用作 Results 开头/Intro 末句的承接）"
-        - "主图列表（≤6）与顺序（来自现有图 YAML）"
-      done_if: "无需新增/删除主图即可形成自洽主线，且一句话主线可被第三方复述"
-      due: "2026-01-20"
-      timebox: "1.5h"
-      status: done
+tasks:
+  # Task 的唯一职责：
+  # - 一天内留下“可冻结的执行证据”
+  # - 必须推进某个 Step
 
-    - id: T3
-      supports_step: S1
-      description: "为每张主图生成英文 Results 骨架要点（从每图 YAML 提炼，不做语言润色）"
-      output:
-        - "每张 figure 的英文要点骨架（3–6 句）"
-      done_if: "所有主图均有英文要点骨架，且每句都能在对应 YAML 中定位到证据/结论"
-      due: "2026-01-21"
-      timebox: "3h"
-      status: done
+  - id: T1
+    supports_step: S1
+    description: "建立论文计划"
+    output: "论文计划.yaml"
+    done_if: "论文计划进入可执行流程"
+    due: "2026-01-19"              # today / YYYY-MM-DD / YYYY-MM-DD~YYYY-MM-DD
+    timebox: "1h"          # 2h / 4h / 1day（仅防膨胀）
+    status: done
+    
+  - id: T2
+    supports_step: S1
+    description: "基于 overall logical YAML，写出英文论文的 scientific question 与一句话主线，并确认主图集合无需重构"
+    output:
+      - "scientific question（一句话）"
+      - "英文论文主线一句话（可直接用作 Results 开头/Intro 末句的承接）"
+      - "主图列表（≤6）与顺序（来自现有图 YAML）"
+    done_if: "无需新增/删除主图即可形成自洽主线，且一句话主线可被第三方复述"
+    due: "2026-01-20"
+    timebox: "1.5h"
+    status: done
 
-    - id: T4
-      supports_step: S1
-      description: "将各 figure 的英文要点按叙事顺序拼装为英文 Results v0（可读草稿，不追求语言质量）"
-      output:
-        - "英文 Results v0 草稿（可从头读到尾）"
-      done_if: "Results v0 主线连续、无明显断裂，读者不需要中文语境也能跟上"
-      due: "2026-01-22"
-      timebox: "3h"
-      status: done
+  - id: T3
+    supports_step: S1
+    description: "为每张主图生成英文 Results 骨架要点（从每图 YAML 提炼，不做语言润色）"
+    output:
+      - "每张 figure 的英文要点骨架（3–6 句）"
+    done_if: "所有主图均有英文要点骨架，且每句都能在对应 YAML 中定位到证据/结论"
+    due: "2026-01-21"
+    timebox: "3h"
+    status: done
 
-    - id: T5
-      supports_step: S2
-      description: "将 Results v0 重排为 section-by-section 结构，并为每段标注中文段落/图来源（映射表）"
-      output:
-        - "英文 Results section outline"
-        - "Results 映射表（英文段落/figure ← 中文来源/YAML）"
-      done_if: "每个英文段落均有可追溯来源，且 outline 与 v0 草稿一致"
-      due: "2026-01-23"
-      timebox: "2h"
-      status: done
-      record: >
-        确保title充分且必要、结构统一
-        将title翻译成title1_en
-        修改脚本，将每figure作为一个section，生产还有title、来源、映射表的版本
+  - id: T4
+    supports_step: S1
+    description: "将各 figure 的英文要点按叙事顺序拼装为英文 Results v0（可读草稿，不追求语言质量）"
+    output:
+      - "英文 Results v0 草稿（可从头读到尾）"
+    done_if: "Results v0 主线连续、无明显断裂，读者不需要中文语境也能跟上"
+    due: "2026-01-22"
+    timebox: "3h"
+    status: done
 
-    - id: T7
-      supports_step: S3
-      description: >
-        基于 discussion_logic.yaml，
-        标注哪些 Discussion 模块「进入英文论文主体 / 降级为简述 / 移入补充 / 暂不使用」
-      output:
-        - "Discussion 模块裁决表（logic_id × 使用级别）"
-        - "英文论文 Discussion 的候选模块池（≤8 个 logic unit）"
-      done_if: >
-        每个 discussion_logic 模块都有明确去向，
-        且被选入主体的模块均能对应 Results 证据跳
-      due: "2026-01-26"
-      timebox: "2h"
-      status: done
+  - id: T5
+    supports_step: S2
+    description: "将 Results v0 重排为 section-by-section 结构，并为每段标注中文段落/图来源（映射表）"
+    output:
+      - "英文 Results section outline"
+      - "Results 映射表（英文段落/figure ← 中文来源/YAML）"
+    done_if: "每个英文段落均有可追溯来源，且 outline 与 v0 草稿一致"
+    due: "2026-01-23"
+    timebox: "2h"
+    status: done
+    record: >
+      确保title充分且必要、结构统一
+      将title翻译成title1_en
+      修改脚本，将每figure作为一个section，生产还有title、来源、映射表的版本
 
-    - id: T8
-      supports_step: S3
-      description: >
-        将被选入主体的 Discussion 模块，
-        重组为英文期刊可承载的 3–5 段 Discussion 结构，
-        明确每段的 narrative function
-      output:
-        - "英文 Discussion 3–5 段结构 outline"
-        - "每段对应的 logic_id 与 Results 支撑"
-      done_if: >
-        每一段 Discussion 都有唯一功能，
-        不重复 Results，不承担 Introduction 职责，
-        且整体可在 ≤1200–1500 words 内成立
-      due: "2026-01-27"
-      timebox: "2h"
-      status: done
+  - id: T7
+    supports_step: S3
+    description: >
+      基于 discussion_logic.yaml，
+      标注哪些 Discussion 模块「进入英文论文主体 / 降级为简述 / 移入补充 / 暂不使用」
+    output:
+      - "Discussion 模块裁决表（logic_id × 使用级别）"
+      - "英文论文 Discussion 的候选模块池（≤8 个 logic unit）"
+    done_if: >
+      每个 discussion_logic 模块都有明确去向，
+      且被选入主体的模块均能对应 Results 证据跳
+    due: "2026-01-26"
+    timebox: "2h"
+    status: done
 
-    - id: T9
-      supports_step: S4
-      description: "从英文 Results + Discussion 反推 Introduction 的单一 knowledge gap"
-      output:
-        - "knowledge gap 一句话定义"
-      done_if: "该 gap 可自然导向 Results 第一图"
-      due: "2026-01-29"
-      timebox: "1.5h"
-      status: done
+  - id: T8
+    supports_step: S3
+    description: >
+      将被选入主体的 Discussion 模块，
+      重组为英文期刊可承载的 3–5 段 Discussion 结构，
+      明确每段的 narrative function
+    output:
+      - "英文 Discussion 3–5 段结构 outline"
+      - "每段对应的 logic_id 与 Results 支撑"
+    done_if: >
+      每一段 Discussion 都有唯一功能，
+      不重复 Results，不承担 Introduction 职责，
+      且整体可在 ≤1200–1500 words 内成立
+    due: "2026-01-27"
+    timebox: "2h"
+    status: done
 
-    - id: T10
-      supports_step: S4
-      description: "搭建英文 Introduction 三段式逻辑结构（不写完整英文）"
-      output:
-        - "Introduction 三段式 outline"
-      done_if: "每一段都有明确功能且无中文语境依赖"
-      due: "2026-01-30"
-      timebox: "2h"
-      status: done
+  - id: T9
+    supports_step: S4
+    description: "从英文 Results + Discussion 反推 Introduction 的单一 knowledge gap"
+    output:
+      - "knowledge gap 一句话定义"
+    done_if: "该 gap 可自然导向 Results 第一图"
+    due: "2026-01-29"
+    timebox: "1.5h"
+    status: done
 
-    - id: T11
-      supports_step: S4
-      description: ""
-      output:
-        - "Introduction 三段式 outline"
-      done_if: "每一段都有明确功能且无中文语境依赖"
-      due: "2026-01-30"
-      timebox: "2h"
-      status: done
+  - id: T10
+    supports_step: S4
+    description: "搭建英文 Introduction 三段式逻辑结构（不写完整英文）"
+    output:
+      - "Introduction 三段式 outline"
+    done_if: "每一段都有明确功能且无中文语境依赖"
+    due: "2026-01-30"
+    timebox: "2h"
+    status: done
 
-    - id: T12
-      supports_step: S5
-      description: "补齐 Results 所有主图与图例，占位即可，不追求美观"
-      output:
-        - "Results 所有 figure 均有对应图文件与英文 legend"
-      done_if: "Results 部分不存在缺图或空 legend"
-      due: "2026-01-30"
-      timebox: "3h"
-      load: l
-      urgency: l
-      status: done
+  - id: T11
+    supports_step: S4
+    description: ""
+    output:
+      - "Introduction 三段式 outline"
+    done_if: "每一段都有明确功能且无中文语境依赖"
+    due: "2026-01-30"
+    timebox: "2h"
+    status: done
 
-    - id: T13
-      supports_step: S5
-      description: "将 Methods 翻译为英文，达到审稿人可理解水平"
-      output:
-        - "英文 Methods 初稿"
-      done_if: "所有实验在逻辑上可复现，无中文残留"
-      timebox: "3h"
-      due: "2026-02-02"
-      load: l
-      urgency: l
-      status: done
-      record: >
-        建立method.yaml 骨架，把中文 Methods 剪切成“assay 模块对应在骨架下面
-        gpt将对应模块的正文部分压缩组合，以一句话一句话的形式，标注地位返回
-        阅读一遍原文，确定骨架与文字内容都没问题
-        建立脚本，输出docx文件
+  - id: T12
+    supports_step: S5
+    description: "补齐 Results 所有主图与图例，占位即可，不追求美观"
+    output:
+      - "Results 所有 figure 均有对应图文件与英文 legend"
+    done_if: "Results 部分不存在缺图或空 legend"
+    due: "2026-01-30"
+    timebox: "3h"
+    load: l
+    urgency: l
+    status: done
 
-    - id: T14
-      supports_step: S6
-      description: "确立批阅–冻结模式，明确允许与禁止的修改边界"
-      output:
-        - "批阅-冻结规则说明（文本即可）"
-      done_if: >
-        明确：
-        - Results 结构冻结
-        - Intro / Discussion 仅允许段内修改
-      due: "2026-02-05"
-      timebox: "3h"
-      load: h
-      urgency: l
-      status: freeze
+  - id: T13
+    supports_step: S5
+    description: "将 Methods 翻译为英文，达到审稿人可理解水平"
+    output:
+      - "英文 Methods 初稿"
+    done_if: "所有实验在逻辑上可复现，无中文残留"
+    timebox: "3h"
+    due: "2026-02-02"
+    load: l
+    urgency: l
+    status: done
+    record: >
+      建立method.yaml 骨架，把中文 Methods 剪切成“assay 模块对应在骨架下面
+      gpt将对应模块的正文部分压缩组合，以一句话一句话的形式，标注地位返回
+      阅读一遍原文，确定骨架与文字内容都没问题
+      建立脚本，输出docx文件
 
-    - id: T15
-      supports_step: S6
-      description: "建立 Introduction / Discussion 的文献引用自动化方式"
-      output:
-        - ".bib 文件或 Zotero 文献库"
-        - "正文中的标准化引用占位"
-      done_if: "后续新增引用无需手动调整格式"
-      due: "2026-02-08"
-      timebox: "1h"
-      load: h
-      urgency: l
-      status: done
+  - id: T14
+    supports_step: S6
+    description: "确立批阅–冻结模式，明确允许与禁止的修改边界"
+    output:
+      - "批阅-冻结规则说明（文本即可）"
+    done_if: >
+      明确：
+      - Results 结构冻结
+      - Intro / Discussion 仅允许段内修改
+    due: "2026-02-05"
+    timebox: "3h"
+    load: h
+    urgency: l
+    status: freeze
 
-    - id: T16
-      supports_step: S7
-      description: "组装所有模块，生成导师批阅版 Word 文档"
-      output:
-        - "英文论文_v1.0_for_review.docx"
-      done_if: "导师可直接开始批注，无需你额外解释"
-      due: "2026-02-12"
-      timebox: "3h"
-      load: l
-      urgency: l
-      status: done
+  - id: T15
+    supports_step: S6
+    description: "建立 Introduction / Discussion 的文献引用自动化方式"
+    output:
+      - ".bib 文件或 Zotero 文献库"
+      - "正文中的标准化引用占位"
+    done_if: "后续新增引用无需手动调整格式"
+    due: "2026-02-08"
+    timebox: "1h"
+    load: h
+    urgency: l
+    status: done
 
-    - id: T17
-      supports_step: S7
-      description: "阅读整篇英文文档，标注所有需要修改的地方（不修改，只标注）"
-      output:
-        - "英文论文_v1.0_for_review.docx"
-      done_if: "导师可直接开始批注，无需你额外解释"
-      due: "2026-02-12"
-      timebox: "3h"
-      load: l
-      urgency: l
-      status: done
-    - id: T18
-      supports_step: S7
-      description: "进行论文可读性审校（仅限段内）：修复所有影响阅读流畅度的问题，不改结构、不改论证路线"
-      output:
-        - "英文论文_v1.1_readability_pass.docx"
-        - "含段落级逻辑批注的导师审阅版.docx"
-      done_if: >
-        - 全文完成一次通读，所有可读性问题均被处理为：
-          1) 已用段内改写解决；或
-          2) 以 STRUCTURE NOTE 标注（需结构调整但本任务不执行）；或
-          3) 以 SCIENCE NOTE 标注（需科学内容补强但本任务不执行）。
-        - 全文不存在：代词指代不清、句法歧义、术语不一致、关键结果句缺比较对象/主语。
-      record: >
-        该任务在新增图片加入后完成；仅进行段内可读性优化。
-        任何结构性或论证层级调整一律以批注形式记录，留待老师反馈后处理。
-      timebox: "3h"
-      status: done
-    - id: T19
-      supports_step: S7
-      description: "完成论文撰写后，根据邮件建立新plan，规划答辩事宜，同时建立新plan，继续优化实验设计"
-      output:
-        - "博士毕业答辩计划.yaml"
-        - "博士毕业学位计划.yaml"
-      done_if: >
-        - 答辩计划包含答辩时间、答辩委员会成员、答辩流程与准备事项等；
-        - 学位计划包含后续实验设计优化的具体步骤与时间安排。
-      record: >
+  - id: T16
+    supports_step: S7
+    description: "组装所有模块，生成导师批阅版 Word 文档"
+    output:
+      - "英文论文_v1.0_for_review.docx"
+    done_if: "导师可直接开始批注，无需你额外解释"
+    due: "2026-02-12"
+    timebox: "3h"
+    load: l
+    urgency: l
+    status: done
 
-      timebox: "3h"
-      status: todo
+  - id: T17
+    supports_step: S7
+    description: "阅读整篇英文文档，标注所有需要修改的地方（不修改，只标注）"
+    output:
+      - "英文论文_v1.0_for_review.docx"
+    done_if: "导师可直接开始批注，无需你额外解释"
+    due: "2026-02-12"
+    timebox: "3h"
+    load: l
+    urgency: l
+    status: done
+  - id: T18
+    supports_step: S7
+    description: "进行论文可读性审校（仅限段内）：修复所有影响阅读流畅度的问题，不改结构、不改论证路线"
+    output:
+      - "英文论文_v1.1_readability_pass.docx"
+      - "含段落级逻辑批注的导师审阅版.docx"
+    done_if: >
+      - 全文完成一次通读，所有可读性问题均被处理为：
+        1) 已用段内改写解决；或
+        2) 以 STRUCTURE NOTE 标注（需结构调整但本任务不执行）；或
+        3) 以 SCIENCE NOTE 标注（需科学内容补强但本任务不执行）。
+      - 全文不存在：代词指代不清、句法歧义、术语不一致、关键结果句缺比较对象/主语。
+    record: >
+      该任务在新增图片加入后完成；仅进行段内可读性优化。
+      任何结构性或论证层级调整一律以批注形式记录，留待老师反馈后处理。
+    timebox: "3h"
+    status: done
+  - id: T19
+    supports_step: S7
+    description: "完成论文撰写后，根据邮件建立新plan，规划答辩事宜，同时建立新plan，继续优化实验设计"
+    output:
+      - "博士毕业答辩计划.yaml"
+      - "博士毕业学位计划.yaml"
+    done_if: >
+      - 答辩计划包含答辩时间、答辩委员会成员、答辩流程与准备事项等；
+      - 学位计划包含后续实验设计优化的具体步骤与时间安排。
+    record: >
+
+    timebox: "3h"
+    status: todo

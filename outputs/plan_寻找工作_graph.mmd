@@ -1,0 +1,47 @@
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN["PLAN: 找到一份满意的工作"]:::plan
+EP["EXEC: execution"]:::plan
+PLAN --> EP
+OBJ_o1["o1<br/>due: 2026-03-2<br/>明确行业，岗位等目标细节及需求"]:::obj
+EP --> OBJ_o1
+OBJ_o2["o2<br/>due: 2026-03-4<br/>明确自身职业发展相关三观具体内容"]:::obj
+EP --> OBJ_o2
+OBJ_o3["o3<br/>due: 2026-03-6<br/>综合自我评估表与行业调研表，获得目标岗位列表"]:::obj
+EP --> OBJ_o3
+OBJ_o4["o4<br/>due: 2026-03-8<br/>根据目标岗位，设计针对性的求职行动方案"]:::obj
+EP --> OBJ_o4
+OBJ_o5["o5<br/>due: 2026-03-10<br/>根据求职行动方案，准备简历与求职材料"]:::obj
+EP --> OBJ_o5
+OBJ_o6["o6<br/>due: 2026-06-01<br/>投递简历，准备面试，并进行面试，直至获得offer"]:::obj
+EP --> OBJ_o6
+OBJ_o1 ~~~ OBJ_o2
+OBJ_o2 ~~~ OBJ_o3
+OBJ_o3 ~~~ OBJ_o4
+OBJ_o4 ~~~ OBJ_o5
+OBJ_o5 ~~~ OBJ_o6
+TASK_T4["T4<br/>due: 2026-03-04<br/>定义自我评估维度与结构（能力/经验/偏好/价值取向/约束），并产出自我评估模板文件"]:::task
+OBJ_o2 --> TASK_T4
+TASK_T1["T1<br/>定义求职对齐维度：确定用于评估就业方向的字段（如工作内容、技能要求、门槛、发展路径、薪…"]:::task
+OBJ_o1 --> TASK_T1
+TASK_T2["T2<br/>列出 3–5 个主要就业方向清单，并将其作为调研对象填入模板"]:::task
+OBJ_o1 --> TASK_T2
+TASK_T3["T3<br/>为每个就业方向采集至少 2 个岗位 JD，并按模板字段填入调研表（形成行业调研表 v0…"]:::task
+OBJ_o1 --> TASK_T3
+TASK_T5["T5<br/>填写自我评估模板中的事实项（经历、技能、限制条件等），形成自我评估表 v0.1"]:::task
+OBJ_o2 --> TASK_T5
+TASK_T6["T6<br/>建立『三观持续提升』项目计划（世界观/价值观/职业选择），并定义可执行与可复盘机制"]:::task
+OBJ_o2 --> TASK_T6
+TASK_T4 ~~~ TASK_T5
+TASK_T5 ~~~ TASK_T6
+TASK_T1 ~~~ TASK_T2
+TASK_T2 ~~~ TASK_T3
+TASK_T2 -. depends_on .-> TASK_T1
+TASK_T3 -. depends_on .-> TASK_T2
+TASK_T5 -. depends_on .-> TASK_T4
+TASK_T6 -. depends_on .-> TASK_T4

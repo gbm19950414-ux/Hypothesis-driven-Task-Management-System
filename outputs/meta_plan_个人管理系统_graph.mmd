@@ -1,0 +1,35 @@
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN["PLAN: 建立一套可运行、可维护、可演化的个人管理系统，使日常决策与任务执行更高效、稳定"]:::plan
+EP["EXEC: execution_plan"]:::plan
+PLAN --> EP
+HYP_H1["H1"]:::hyp
+EP --> HYP_H1
+HYP_H2["H2"]:::hyp
+EP --> HYP_H2
+HYP_H1 ~~~ HYP_H2
+TASK_T1["✓ T1<br/>due: 2026-02-18<br/>在 life_os 中创建/确认目录结构与 3 个模板文件（inbox.md, wee…"]:::done
+EP --> TASK_T1
+TASK_T2["✓ T2<br/>due: 2026-02-19<br/>为日常灵感捕获设定规则：入口唯一（Inbox）、格式最小、日常不改结构"]:::done
+EP --> TASK_T2
+TASK_T3a["✓ T3a<br/>due: 2026-02-22<br/>Weekly Review - 收集与筛选：从 Mac 备忘录挑出本周需要处理的条目，…"]:::done
+EP --> TASK_T3a
+TASK_T3b["✓ T3b<br/>due: 2026-02-22<br/>Weekly Review - 更新 Plan：用 inbox 条目更新受影响的 1–…"]:::done
+EP --> TASK_T3b
+TASK_T3c["✓ T3c<br/>due: 2026-02-22<br/>Weekly Review - 派生本周任务：从更新后的各 plan 中抽取本周 3–…"]:::done
+EP --> TASK_T3c
+TASK_T4["✓ T4<br/>due: 2026-02-24<br/>目前已完成“什么需要做”部分系统，现在需要建立任务选择系统概念，完成“什么可以做”系统"]:::done
+EP --> TASK_T4
+TASK_T5["T5<br/>due: 2026-03-03~2026-03-09<br/>连续 7 天记录‘首任务选择’与实际执行结果（是否顺利、是否需要降级任务）"]:::task
+EP --> TASK_T5
+TASK_T1 ~~~ TASK_T2
+TASK_T2 ~~~ TASK_T3a
+TASK_T3a ~~~ TASK_T3b
+TASK_T3b ~~~ TASK_T3c
+TASK_T3c ~~~ TASK_T4
+TASK_T4 ~~~ TASK_T5

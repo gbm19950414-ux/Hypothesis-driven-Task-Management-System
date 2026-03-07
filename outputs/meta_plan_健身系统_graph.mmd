@@ -1,0 +1,35 @@
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN["PLAN: 在既定时间与恢复约束下，持续维护并迭代一套，服务于当前训练目的的健身体系"]:::plan
+EP["EXEC: execution_plan"]:::plan
+PLAN --> EP
+HYP_H1["H1"]:::hyp
+EP --> HYP_H1
+TASK_T1["✓ T1<br/>due: 2026-01-22<br/>建立训练动作模版。经历4次训练，根据器械可用性、yl适应性、训练模版要求，设计获得4套…"]:::done
+EP --> TASK_T1
+TASK_T3["T3<br/>due: 2026-02-08<br/>将当前可运行的训练结构整理并冻结为 v0 版本"]:::task
+EP --> TASK_T3
+TASK_T4["T4<br/>due: 2026-02-08<br/>计划并进行一次日反馈调整"]:::task
+EP --> TASK_T4
+TASK_T2["✓ T2<br/>due: 2026-01-22~2026-02-07<br/>在既定边界内完成多次训练执行，验证初始训练结构的可运行性"]:::done
+EP --> TASK_T2
+TASK_T5["T5<br/>回顾一个周期内的训练执行与恢复情况，提炼可用于判定调整的信号类型"]:::task
+EP --> TASK_T5
+TASK_T6["T6<br/>定义不同类型反馈信号所对应的调整层级（参数级 / 结构级 / 冻结）"]:::task
+EP --> TASK_T6
+TASK_T7["T7<br/>基于既定反馈规则，对训练结构进行一次小幅调整并运行验证"]:::task
+EP --> TASK_T7
+TASK_T8["T8<br/>整理并冻结当前反馈—调整机制为 v1 控制规则"]:::task
+EP --> TASK_T8
+TASK_T1 ~~~ TASK_T3
+TASK_T3 ~~~ TASK_T4
+TASK_T4 ~~~ TASK_T2
+TASK_T2 ~~~ TASK_T5
+TASK_T5 ~~~ TASK_T6
+TASK_T6 ~~~ TASK_T7
+TASK_T7 ~~~ TASK_T8

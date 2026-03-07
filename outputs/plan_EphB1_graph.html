@@ -45,67 +45,84 @@ HYP_h3_B_to_C[&quot;h3_B_to_C&lt;br/&gt;PI3K 输出下降 能够驱动 磷脂合
 EP --&gt; HYP_h3_B_to_C
 HYP_h4_C_to_D[&quot;h4_C_to_D&lt;br/&gt;磷脂通量层面的‘合成受限 + 周转增强’足以解释 膜磷脂库的稳态净缩水（多类磷脂下降、…&quot;]:::hyp
 EP --&gt; HYP_h4_C_to_D
+HYP_h5.1[&quot;h5.1&lt;br/&gt;EphB1基因缺失 导致 PI3K输出下降&quot;]:::hyp
+EP --&gt; HYP_h5.1
 HYP_h5_D_to_E[&quot;h5_D_to_E&lt;br/&gt;膜磷脂库的缩水会转化为 CL 可及性/功能池下降（以 NAO 等 readout 反映…&quot;]:::hyp
 EP --&gt; HYP_h5_D_to_E
 HYP_h6[&quot;h6&lt;br/&gt;PI3K输出下降 能够驱动 CL可及性/功能池下降&quot;]:::hyp
 EP --&gt; HYP_h6
+HYP_h7[&quot;h7&lt;br/&gt;PI3K-AKT信号通路S473磷酸化水平的降低 导致 膜磷脂库的稳态净缩水（多类磷脂…&quot;]:::hyp
+EP --&gt; HYP_h7
+HYP_h8[&quot;h8&lt;br/&gt;EphB1基因缺失 导致 小鼠腹腔巨噬细胞 膜磷脂库的稳态净缩水&quot;]:::hyp
+EP --&gt; HYP_h8
 HYP_h1_X_to_A ~~~ HYP_h2_A_to_B
 HYP_h2_A_to_B ~~~ HYP_h3_B_to_C
 HYP_h3_B_to_C ~~~ HYP_h4_C_to_D
-HYP_h4_C_to_D ~~~ HYP_h5_D_to_E
+HYP_h4_C_to_D ~~~ HYP_h5.1
+HYP_h5.1 ~~~ HYP_h5_D_to_E
 HYP_h5_D_to_E ~~~ HYP_h6
-OBJ_s1[&quot;✓ s1&lt;br/&gt;稳固节点 A（PI3K capacity signature）：多批次 RNA 方向投…&quot;]:::done
-HYP_h1_X_to_A --&gt; OBJ_s1
-OBJ_s2[&quot;✓ s2&lt;br/&gt;确认现象归因于 EphB1 KO 语境：排除明显混杂（批次/条件/归一化）并冻结结论&quot;]:::done
-HYP_h1_X_to_A --&gt; OBJ_s2
-OBJ_s3[&quot;✓ s3&lt;br/&gt;稳固节点 B（通路即时输出）：建立 time-course 与 dose-respon…&quot;]:::done
-HYP_h2_A_to_B --&gt; OBJ_s3
-OBJ_s4[&quot;✓ s4&lt;br/&gt;因果裁决 A→B：在统一饥饿起点下比较 WT/KO 的峰值、AUC、max；排除相位差异&quot;]:::done
-HYP_h2_A_to_B --&gt; OBJ_s4
-OBJ_s5[&quot;s5&lt;br/&gt;稳固节点 C（flux/turnover 转录轴）：多批次 RNA-seq + qPC…&quot;]:::obj
-HYP_h3_B_to_C --&gt; OBJ_s5
-OBJ_s6[&quot;s6&lt;br/&gt;因果裁决 B→C：药理/遗传操纵 PI3K/AKT/mTOR，观察转录轴的可复制与可逆性&quot;]:::obj
-HYP_h3_B_to_C --&gt; OBJ_s6
-OBJ_s7[&quot;s7&lt;br/&gt;稳固节点 D（膜磷脂库稳态表型）：多批次脂质组确认膜磷脂净下降与 TG 上升，并与转录…&quot;]:::obj
-HYP_h4_C_to_D --&gt; OBJ_s7
-OBJ_s8[&quot;s8&lt;br/&gt;因果裁决 C→D：通过通路操纵（如 PI3K 抑制）测试是否可复制膜磷脂净缩水与 TG…&quot;]:::obj
-HYP_h4_C_to_D --&gt; OBJ_s8
-OBJ_s9[&quot;s9&lt;br/&gt;稳固节点 E（NAO/CL readout 解释边界）：控制线粒体数量与 ΔΨm，排除…&quot;]:::obj
-HYP_h5_D_to_E --&gt; OBJ_s9
-OBJ_s10[&quot;s10&lt;br/&gt;因果裁决 D→E：通过限制合成/补充前体/改变膜环境等方式测试膜磷脂库变化是否驱动 N…&quot;]:::obj
-HYP_h5_D_to_E --&gt; OBJ_s10
-OBJ_s1 ~~~ OBJ_s2
-OBJ_s2 ~~~ OBJ_s3
-OBJ_s3 ~~~ OBJ_s4
-OBJ_s4 ~~~ OBJ_s5
-OBJ_s5 ~~~ OBJ_s6
-OBJ_s6 ~~~ OBJ_s7
-OBJ_s7 ~~~ OBJ_s8
-OBJ_s8 ~~~ OBJ_s9
-OBJ_s9 ~~~ OBJ_s10
+HYP_h6 ~~~ HYP_h7
+HYP_h7 ~~~ HYP_h8
 TASK_RUN01_A_T2_qpcr_capacity_panel_validation[&quot;✓ RUN01_A_T2_qpcr_capacity_panel_validation&lt;br/&gt;选择 capacity 基因集进行 qPCR 正交验证（KO vs WT）&quot;]:::done
-OBJ_s1 --&gt; TASK_RUN01_A_T2_qpcr_capacity_panel_validation
+EP --&gt; TASK_RUN01_A_T2_qpcr_capacity_panel_validation
 TASK_RUN01_C_T1_total_phospholipid_and_lipid_droplet_proxy[&quot;RUN01_C_T1_total_phospholipid_and_lipid_droplet_proxy&lt;br/&gt;可选：Bartlett 总磷脂量 + BODIPY 脂滴染色作为 D 的 proxy（…&quot;]:::task
-OBJ_s7 --&gt; TASK_RUN01_C_T1_total_phospholipid_and_lipid_droplet_proxy
+EP --&gt; TASK_RUN01_C_T1_total_phospholipid_and_lipid_droplet_proxy
+TASK_T1[&quot;T1&lt;br/&gt;取出细胞后定量，直接裂解保存、上样检测&quot;]:::task
+EP --&gt; TASK_T1
 TASK_RUN02_A_T1_WB_timecourse_batch1[&quot;✓ RUN02_A_T1_WB_timecourse_batch1&lt;br/&gt;设计并跑 WT/KO 的 FBS 再喂养 time-course（p-AKT/p-S6…&quot;]:::done
-OBJ_s3 --&gt; TASK_RUN02_A_T1_WB_timecourse_batch1
+EP --&gt; TASK_RUN02_A_T1_WB_timecourse_batch1
 TASK_RUN02_A_T3_qpcr_FOXO_targets_orthogonal_readout[&quot;RUN02_A_T3_qpcr_FOXO_targets_orthogonal_readout&lt;br/&gt;检测 FOXO 靶基因（qPCR）作为 AKT 抑制解除的正交 readout&quot;]:::task
-OBJ_s3 --&gt; TASK_RUN02_A_T3_qpcr_FOXO_targets_orthogonal_readout
+EP --&gt; TASK_RUN02_A_T3_qpcr_FOXO_targets_orthogonal_readout
+TASK_T2[&quot;T2&lt;br/&gt;取出细胞后重复血清饥饿、refeed实验，选择45min收样品进行检测&quot;]:::task
+EP --&gt; TASK_T2
 TASK_RUN03_A_T2_qpcr_bottleneck_nodes_validation[&quot;RUN03_A_T2_qpcr_bottleneck_nodes_validation&lt;br/&gt;选择瓶颈基因进行 qPCR 验证（≥1 批次）&quot;]:::task
-OBJ_s5 --&gt; TASK_RUN03_A_T2_qpcr_bottleneck_nodes_validation
+EP --&gt; TASK_RUN03_A_T2_qpcr_bottleneck_nodes_validation
 TASK_RUN03_A_T3_PI3Ki_or_AKT_mTOR_modulation_test[&quot;RUN03_A_T3_PI3Ki_or_AKT_mTOR_modulation_test&lt;br/&gt;使用 PI3K 抑制剂或 AKT/mTOR 操纵，检测转录轴变化的复制与可逆性&quot;]:::task
-OBJ_s6 --&gt; TASK_RUN03_A_T3_PI3Ki_or_AKT_mTOR_modulation_test
+EP --&gt; TASK_RUN03_A_T3_PI3Ki_or_AKT_mTOR_modulation_test
+TASK_T3[&quot;T3&lt;br/&gt;KO 背景下筛选/确定 1 个可行条件，使 p-AKT(S473) 明显上升（救援操纵…&quot;]:::task
+EP --&gt; TASK_T3
 TASK_RUN04_A_T1_PI3Ki_changes_NAO_link_test[&quot;RUN04_A_T1_PI3Ki_changes_NAO_link_test&lt;br/&gt;PI3K 抑制（overnight）后进行 NAO 染色（±ΔΨm 对照），测试 NA…&quot;]:::task
-OBJ_s10 --&gt; TASK_RUN04_A_T1_PI3Ki_changes_NAO_link_test
+EP --&gt; TASK_RUN04_A_T1_PI3Ki_changes_NAO_link_test
 TASK_RUN04_B_T1_limit_PC_PE_synthesis_induces_D_and_decreases_NAO[&quot;RUN04_B_T1_limit_PC_PE_synthesis_induces_D_and_decreases_NAO&lt;br/&gt;限制 PC/PE 合成（或原料供给/合成酶限制）后 NAO 染色（±ΔΨm 对照），测…&quot;]:::task
-OBJ_s10 --&gt; TASK_RUN04_B_T1_limit_PC_PE_synthesis_induces_D_and_decreases_NAO
+EP --&gt; TASK_RUN04_B_T1_limit_PC_PE_synthesis_induces_D_and_decreases_NAO
 TASK_RUN04_C_T1_precursor_supplement_rescues_D_and_restores_NAO[&quot;RUN04_C_T1_precursor_supplement_rescues_D_and_restores_NAO&lt;br/&gt;补充前体（choline/ethanolamine 等）进行 rescue，观察 NA…&quot;]:::task
-OBJ_s10 --&gt; TASK_RUN04_C_T1_precursor_supplement_rescues_D_and_restores_NAO
+EP --&gt; TASK_RUN04_C_T1_precursor_supplement_rescues_D_and_restores_NAO
+TASK_T4[&quot;T4&lt;br/&gt;在 KO 背景下应用已选救援条件：检验 B↑ 是否导致 E（NAO）回拉（含 ΔΨm/…&quot;]:::task
+EP --&gt; TASK_T4
 TASK_RUN05_A_T1_PI3Ki_lipid_pool_lipidomics_or_proxy[&quot;RUN05_A_T1_PI3Ki_lipid_pool_lipidomics_or_proxy&lt;br/&gt;可选增强：PI3K 抑制后做脂质组（或先做 proxy：Bartlett+BODIPY…&quot;]:::task
-OBJ_s8 --&gt; TASK_RUN05_A_T1_PI3Ki_lipid_pool_lipidomics_or_proxy
+EP --&gt; TASK_RUN05_A_T1_PI3Ki_lipid_pool_lipidomics_or_proxy
+TASK_T5[&quot;T5&lt;br/&gt;WT 背景下筛选/确定 1 个可行抑制条件，使 p-AKT(S473) 明显下降（抑制…&quot;]:::task
+EP --&gt; TASK_T5
+TASK_T6[&quot;T6&lt;br/&gt;WT 背景下应用已选抑制条件：检验 B↓ 是否导致 E（NAO）下降（并行 ΔΨm/m…&quot;]:::task
+EP --&gt; TASK_T6
+TASK_T8[&quot;T8&lt;br/&gt;KO vs WT：Bartlett 总磷脂 + BODIPY 脂滴 proxy（含细胞…&quot;]:::task
+EP --&gt; TASK_T8
+TASK_T10[&quot;T10&lt;br/&gt;KO 背景下应用已选救援条件（来自 s13 的 T3）：在确认 p-AKT(S473)…&quot;]:::task
+EP --&gt; TASK_T10
+TASK_T12[&quot;T12&lt;br/&gt;WT 背景下应用已选抑制条件（来自 s14 的 T5）：在确认 p-AKT(S473)…&quot;]:::task
+EP --&gt; TASK_T12
+TASK_RUN01_A_T2_qpcr_capacity_panel_validation ~~~ TASK_RUN01_C_T1_total_phospholipid_and_lipid_droplet_proxy
+TASK_RUN01_C_T1_total_phospholipid_and_lipid_droplet_proxy ~~~ TASK_T1
+TASK_T1 ~~~ TASK_RUN02_A_T1_WB_timecourse_batch1
 TASK_RUN02_A_T1_WB_timecourse_batch1 ~~~ TASK_RUN02_A_T3_qpcr_FOXO_targets_orthogonal_readout
+TASK_RUN02_A_T3_qpcr_FOXO_targets_orthogonal_readout ~~~ TASK_T2
+TASK_T2 ~~~ TASK_RUN03_A_T2_qpcr_bottleneck_nodes_validation
+TASK_RUN03_A_T2_qpcr_bottleneck_nodes_validation ~~~ TASK_RUN03_A_T3_PI3Ki_or_AKT_mTOR_modulation_test
+TASK_RUN03_A_T3_PI3Ki_or_AKT_mTOR_modulation_test ~~~ TASK_T3
+TASK_T3 ~~~ TASK_RUN04_A_T1_PI3Ki_changes_NAO_link_test
 TASK_RUN04_A_T1_PI3Ki_changes_NAO_link_test ~~~ TASK_RUN04_B_T1_limit_PC_PE_synthesis_induces_D_and_decreases_NAO
 TASK_RUN04_B_T1_limit_PC_PE_synthesis_induces_D_and_decreases_NAO ~~~ TASK_RUN04_C_T1_precursor_supplement_rescues_D_and_restores_NAO
+TASK_RUN04_C_T1_precursor_supplement_rescues_D_and_restores_NAO ~~~ TASK_T4
+TASK_T4 ~~~ TASK_RUN05_A_T1_PI3Ki_lipid_pool_lipidomics_or_proxy
+TASK_RUN05_A_T1_PI3Ki_lipid_pool_lipidomics_or_proxy ~~~ TASK_T5
+TASK_T5 ~~~ TASK_T6
+TASK_T6 ~~~ TASK_T8
+TASK_T8 ~~~ TASK_T10
+TASK_T10 ~~~ TASK_T12
+TASK_T4 -. depends_on .-&gt; TASK_T3
+TASK_T6 -. depends_on .-&gt; TASK_T5
+TASK_T10 -. depends_on .-&gt; TASK_T3
+TASK_T12 -. depends_on .-&gt; TASK_T5
       </pre>
     </div>
     <p class="legend">输出文件：/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/plan_EphB1_graph.html</p>

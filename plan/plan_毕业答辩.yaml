@@ -2,156 +2,160 @@
 # 用途：新建任何计划前的“初始化清单”
 # 目标：在 10–15 分钟内，明确裁决逻辑与运作模式，避免写出四不像计划
 
-plan_init:
-  meta:
-    name: "获得博士毕业证"                # 计划名（临时即可）
-    owner: "龚宝铭"
-    created: "2026-02-26"             # YYYY-MM-DD
-    context: "需要在3个月内，完成博士毕业答辩"             # 触发背景：问题/机会/风险/不满
 
-  # =========================
-  # 1) 目标与现状
-  # =========================
-  desired_state:
-    statement: "完成博士毕业答辩并获得学位证"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）
-    observable_signal: "答辩通过并收到学位证"   # 第三方可判断的变化（出现/消失/↑↓）
+meta:
+  name: "获得博士毕业证"                # 计划名（临时即可）
+  owner: "龚宝铭"
+  created: "2026-02-26"             # YYYY-MM-DD
+  context: "需要在3个月内，完成博士毕业答辩"             # 触发背景：问题/机会/风险/不满
 
-  current_state:
-    facts: "距离完成毕业答辩仅3个月"               # 关键事实（资源/能力/限制）
-    bottlenecks: "时间"         # 主要卡点
-    uncertainty: "时间"         # 最大不确定来源
-    risk_if_wrong: "无法按时拿到毕业证"       # 走错路的代价
+# =========================
+# 1) 目标与现状
+# =========================
+desired_state:
+  statement: "完成博士毕业答辩并获得学位证"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）
+  observable_signal: "答辩通过并收到学位证"   # 第三方可判断的变化（出现/消失/↑↓）
 
-  # =========================
-  # 2) 选择计划哲学（裁决标准）
-  # =========================
-  philosophy:
-    primary: "constraint"             # target | evidence | constraint（选一个主导）
-    reason: "时间是唯一不可再生资源，必须严格约束"              # 为什么选它？
-    failure_definition: "未在3个月内完成答辩"  # 什么算失败？（未达目标/被证伪/未按时）
+current_state:
+  facts: "距离完成毕业答辩仅3个月"               # 关键事实（资源/能力/限制）
+  bottlenecks: "时间"         # 主要卡点
+  uncertainty: "时间"         # 最大不确定来源
+  risk_if_wrong: "无法按时拿到毕业证"       # 走错路的代价
 
-  # =========================
-  # 3) 选择任务生成器（运作模式）
-  # =========================
-  generator:
-    type: "execution"                # change(PHST) | execute(Execution) | maintain(Ops)
-    reason: "需要在3个月内完成答辩，因此需要低不确定性，在约束状态下确保产出"              # 为什么选这个？
-    expected_cadence: "每天执行任务"    # 节律：低频变革 / 高频执行 / 周期维护
+# =========================
+# 2) 选择计划哲学（裁决标准）
+# =========================
+philosophy:
+  primary: "constraint"             # target | evidence | constraint（选一个主导）
+  reason: "时间是唯一不可再生资源，必须严格约束"              # 为什么选它？
+  failure_definition: "未在3个月内完成答辩"  # 什么算失败？（未达目标/被证伪/未按时）
 
-  # =========================
-  # 4) 行动假设（Action -> Effect）
-  # =========================
-  hypothesis:
-    action: "按照步骤进行，完成毕业答辩"              # 我将做什么？
-    expected_effect: "每周完成至少 1 个关键任务，逐步推进答辩准备"     # 预期会观察到什么变化/证据/结果？
-    scope_limit: "仅验证是否能按计划推进答辩准备"         # 本轮只验证什么？不验证什么？
+# =========================
+# 3) 选择任务生成器（运作模式）
+# =========================
+generator:
+  type: "execution"                # change(PHST) | execute(Execution) | maintain(Ops)
+  reason: "需要在3个月内完成答辩，因此需要低不确定性，在约束状态下确保产出"              # 为什么选这个？
+  expected_cadence: "每天执行任务"    # 节律：低频变革 / 高频执行 / 周期维护
 
-  # =========================
-  # 5) 校验机制（Validation / Stop Rule）
-  # =========================
-  validation:
-    success_signal: "按时完成指定任务"      # 看到什么算“方向对/成立”？
-    falsified_if: "任务延迟完成"        # 出现什么算“失败/被证伪/应停止”？
-    review_point: "每周五下午 5 点"        # 何时检查？（日期/周次/里程碑）
+# =========================
+# 4) 行动假设（Action -> Effect）
+# =========================
+hypothesis:
+  action: "按照步骤进行，完成毕业答辩"              # 我将做什么？
+  expected_effect: "每周完成至少 1 个关键任务，逐步推进答辩准备"     # 预期会观察到什么变化/证据/结果？
+  scope_limit: "仅验证是否能按计划推进答辩准备"         # 本轮只验证什么？不验证什么？
 
-  # =========================
-  # 6) 约束（Time / Resource Box）
-  # =========================
-  constraints:
-    time_box: "3 months"            # 如: "2 weeks" / "by 2026-03-15"
-    resource_budget: ""     # 时间/精力/金钱/并行度
-    must_not_do: ""         # 明确禁止/暂不做的事
-    fallback_rule: "freeze_or_downscope"  # 失败时的默认回退策略
+# =========================
+# 5) 校验机制（Validation / Stop Rule）
+# =========================
+validation:
+  success_signal: "按时完成指定任务"      # 看到什么算“方向对/成立”？
+  falsified_if: "任务延迟完成"        # 出现什么算“失败/被证伪/应停止”？
+  review_point: "每周五下午 5 点"        # 何时检查？（日期/周次/里程碑）
+
+# =========================
+# 6) 约束（Time / Resource Box）
+# =========================
+constraints:
+  time_box: "3 months"            # 如: "2 weeks" / "by 2026-03-15"
+  resource_budget: ""     # 时间/精力/金钱/并行度
+  must_not_do: ""         # 明确禁止/暂不做的事
+  fallback_rule: "freeze_or_downscope"  # 失败时的默认回退策略
 execution_plan:
-  name: "博士毕业答辩"
-  time_window: "2026-02-26~2026-05-26"
-  objective:
-    - id: o1
-      due: "2026-03-06"
-      description: "请导师填写《生命科学学院博士生学位论文预审及学位评定分委会专家组意见表1》（见附件），导师签字后交给博士生（导师自己不需安排预审），博士生需在3月6日将导师签字的意见表交到C109室登记答辩（限此一天）。教学办将学生信息告诉各系生物学学位分委会委员，由各系学位分委会委员和系主任组织预审答辩，预审通过的学生进入后续流程。"
-      done_if: "导师签字完成且已在 3 月 6 日当天提交并登记"
+name: "博士毕业答辩"
+time_window: "2026-02-26~2026-05-26"
+objective:
+  - id: o1
+    due: "2026-03-06"
+    description: "请导师填写《生命科学学院博士生学位论文预审及学位评定分委会专家组意见表1》（见附件），导师签字后交给博士生（导师自己不需安排预审），博士生需在3月6日将导师签字的意见表交到C109室登记答辩（限此一天）。教学办将学生信息告诉各系生物学学位分委会委员，由各系学位分委会委员和系主任组织预审答辩，预审通过的学生进入后续流程。"
+    done_if: "导师签字完成且已在 3 月 6 日当天提交并登记"
 
-    - id: o2
-      due: "2026-03-26"
-      description: "2026年4月9日前学生必须在管理系统中提交定稿的电子版盲审版学位论文。此电子版论文用于相似度检测、盲审。（论文撰写格式、规范见附件。）"
-      done_if: "管理系统中已提交定稿电子版盲审论文"
+  - id: o2
+    due: "2026-03-26"
+    description: "2026年4月9日前学生必须在管理系统中提交定稿的电子版盲审版学位论文。此电子版论文用于相似度检测、盲审。（论文撰写格式、规范见附件。）"
+    done_if: "管理系统中已提交定稿电子版盲审论文"
 
-    - id: o3
-      due: "2026-04-02"
-      description: "2026年4月9日前导师登录“研究生学位论文导师审核系统”审核学生电子版学位论文。（操作说明见附件。）"
-      done_if: "导师在“研究生学位论文导师审核系统”中显示审核通过"
+  - id: o3
+    due: "2026-04-02"
+    description: "2026年4月9日前导师登录“研究生学位论文导师审核系统”审核学生电子版学位论文。（操作说明见附件。）"
+    done_if: "导师在“研究生学位论文导师审核系统”中显示审核通过"
 
-    - id: o4
-      due: "2026-05-26"
-      description: "2026年5月31日前完成答辩安排确认，2026年6月7日前完成学位论文答辩，并在系统里提交终版论文。"
-      done_if: "答辩通过且系统中已提交终版论文"
+  - id: o4
+    due: "2026-05-26"
+    description: "2026年5月31日前完成答辩安排确认，2026年6月7日前完成学位论文答辩，并在系统里提交终版论文。"
+    done_if: "答辩通过且系统中已提交终版论文"
 
-  tasks:
-    - id: T1
-      objective_id: o1
-      condition: "与孙老师约定会面"
-      description: "请孙老师完成意见表草稿拟定，并确定意见表及签名是否需要线下手写"
-      status: done
-      records: "孙老师需要看到论文完成稿件后，邮件发送电子版意见表，填写后找吴老师签字"
-    - id: T1.1
-      objective_id: o1
-      description: "催促孙老师完成表格填写"
-      status: todo
-    - id: T2
-      objective_id: o1
-      depends_on: [T1.1, T11]
-      condition: "孙老师意见表拟定完成"
-      description: "根据需要，线上或线下找吴老师完成意见表填写与签名"
-      status: todo
-    - id: T3
-      objective_id: o1
-      due: "2026-03-06"
-      depends_on: [T2]
-      description: "3 月 6 日当天提交至C109室登记答辩"
-      status: todo
-    - id: T4
-      objective_id: o2
-      condition: "与孙老师约定会面"
-      description: "询问盲审论文一轮审阅状态，催促完成"
-      records: "孙老师表示已完成审阅，接下来将论文填入系统模版，然后根据之前的修改意见进行整体修改与润色，需要在一周内完成"
-      status: done
-    - id: T5
-      objective_id: o2
-      condition: "论文一轮审阅完成"
-      depends_on: []
-      description: "根据审阅情况，计划进行论文修改"
-      status: done
+tasks:
+  - id: T1
+    objective_id: o1
+    condition: "与孙老师约定会面"
+    description: "请孙老师完成意见表草稿拟定，并确定意见表及签名是否需要线下手写"
+    status: done
+    records: "孙老师需要看到论文完成稿件后，邮件发送电子版意见表，填写后找吴老师签字"
+  - id: T1.1
+    objective_id: o1
+    description: "催促孙老师完成表格填写"
+    records: 
+      3.3日完成一次催促，3.4没有回复，微信再催一次
+      完成填写，接下来将表格和论文正文发送给吴老师，然后根据吴老师的回复决定去找他还是线上沟通完成签字
+    status: done
+  - id: T2
+    objective_id: o1
+    depends_on: [T1.1, T11]
+    condition: "孙老师意见表拟定完成"
+    description: "根据需要，将论文提交给吴老师，线上或线下找吴老师完成意见表填写与签名"
+    records: 
+      已发送邮件，等下午回复，决定什么时候去找他签字
+      由孙老师代为完成，等待快递
+    status: done
+  - id: T3
+    objective_id: o1
+    due: "2026-03-06"
+    depends_on: [T2]
+    description: "3 月 6 日当天提交至C109室登记答辩"
+    status: todo
+  - id: T4
+    objective_id: o2
+    condition: "与孙老师约定会面"
+    description: "询问盲审论文一轮审阅状态，催促完成"
+    records: "孙老师表示已完成审阅，接下来将论文填入系统模版，然后根据之前的修改意见进行整体修改与润色，需要在一周内完成"
+    status: done
+  - id: T5
+    objective_id: o2
+    condition: "论文一轮审阅完成"
+    depends_on: []
+    description: "根据审阅情况，计划进行论文修改"
+    status: done
 
-    - id: T8
-      objective_id: o2
-      due: 2026-02-28
-      description: "整体过一遍论文，修正表达方式以及零散内容，形成论文第二稿"
-      status: done
-      records: >
-        计划：
-        首先将论文意见整理，明确要修改的问题有哪些
-        根据论文生成顺序，整理问题修正顺序
-        逐一完成问题修正，形成第二稿
-        目前已完成introduction和method部分修改，
-        接下来进行result部分与discussion部分的修改，预计周日即可完成
-        
-    - id: T9
-      objective_id: o2
-      due: 2026-03-03
-      description: "确定论文的逻辑层级，匹配中、英文论文生产过程，决定接下来的审阅修改方式"
-      status: todo
-    - id: T10
-      objective_id: o2
-      due: 2026-03-03
-      description: "从逻辑、格式、表达方面，再次审阅1～3次论文"
-      status: todo
-    - id: T11
-      objective_id: o2
-      due: 2026-03-03
-      description: "提交孙老师与吴老师审阅"
-      status: todo
-    - id: T12
-      objective_id: o2
-      due: 2026-03-05
-      description: "根据反馈意见，做最后修改"
-      status: todo
+  - id: T8
+    objective_id: o2
+    due: 2026-02-28
+    description: "整体过一遍论文，修正表达方式以及零散内容，形成论文第二稿"
+    status: done
+    records: >
+      计划：
+      首先将论文意见整理，明确要修改的问题有哪些
+      根据论文生成顺序，整理问题修正顺序
+      逐一完成问题修正，形成第二稿
+      目前已完成introduction和method部分修改，
+      接下来进行result部分与discussion部分的修改，预计周日即可完成
+      
+  - id: T9
+    objective_id: o2
+    due: 2026-03-03
+    description: "确定论文的逻辑层级，匹配中、英文论文生产过程，决定接下来的审阅修改方式"
+    done_if: "论文逻辑顺畅，一整遍阅读不会有明显停顿理解过程，并且反映到论文生产中间层文件中，保障后续英文论文生成"
+    records:
+      理解论文由哪几层构成，明确目前的修改层级与目的，以及未来的宏观计划
+      目前处在什么层级？——sentence层级，得赶紧让老师看过，然后根据意见修正前面几个层级的内容
+      首先根据论文生产结构，找到logic文件，明确logic是否与论文结构匹配，以及是否合适——不适合现在修改
+      顺便阅读一整遍论文，找到逻辑不通畅的地方，进行标注修改——可以做
+      接下来
+    status: done
+  - id: T10
+    objective_id: o2
+    due: 2026-04-06
+    condition: "孙老师返回修改意见，若无修改意见，则在英文论文完成后再进行一次彻底重构"
+    description: "从论文生产方法入手，补充之前缺少的一切层级，最终反映到论文整体上"
+    status: todo

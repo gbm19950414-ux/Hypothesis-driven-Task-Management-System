@@ -1,0 +1,17 @@
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN["PLAN: 在4周内通过系统性训练改善膝关节问题，恢复日常活动能力"]:::plan
+EP["EXEC: execution_plan"]:::plan
+PLAN --> EP
+HYP_H1["H1"]:::hyp
+EP --> HYP_H1
+TASK_T1["✓ T1<br/>due: 2026-01-23<br/>最小必要知识：只为“膝前疼痛（髌骨下方）”建立够用的解剖与常见疼痛来源框架， 目标是能…"]:::done
+EP --> TASK_T1
+TASK_T2["T2<br/>due: 2026-01-24<br/>从大到小的检测方案：把‘疼痛位置 + 触发动作 + 安全窗口’标准化， 生成可重复的自…"]:::task
+EP --> TASK_T2
+TASK_T1 ~~~ TASK_T2

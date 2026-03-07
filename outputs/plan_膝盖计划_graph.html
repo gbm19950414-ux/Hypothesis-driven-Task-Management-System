@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Plan Graph - 完成博士学位论文、投稿并接收</title>
+  <title>Plan Graph - 在4周内通过系统性训练改善膝关节问题，恢复日常活动能力</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
            margin: 0; padding: 16px; background:#fafafa; }
@@ -34,40 +34,19 @@ classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
 classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
 classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
 classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
-PLAN[&quot;PLAN: 完成博士学位论文、投稿并接收&quot;]:::plan
-EP[&quot;EXEC: execution&quot;]:::plan
+PLAN[&quot;PLAN: 在4周内通过系统性训练改善膝关节问题，恢复日常活动能力&quot;]:::plan
+EP[&quot;EXEC: execution_plan&quot;]:::plan
 PLAN --&gt; EP
-OBJ_o1[&quot;o1&lt;br/&gt;due: 2026-03-26&lt;br/&gt;完成博士毕业论文并开始投稿&quot;]:::obj
-EP --&gt; OBJ_o1
-OBJ_o2[&quot;o2&lt;br/&gt;due: 2026-04-10&lt;br/&gt;等待投稿结果返回&quot;]:::obj
-EP --&gt; OBJ_o2
-OBJ_o3[&quot;o3&lt;br/&gt;due: 2026-05-10&lt;br/&gt;完成投稿意见相关的修改，并提交最终版本&quot;]:::obj
-EP --&gt; OBJ_o3
-OBJ_o1 ~~~ OBJ_o2
-OBJ_o2 ~~~ OBJ_o3
-TASK_T1[&quot;✓ T1&lt;br/&gt;催促导师完成英文论文一轮审阅，重新确认投稿期刊是否为iscience&quot;]:::done
-OBJ_o1 --&gt; TASK_T1
-TASK_T2[&quot;✓ T2&lt;br/&gt;了解目标期刊的要求&quot;]:::done
-OBJ_o1 --&gt; TASK_T2
-TASK_T2.1[&quot;T2.1&lt;br/&gt;按照宏观科研思路，强化目前已有的论文生成体系&quot;]:::task
-OBJ_o1 --&gt; TASK_T2.1
-TASK_T2.2[&quot;T2.2&lt;br/&gt;根据论文生成体系缺少的证据，以及目前的时间条件，安排一次实验，补充证据，1～2周完成&quot;]:::task
-OBJ_o1 --&gt; TASK_T2.2
-TASK_T2.3[&quot;T2.3&lt;br/&gt;根据期刊要求与论文生产流程，完成论文防拒稿修正&quot;]:::task
-OBJ_o1 --&gt; TASK_T2.3
-TASK_T2.4[&quot;T2.4&lt;br/&gt;整理好所有内容，发送给导师做最终check&quot;]:::task
-OBJ_o1 --&gt; TASK_T2.4
-TASK_T3[&quot;T3&lt;br/&gt;完成投稿&quot;]:::task
-OBJ_o1 --&gt; TASK_T3
+HYP_H1[&quot;H1&quot;]:::hyp
+EP --&gt; HYP_H1
+TASK_T1[&quot;✓ T1&lt;br/&gt;due: 2026-01-23&lt;br/&gt;最小必要知识：只为“膝前疼痛（髌骨下方）”建立够用的解剖与常见疼痛来源框架， 目标是能…&quot;]:::done
+EP --&gt; TASK_T1
+TASK_T2[&quot;T2&lt;br/&gt;due: 2026-01-24&lt;br/&gt;从大到小的检测方案：把‘疼痛位置 + 触发动作 + 安全窗口’标准化， 生成可重复的自…&quot;]:::task
+EP --&gt; TASK_T2
 TASK_T1 ~~~ TASK_T2
-TASK_T2 ~~~ TASK_T2.1
-TASK_T2.1 ~~~ TASK_T2.2
-TASK_T2.2 ~~~ TASK_T2.3
-TASK_T2.3 ~~~ TASK_T2.4
-TASK_T2.4 ~~~ TASK_T3
       </pre>
     </div>
-    <p class="legend">输出文件：/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/plan_学位证书_graph.html</p>
+    <p class="legend">输出文件：/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/plan_膝盖计划_graph.html</p>
   </div>
 </body>
 </html>

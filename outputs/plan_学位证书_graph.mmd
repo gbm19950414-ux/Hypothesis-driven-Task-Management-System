@@ -5,8 +5,8 @@ classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
 classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
 classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
 classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
-PLAN["PLAN: Plan"]:::plan
-EP["EXEC: 博士毕业论文投稿、接收"]:::plan
+PLAN["PLAN: 完成博士学位论文、投稿并接收"]:::plan
+EP["EXEC: execution"]:::plan
 PLAN --> EP
 OBJ_o1["o1<br/>due: 2026-03-26<br/>完成博士毕业论文并开始投稿"]:::obj
 EP --> OBJ_o1
@@ -18,15 +18,21 @@ OBJ_o1 ~~~ OBJ_o2
 OBJ_o2 ~~~ OBJ_o3
 TASK_T1["✓ T1<br/>催促导师完成英文论文一轮审阅，重新确认投稿期刊是否为iscience"]:::done
 OBJ_o1 --> TASK_T1
-TASK_T2["T2<br/>了解目标期刊的要求"]:::task
+TASK_T2["✓ T2<br/>了解目标期刊的要求"]:::done
 OBJ_o1 --> TASK_T2
-TASK_T2.2["T2.2<br/>根据期刊要求与论文生产流程，完成论文防拒稿修正"]:::task
+TASK_T2.1["T2.1<br/>按照宏观科研思路，强化目前已有的论文生成体系"]:::task
+OBJ_o1 --> TASK_T2.1
+TASK_T2.2["T2.2<br/>根据论文生成体系缺少的证据，以及目前的时间条件，安排一次实验，补充证据，1～2周完成"]:::task
 OBJ_o1 --> TASK_T2.2
-TASK_T2.3["T2.3<br/>整理好所有内容，发送给导师做最终check"]:::task
+TASK_T2.3["T2.3<br/>根据期刊要求与论文生产流程，完成论文防拒稿修正"]:::task
 OBJ_o1 --> TASK_T2.3
+TASK_T2.4["T2.4<br/>整理好所有内容，发送给导师做最终check"]:::task
+OBJ_o1 --> TASK_T2.4
 TASK_T3["T3<br/>完成投稿"]:::task
 OBJ_o1 --> TASK_T3
 TASK_T1 ~~~ TASK_T2
-TASK_T2 ~~~ TASK_T2.2
+TASK_T2 ~~~ TASK_T2.1
+TASK_T2.1 ~~~ TASK_T2.2
 TASK_T2.2 ~~~ TASK_T2.3
-TASK_T2.3 ~~~ TASK_T3
+TASK_T2.3 ~~~ TASK_T2.4
+TASK_T2.4 ~~~ TASK_T3

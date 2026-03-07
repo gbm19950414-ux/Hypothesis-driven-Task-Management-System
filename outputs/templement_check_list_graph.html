@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Plan Graph - 获得博士毕业证</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+           margin: 0; padding: 16px; background:#fafafa; }
+    .wrap { max-width: 1400px; margin: 0 auto; }
+    .hint { color:#555; font-size: 13px; margin: 0 0 10px 0; }
+    .box { background:#fff; border:1px solid #ddd; border-radius: 12px; padding: 12px; overflow:auto; }
+    .legend { font-size: 13px; color:#333; margin: 10px 0 0; }
+    code { background:#f3f3f3; padding:2px 6px; border-radius: 6px; }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, flowchart: { curve: "linear" } });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <p class="hint">
+      实线箭头：层级树（Plan → Objective → Task）｜
+      虚线箭头：<code>depends_on</code> ｜ 排列方向：<code>LR</code>
+      （TB：上为先；LR：左为先）
+    </p>
+    <div class="box">
+      <pre class="mermaid">
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN[&quot;PLAN: 获得博士毕业证&lt;br/&gt;需要在3个月内，完成博士毕业答辩&quot;]:::plan
+EP[&quot;EXEC: execution_plan&quot;]:::plan
+PLAN --&gt; EP
+      </pre>
+    </div>
+    <p class="legend">输出文件：/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/templement_check_list_graph.html</p>
+  </div>
+</body>
+</html>

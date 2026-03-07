@@ -21,11 +21,9 @@ import yaml
 
 
 ROOT = Path("/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os")
-PLAN_FILES = [
-    "plan_毕业答辩.yaml",
-    "plan_学位证书.yaml",
-    "plan_EphB1.yaml",
-]
+PLAN_DIR = ROOT / "plan"
+files = list(PLAN_DIR.glob("plan_*.yaml")) + list(PLAN_DIR.glob("meta_plan_*.yaml"))
+PLAN_FILES = sorted([p.name for p in files])
 OUT_DIR = ROOT / "outputs"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -130,12 +128,34 @@ def _normalize_plan(doc: Dict[str, Any]) -> Tuple[str, str, str, Optional[str], 
     time_window = _get(doc, ["execution_plan", "time_window"], {})
     tw_end = time_window.get("end") if isinstance(time_window, dict) else None
 
-    objectives: List[Dict[str, Any]] = _get(doc, ["execution_plan", "objective"], []) or []
-    tasks: List[Dict[str, Any]] = _get(doc, ["execution_plan", "tasks"], []) or []
+    # --- Objectives / Tasks (top-level only) ---
+    # We standardize future plans to keep `objective(s)` and `tasks` at YAML top level.
+    objectives: List[Dict[str, Any]] = []
+    tasks: List[Dict[str, Any]] = []
+
+    top_obj = doc.get("objective", None)
+    if top_obj is None:
+        top_obj = doc.get("objectives", None)
+    if isinstance(top_obj, list):
+        objectives = top_obj
+    elif isinstance(top_obj, dict):
+        objectives = [top_obj]
+
+    top_tasks = doc.get("tasks", None)
+    if isinstance(top_tasks, list):
+        tasks = top_tasks
+    elif isinstance(top_tasks, dict):
+        tasks = [top_tasks]
 
     hypotheses: List[Dict[str, Any]] = _get(doc, ["hypotheses"], []) or []
     if not isinstance(hypotheses, list):
         hypotheses = []
+
+    # Ensure objectives/tasks are always lists of dicts
+    if not isinstance(objectives, list):
+        objectives = []
+    if not isinstance(tasks, list):
+        tasks = []
 
     # --- PHST fallback: steps + tasks ---
     if not objectives and not tasks:
@@ -195,6 +215,8 @@ def _normalize_plan(doc: Dict[str, Any]) -> Tuple[str, str, str, Optional[str], 
 
 
 def main() -> None:
+    # A方案：生成一个目录页（index.html），集中打开各计划图
+    registry: List[Dict[str, Any]] = []
     for plan_file in PLAN_FILES:
         in_path = ROOT / "plan" / plan_file
         if not in_path.exists():
@@ -421,6 +443,105 @@ def main() -> None:
         html_path.write_text(html_doc, encoding="utf-8")
 
         print(f"[OK] {plan_file} ->\n- {mmd_path}\n- {html_path}")
+
+        # Collect metadata for index page
+        obj_count = len([o for o in objectives if isinstance(o, dict) and o.get("id")])
+        task_count = len([t for t in tasks if isinstance(t, dict) and t.get("id")])
+        obj_done = len([o for o in objectives if isinstance(o, dict) and str(o.get("status", "")).lower() == "done"])
+        task_done = len([t for t in tasks if isinstance(t, dict) and str(t.get("status", "")).lower() == "done"])
+
+        registry.append(
+            {
+                "plan_file": plan_file,
+                "stem": stem,
+                "plan_name": plan_name,
+                "ep_name": ep_name,
+                "tw_end": tw_end,
+                "obj_count": obj_count,
+                "task_count": task_count,
+                "obj_done": obj_done,
+                "task_done": task_done,
+                # relative filename so opening outputs/index.html works
+                "html_file": html_path.name,
+            }
+        )
+
+
+    # --- Index page (A方案)：目录页 + 链接到每个计划的独立 HTML ---
+    if registry:
+        registry_sorted = sorted(registry, key=lambda r: str(r.get("plan_name", "")).lower())
+
+        rows: List[str] = []
+        for r in registry_sorted:
+            plan_title = html.escape(str(r.get("plan_name", "Plan")))
+            ep_title = html.escape(str(r.get("ep_name", "execution_plan")))
+            tw_end = r.get("tw_end")
+            due_part = f" · end: {html.escape(str(tw_end))}" if tw_end else ""
+            stats = f"O {r.get('obj_done', 0)}/{r.get('obj_count', 0)} · T {r.get('task_done', 0)}/{r.get('task_count', 0)}"
+            stats = html.escape(stats)
+            href = html.escape(str(r.get("html_file", "")))
+            rows.append(
+                f"<tr>"
+                f"<td><a href=\"{href}\">{plan_title}</a></td>"
+                f"<td>{ep_title}</td>"
+                f"<td>{stats}</td>"
+                f"<td>{html.escape(due_part[3:]) if due_part else ''}</td>"
+                f"</tr>"
+            )
+
+        index_path = OUT_DIR / "index.html"
+        index_doc = f"""<!doctype html>
+<html lang=\"zh\">
+<head>
+  <meta charset=\"utf-8\"/>
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>
+  <title>Plan Index</title>
+  <style>
+    body {{ margin: 0; background: #fafafa; color: #111;
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+                        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }}
+    .wrap {{ max-width: 1200px; margin: 0 auto; padding: 16px; }}
+    .top {{ background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 12px 14px; }}
+    .hint {{ color: #666; font-size: 13px; margin-top: 6px; }}
+    table {{ width: 100%; border-collapse: collapse; margin-top: 12px; background: #fff;
+            border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; }}
+    th, td {{ text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 14px; }}
+    th {{ font-size: 13px; color: #444; background: #fafafa; }}
+    tr:last-child td {{ border-bottom: 0; }}
+    a {{ color: #111; text-decoration: underline; }}
+    a:hover {{ color: #000; }}
+    .muted {{ color: #666; font-size: 12px; }}
+  </style>
+</head>
+<body>
+  <div class=\"wrap\">
+    <div class=\"top\">
+      <div><strong>Plan Index</strong> · outputs/</div>
+      <div class=\"hint\">点击计划名称打开对应的图页面（每个计划仍是独立 HTML）。</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Exec</th>
+          <th>Stats</th>
+          <th>End</th>
+        </tr>
+      </thead>
+      <tbody>
+        {"\n".join(rows)}
+      </tbody>
+    </table>
+
+    <p class=\"muted\">提示：把本页加入浏览器书签即可“一键打开所有计划入口”。</p>
+  </div>
+</body>
+</html>
+"""
+
+        index_path.write_text(index_doc, encoding="utf-8")
+        print(f"[OK] index ->\n- {index_path}")
 
 
 if __name__ == "__main__":

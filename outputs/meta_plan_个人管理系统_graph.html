@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Plan Graph - 建立一套可运行、可维护、可演化的个人管理系统，使日常决策与任务执行更高效、稳定</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+           margin: 0; padding: 16px; background:#fafafa; }
+    .wrap { max-width: 1400px; margin: 0 auto; }
+    .hint { color:#555; font-size: 13px; margin: 0 0 10px 0; }
+    .box { background:#fff; border:1px solid #ddd; border-radius: 12px; padding: 12px; overflow:auto; }
+    .legend { font-size: 13px; color:#333; margin: 10px 0 0; }
+    code { background:#f3f3f3; padding:2px 6px; border-radius: 6px; }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, flowchart: { curve: "linear" } });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <p class="hint">
+      实线箭头：层级树（Plan → Objective → Task）｜
+      虚线箭头：<code>depends_on</code> ｜ 排列方向：<code>LR</code>
+      （TB：上为先；LR：左为先）
+    </p>
+    <div class="box">
+      <pre class="mermaid">
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN[&quot;PLAN: 建立一套可运行、可维护、可演化的个人管理系统，使日常决策与任务执行更高效、稳定&quot;]:::plan
+EP[&quot;EXEC: execution_plan&quot;]:::plan
+PLAN --&gt; EP
+HYP_H1[&quot;H1&quot;]:::hyp
+EP --&gt; HYP_H1
+HYP_H2[&quot;H2&quot;]:::hyp
+EP --&gt; HYP_H2
+HYP_H1 ~~~ HYP_H2
+TASK_T1[&quot;✓ T1&lt;br/&gt;due: 2026-02-18&lt;br/&gt;在 life_os 中创建/确认目录结构与 3 个模板文件（inbox.md, wee…&quot;]:::done
+EP --&gt; TASK_T1
+TASK_T2[&quot;✓ T2&lt;br/&gt;due: 2026-02-19&lt;br/&gt;为日常灵感捕获设定规则：入口唯一（Inbox）、格式最小、日常不改结构&quot;]:::done
+EP --&gt; TASK_T2
+TASK_T3a[&quot;✓ T3a&lt;br/&gt;due: 2026-02-22&lt;br/&gt;Weekly Review - 收集与筛选：从 Mac 备忘录挑出本周需要处理的条目，…&quot;]:::done
+EP --&gt; TASK_T3a
+TASK_T3b[&quot;✓ T3b&lt;br/&gt;due: 2026-02-22&lt;br/&gt;Weekly Review - 更新 Plan：用 inbox 条目更新受影响的 1–…&quot;]:::done
+EP --&gt; TASK_T3b
+TASK_T3c[&quot;✓ T3c&lt;br/&gt;due: 2026-02-22&lt;br/&gt;Weekly Review - 派生本周任务：从更新后的各 plan 中抽取本周 3–…&quot;]:::done
+EP --&gt; TASK_T3c
+TASK_T4[&quot;✓ T4&lt;br/&gt;due: 2026-02-24&lt;br/&gt;目前已完成“什么需要做”部分系统，现在需要建立任务选择系统概念，完成“什么可以做”系统&quot;]:::done
+EP --&gt; TASK_T4
+TASK_T5[&quot;T5&lt;br/&gt;due: 2026-03-03~2026-03-09&lt;br/&gt;连续 7 天记录‘首任务选择’与实际执行结果（是否顺利、是否需要降级任务）&quot;]:::task
+EP --&gt; TASK_T5
+TASK_T1 ~~~ TASK_T2
+TASK_T2 ~~~ TASK_T3a
+TASK_T3a ~~~ TASK_T3b
+TASK_T3b ~~~ TASK_T3c
+TASK_T3c ~~~ TASK_T4
+TASK_T4 ~~~ TASK_T5
+      </pre>
+    </div>
+    <p class="legend">输出文件：/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/meta_plan_个人管理系统_graph.html</p>
+  </div>
+</body>
+</html>

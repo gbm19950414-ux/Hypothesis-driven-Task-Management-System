@@ -1,0 +1,27 @@
+flowchart LR
+classDef card fill:#ffffff,stroke:#111,stroke-width:1px,rx:10,ry:10;
+classDef plan fill:#f6f8ff,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef obj fill:#f7fff6,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef hyp fill:#fff6fb,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef task fill:#fffdf2,stroke:#111,stroke-width:1px,rx:12,ry:12;
+classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
+PLAN["PLAN: 在4周内完成增肌训练计划，达到预期体重增长和力量提升目标"]:::plan
+EP["EXEC: execution_plan"]:::plan
+PLAN --> EP
+OBJ_O1["O1<br/>due: 2026-03-28<br/>完成4周训练计划（总训练量达标）"]:::obj
+EP --> OBJ_O1
+OBJ_O2["O2<br/>due: 2026-03-28<br/>维持增肌期营养与恢复条件"]:::obj
+EP --> OBJ_O2
+OBJ_O3["O3<br/>due: 2026-03-28<br/>完成周期趋势评估并决定下周期调整"]:::obj
+EP --> OBJ_O3
+OBJ_O1 ~~~ OBJ_O2
+OBJ_O2 ~~~ OBJ_O3
+TASK_T_W1_D1["T_W1_D1<br/>due: 2026-03-01<br/>上肢A训练"]:::task
+OBJ_O1 --> TASK_T_W1_D1
+TASK_T_W1_D2["T_W1_D2<br/>due: 2026-03-02<br/>下肢A训练"]:::task
+OBJ_O1 --> TASK_T_W1_D2
+TASK_T_W1_Nutrition_Log["T_W1_Nutrition_Log<br/>due: 2026-03-07<br/>记录本周平均蛋白与热量"]:::task
+OBJ_O2 --> TASK_T_W1_Nutrition_Log
+TASK_T_Review_W4["T_Review_W4<br/>due: 2026-03-28<br/>4周周期趋势分析与结构调整"]:::task
+OBJ_O3 --> TASK_T_Review_W4
+TASK_T_W1_D1 ~~~ TASK_T_W1_D2

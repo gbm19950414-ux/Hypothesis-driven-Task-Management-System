@@ -2,116 +2,130 @@
 # 用途：新建任何计划前的“初始化清单”
 # 目标：在 10–15 分钟内，明确裁决逻辑与运作模式，避免写出四不像计划
 
-plan_init:
-  # =========================
-  # 1) 目标与现状
-  # =========================
-  desired_state:
-    statement: "完成博士学位论文、投稿并接收"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）
-    observable_signal: "获得论文接收函邮件"   # 第三方可判断的变化（出现/消失/↑↓）
+# =========================
+# 1) 目标与现状
+# =========================
+desired_state:
+  statement: "完成博士学位论文、投稿并接收"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）
+  observable_signal: "获得论文接收函邮件"   # 第三方可判断的变化（出现/消失/↑↓）
 
-  current_state:
-    facts: "距离完成毕业答辩仅3个月"               # 关键事实（资源/能力/限制）
-    bottlenecks: "时间"         # 主要卡点
-    uncertainty: "时间"         # 最大不确定来源
-    risk_if_wrong: "无法按时投稿获得学位证"       # 走错路的代价
+current_state:
+  facts: "距离完成毕业答辩仅3个月"               # 关键事实（资源/能力/限制）
+  bottlenecks: "时间"         # 主要卡点
+  uncertainty: "时间"         # 最大不确定来源
+  risk_if_wrong: "无法按时投稿获得学位证"       # 走错路的代价
 
-  # =========================
-  # 2) 选择计划哲学（裁决标准）
-  # =========================
-  philosophy:
-    primary: "constraint"             # target | evidence | constraint（选一个主导）
-    reason: "时间是唯一不可再生资源，必须严格约束"              # 为什么选它？
-    failure_definition: "未在3个月内完成投稿，尽量获得接收函"  # 什么算失败？（未达目标/被证伪/未按时）
+# =========================
+# 2) 选择计划哲学（裁决标准）
+# =========================
+philosophy:
+  primary: "constraint"             # target | evidence | constraint（选一个主导）
+  reason: "时间是唯一不可再生资源，必须严格约束"              # 为什么选它？
+  failure_definition: "未在3个月内完成投稿，尽量获得接收函"  # 什么算失败？（未达目标/被证伪/未按时）
 
-  # =========================
-  # 3) 选择任务生成器（运作模式）
-  # =========================
-  generator:
-    type: "execution"                # change(PHST) | execute(Execution) | maintain(Ops)
-    reason: "需要在3个月内完成投稿，因此需要低不确定性，在约束状态下确保产出"              # 为什么选这个？
-    expected_cadence: "每天执行任务"    # 节律：低频变革 / 高频执行 / 周期维护
+# =========================
+# 3) 选择任务生成器（运作模式）
+# =========================
+generator:
+  type: "execution"                # change(PHST) | execute(Execution) | maintain(Ops)
+  reason: "需要在3个月内完成投稿，因此需要低不确定性，在约束状态下确保产出"              # 为什么选这个？
+  expected_cadence: "每天执行任务"    # 节律：低频变革 / 高频执行 / 周期维护
 
-  # =========================
-  # 4) 行动假设（Action -> Effect）
-  # =========================
-  hypothesis:
-    action: "按照步骤进行，完成博士学位论文投稿"              # 我将做什么？
-    expected_effect: "每周完成至少 1 个关键任务，逐步推进论文投稿准备"     # 预期会观察到什么变化/证据/结果？
-    scope_limit: "仅验证是否能按计划推进论文投稿准备"         # 本轮只验证什么？不验证什么？
+# =========================
+# 4) 行动假设（Action -> Effect）
+# =========================
+hypothesis:
+  action: "按照步骤进行，完成博士学位论文投稿"              # 我将做什么？
+  expected_effect: "每周完成至少 1 个关键任务，逐步推进论文投稿准备"     # 预期会观察到什么变化/证据/结果？
+  scope_limit: "仅验证是否能按计划推进论文投稿准备"         # 本轮只验证什么？不验证什么？
 
-  # =========================
-  # 5) 校验机制（Validation / Stop Rule）
-  # =========================
-  validation:
-    success_signal: "按时完成指定任务"      # 看到什么算“方向对/成立”？
-    falsified_if: "任务延迟完成"        # 出现什么算“失败/被证伪/应停止”？
-    review_point: "每周五下午 5 点"        # 何时检查？（日期/周次/里程碑）
+# =========================
+# 5) 校验机制（Validation / Stop Rule）
+# =========================
+validation:
+  success_signal: "按时完成指定任务"      # 看到什么算“方向对/成立”？
+  falsified_if: "任务延迟完成"        # 出现什么算“失败/被证伪/应停止”？
+  review_point: "每周五下午 5 点"        # 何时检查？（日期/周次/里程碑）
 
-  # =========================
-  # 6) 约束（Time / Resource Box）
-  # =========================
-  constraints:
-    time_box: "3 months"            # 如: "2 weeks" / "by 2026-03-15"
-    resource_budget: ""     # 时间/精力/金钱/并行度
-    must_not_do: ""         # 明确禁止/暂不做的事
-    fallback_rule: ""  # 失败时的默认回退策略
+# =========================
+# 6) 约束（Time / Resource Box）
+# =========================
+constraints:
+  time_box: "3 months"            # 如: "2 weeks" / "by 2026-03-15"
+  resource_budget: ""     # 时间/精力/金钱/并行度
+  must_not_do: ""         # 明确禁止/暂不做的事
+  fallback_rule: ""  # 失败时的默认回退策略
 execution_plan:
-  name: "博士毕业论文投稿、接收"
-  time_window: "2026-02-26~2026-05-26"
-  objective:
-    - id: o1
-      due: "2026-03-26"      
-      description: "完成博士毕业论文并开始投稿"
-      done_if: "博士毕业论文完成并已开始投稿"
+name: "博士毕业论文投稿、接收"
+time_window: "2026-02-26~2026-05-26"
+objective:
+  - id: o1
+    due: "2026-03-26"      
+    description: "完成博士毕业论文并开始投稿"
+    done_if: "博士毕业论文完成并已开始投稿"
 
-    - id: o2
-      due: "2026-04-10"
-      condition: "o1 is done"
-      description: "等待投稿结果返回"
-      done_if: "获得返回的投稿结果"
+  - id: o2
+    due: "2026-04-10"
+    condition: "o1 is done"
+    description: "等待投稿结果返回"
+    done_if: "获得返回的投稿结果"
 
-    - id: o3
-      due: "2026-05-10"
-      condition: "o2 is done"
-      description: "完成投稿意见相关的修改，并提交最终版本"
-      done_if: "完成最终版本提交"
+  - id: o3
+    due: "2026-05-10"
+    condition: "o2 is done"
+    description: "完成投稿意见相关的修改，并提交最终版本"
+    done_if: "完成最终版本提交"
 
-  tasks:
-    - id: T1
-      objective_id: o1
-      condition: "见到孙老师"
-      description: "催促导师完成英文论文一轮审阅，重新确认投稿期刊是否为iscience"
-      status: done
-      records: 确定投稿期刊为iscience，孙老师没时间审阅，自己完成审阅后投稿
+tasks:
+  - id: T1
+    objective_id: o1
+    condition: "见到孙老师"
+    description: "催促导师完成英文论文一轮审阅，重新确认投稿期刊是否为iscience"
+    status: done
+    records: 确定投稿期刊为iscience，孙老师没时间审阅，自己完成审阅后投稿
 
-    - id: T2
-      objective_id: o1
-      depends_on: T1
-      condition: ""
-      description: "了解目标期刊的要求"
-      records: 
-      status: todo
+  - id: T2
+    objective_id: o1
+    depends_on: T1
+    condition: ""
+    description: "了解目标期刊的要求"
+    records: 
+    status: done
+  - id: T2.1
+    objective_id: o1
+    description: 
+      按照宏观科研思路，强化目前已有的论文生成体系
+    records: 
+      目标是：达成可投稿状态
+      需要完成：
+        明确构建哲学与逻辑
+        根据方案，进行论文整体重新构建
+    status: todo
+  - id: T2.3
+    objective_id: o1
+    depends_on: T2.1
+    condition: ""
+    description: "根据期刊要求与论文生产流程，完成论文防拒稿修正"
+    records: 
+    status: todo
+  - id: T2.2
+    objective_id: o1
+    depends_on: T2.1
+    condition: ""
+    description: "根据论文生成体系缺少的证据，以及目前的时间条件，安排一次实验，补充证据，1～2周完成"
+    records: 
+    status: todo
+  - id: T2.4
+    objective_id: o1
+    depends_on: T2.2
+    condition: ""
+    description: "整理好所有内容，发送给导师做最终check"
+    records: 
+    status: todo
 
-    - id: T2.2
-      objective_id: o1
-      depends_on: T2
-      condition: ""
-      description: "根据期刊要求与论文生产流程，完成论文防拒稿修正"
-      records: 
-      status: todo
-
-    - id: T2.3
-      objective_id: o1
-      depends_on: T2.2
-      condition: ""
-      description: "整理好所有内容，发送给导师做最终check"
-      records: 
-      status: todo
-
-    - id: T3
-      objective_id: o1
-      depends_on: T2.3
-      condition: "最终审阅完成"
-      description: "完成投稿"
-      status: todo
+  - id: T3
+    objective_id: o1
+    depends_on: T2.3
+    condition: "最终审阅完成"
+    description: "完成投稿"
+    status: todo
