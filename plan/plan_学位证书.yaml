@@ -65,17 +65,21 @@ objective:
     done_if: "博士毕业论文完成并已开始投稿"
 
   - id: o2
-    due: "2026-04-10"
+    due: "2026-04-26"
     condition: "o1 is done"
     description: "等待投稿结果返回"
     done_if: "获得返回的投稿结果"
 
   - id: o3
-    due: "2026-05-10"
-    condition: "o2 is done"
+    due: "2026-05-26"
     description: "完成投稿意见相关的修改，并提交最终版本"
     done_if: "完成最终版本提交"
 
+  - id: o4
+    due: "2026-6-26"
+    description: "文章接收"
+    done_if: "获得录用通知"
+    
 tasks:
   - id: T1
     objective_id: o1
@@ -100,25 +104,36 @@ tasks:
       需要完成：
         明确构建哲学与逻辑
         根据方案，进行论文整体重新构建
-    status: todo
+
+    status: done
   - id: T2.3
     objective_id: o1
     depends_on: T2.1
     condition: ""
+    due: 2026-03-11
     description: "根据期刊要求与论文生产流程，完成论文防拒稿修正"
     records: 
+      2026-03-09，目前已经完成result、introduction的重构
+      discution的重构
+      可读性提升
     status: todo
   - id: T2.2
     objective_id: o1
     depends_on: T2.1
     condition: ""
-    description: "根据论文生成体系缺少的证据，以及目前的时间条件，安排一次实验，补充证据，1～2周完成"
+    start: 2026-03-12
+    due: 2026-03-27
+    description: "根据论文生成体系缺少的证据，以及目前的时间条件，设计一次实验，补充证据，1～2周完成"
     records: 
+      设计实验
     status: todo
+
   - id: T2.4
     objective_id: o1
     depends_on: T2.2
     condition: ""
+    start: 2026-03-28
+    due: 2026-04-03
     description: "整理好所有内容，发送给导师做最终check"
     records: 
     status: todo

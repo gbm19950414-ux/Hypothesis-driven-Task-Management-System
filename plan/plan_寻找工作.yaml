@@ -60,31 +60,31 @@ name: "寻找工作"
 time_window: "2026-02-26~2026-05-26"
 objective:
   - id: o1
-    due: "2026-03-2"      
+    due: "2026-03-09"      
     description: "明确行业，岗位等目标细节及需求"
     done_if: "获得行业调研表"
   - id: o2
-    due: "2026-03-4"      
+    due: "2026-03-09"      
     depends_on: [o1]
     description: "明确自身职业发展相关三观具体内容"
     done_if: "获得自我评估表"
   - id: o3
-    due: "2026-03-6"      
+    due: "2026-03-10"      
     depends_on: [o1, o2]
     description: "综合自我评估表与行业调研表，获得目标岗位列表"
     done_if: "获得目标岗位列表"
   - id: o4
-    due: "2026-03-8"      
+    due: "2026-03-11"      
     depends_on: [o3]
     description: "根据目标岗位，设计针对性的求职行动方案"
     done_if: "获得求职行动方案"
   - id: o5
-    due: "2026-03-10"      
+    due: "2026-03-12"      
     depends_on: [o4]
     description: "根据求职行动方案，准备简历与求职材料"
     done_if: "获得简历"
   - id: o6
-    due: "2026-06-01"      
+    due: "2026-03-13"      
     depends_on: [o5]
     description: "投递简历，准备面试，并进行面试，直至获得offer"
     done_if: "获得工作offer"

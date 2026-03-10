@@ -39,32 +39,35 @@ EP[&quot;EXEC: execution&quot;]:::plan
 PLAN --&gt; EP
 OBJ_o1[&quot;o1&lt;br/&gt;due: 2026-03-26&lt;br/&gt;完成博士毕业论文并开始投稿&quot;]:::obj
 EP --&gt; OBJ_o1
-OBJ_o2[&quot;o2&lt;br/&gt;due: 2026-04-10&lt;br/&gt;等待投稿结果返回&quot;]:::obj
+OBJ_o2[&quot;o2&lt;br/&gt;due: 2026-04-26&lt;br/&gt;等待投稿结果返回&quot;]:::obj
 EP --&gt; OBJ_o2
-OBJ_o3[&quot;o3&lt;br/&gt;due: 2026-05-10&lt;br/&gt;完成投稿意见相关的修改，并提交最终版本&quot;]:::obj
+OBJ_o3[&quot;o3&lt;br/&gt;due: 2026-05-26&lt;br/&gt;完成投稿意见相关的修改，并提交最终版本&quot;]:::obj
 EP --&gt; OBJ_o3
+OBJ_o4[&quot;o4&lt;br/&gt;due: 2026-6-26&lt;br/&gt;文章接收&quot;]:::obj
+EP --&gt; OBJ_o4
 OBJ_o1 ~~~ OBJ_o2
 OBJ_o2 ~~~ OBJ_o3
+OBJ_o3 ~~~ OBJ_o4
+TASK_T2.3[&quot;T2.3&lt;br/&gt;due: 2026-03-11&lt;br/&gt;根据期刊要求与论文生产流程，完成论文防拒稿修正&quot;]:::task
+OBJ_o1 --&gt; TASK_T2.3
+TASK_T2.2[&quot;T2.2&lt;br/&gt;due: 2026-03-27&lt;br/&gt;根据论文生成体系缺少的证据，以及目前的时间条件，设计一次实验，补充证据，1～2周完成&quot;]:::task
+OBJ_o1 --&gt; TASK_T2.2
+TASK_T2.4[&quot;T2.4&lt;br/&gt;due: 2026-04-03&lt;br/&gt;整理好所有内容，发送给导师做最终check&quot;]:::task
+OBJ_o1 --&gt; TASK_T2.4
 TASK_T1[&quot;✓ T1&lt;br/&gt;催促导师完成英文论文一轮审阅，重新确认投稿期刊是否为iscience&quot;]:::done
 OBJ_o1 --&gt; TASK_T1
 TASK_T2[&quot;✓ T2&lt;br/&gt;了解目标期刊的要求&quot;]:::done
 OBJ_o1 --&gt; TASK_T2
-TASK_T2.1[&quot;T2.1&lt;br/&gt;按照宏观科研思路，强化目前已有的论文生成体系&quot;]:::task
+TASK_T2.1[&quot;✓ T2.1&lt;br/&gt;按照宏观科研思路，强化目前已有的论文生成体系&quot;]:::done
 OBJ_o1 --&gt; TASK_T2.1
-TASK_T2.2[&quot;T2.2&lt;br/&gt;根据论文生成体系缺少的证据，以及目前的时间条件，安排一次实验，补充证据，1～2周完成&quot;]:::task
-OBJ_o1 --&gt; TASK_T2.2
-TASK_T2.3[&quot;T2.3&lt;br/&gt;根据期刊要求与论文生产流程，完成论文防拒稿修正&quot;]:::task
-OBJ_o1 --&gt; TASK_T2.3
-TASK_T2.4[&quot;T2.4&lt;br/&gt;整理好所有内容，发送给导师做最终check&quot;]:::task
-OBJ_o1 --&gt; TASK_T2.4
 TASK_T3[&quot;T3&lt;br/&gt;完成投稿&quot;]:::task
 OBJ_o1 --&gt; TASK_T3
+TASK_T2.3 ~~~ TASK_T2.2
+TASK_T2.2 ~~~ TASK_T2.4
+TASK_T2.4 ~~~ TASK_T1
 TASK_T1 ~~~ TASK_T2
 TASK_T2 ~~~ TASK_T2.1
-TASK_T2.1 ~~~ TASK_T2.2
-TASK_T2.2 ~~~ TASK_T2.3
-TASK_T2.3 ~~~ TASK_T2.4
-TASK_T2.4 ~~~ TASK_T3
+TASK_T2.1 ~~~ TASK_T3
       </pre>
     </div>
     <p class="legend">输出文件：/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/plan_学位证书_graph.html</p>

@@ -10,29 +10,32 @@ EP["EXEC: execution"]:::plan
 PLAN --> EP
 OBJ_o1["o1<br/>due: 2026-03-26<br/>完成博士毕业论文并开始投稿"]:::obj
 EP --> OBJ_o1
-OBJ_o2["o2<br/>due: 2026-04-10<br/>等待投稿结果返回"]:::obj
+OBJ_o2["o2<br/>due: 2026-04-26<br/>等待投稿结果返回"]:::obj
 EP --> OBJ_o2
-OBJ_o3["o3<br/>due: 2026-05-10<br/>完成投稿意见相关的修改，并提交最终版本"]:::obj
+OBJ_o3["o3<br/>due: 2026-05-26<br/>完成投稿意见相关的修改，并提交最终版本"]:::obj
 EP --> OBJ_o3
+OBJ_o4["o4<br/>due: 2026-6-26<br/>文章接收"]:::obj
+EP --> OBJ_o4
 OBJ_o1 ~~~ OBJ_o2
 OBJ_o2 ~~~ OBJ_o3
+OBJ_o3 ~~~ OBJ_o4
+TASK_T2.3["T2.3<br/>due: 2026-03-11<br/>根据期刊要求与论文生产流程，完成论文防拒稿修正"]:::task
+OBJ_o1 --> TASK_T2.3
+TASK_T2.2["T2.2<br/>due: 2026-03-27<br/>根据论文生成体系缺少的证据，以及目前的时间条件，设计一次实验，补充证据，1～2周完成"]:::task
+OBJ_o1 --> TASK_T2.2
+TASK_T2.4["T2.4<br/>due: 2026-04-03<br/>整理好所有内容，发送给导师做最终check"]:::task
+OBJ_o1 --> TASK_T2.4
 TASK_T1["✓ T1<br/>催促导师完成英文论文一轮审阅，重新确认投稿期刊是否为iscience"]:::done
 OBJ_o1 --> TASK_T1
 TASK_T2["✓ T2<br/>了解目标期刊的要求"]:::done
 OBJ_o1 --> TASK_T2
-TASK_T2.1["T2.1<br/>按照宏观科研思路，强化目前已有的论文生成体系"]:::task
+TASK_T2.1["✓ T2.1<br/>按照宏观科研思路，强化目前已有的论文生成体系"]:::done
 OBJ_o1 --> TASK_T2.1
-TASK_T2.2["T2.2<br/>根据论文生成体系缺少的证据，以及目前的时间条件，安排一次实验，补充证据，1～2周完成"]:::task
-OBJ_o1 --> TASK_T2.2
-TASK_T2.3["T2.3<br/>根据期刊要求与论文生产流程，完成论文防拒稿修正"]:::task
-OBJ_o1 --> TASK_T2.3
-TASK_T2.4["T2.4<br/>整理好所有内容，发送给导师做最终check"]:::task
-OBJ_o1 --> TASK_T2.4
 TASK_T3["T3<br/>完成投稿"]:::task
 OBJ_o1 --> TASK_T3
+TASK_T2.3 ~~~ TASK_T2.2
+TASK_T2.2 ~~~ TASK_T2.4
+TASK_T2.4 ~~~ TASK_T1
 TASK_T1 ~~~ TASK_T2
 TASK_T2 ~~~ TASK_T2.1
-TASK_T2.1 ~~~ TASK_T2.2
-TASK_T2.2 ~~~ TASK_T2.3
-TASK_T2.3 ~~~ TASK_T2.4
-TASK_T2.4 ~~~ TASK_T3
+TASK_T2.1 ~~~ TASK_T3

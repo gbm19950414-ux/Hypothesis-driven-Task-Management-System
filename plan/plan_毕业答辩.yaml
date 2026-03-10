@@ -114,7 +114,7 @@ tasks:
     due: "2026-03-06"
     depends_on: [T2]
     description: "3 月 6 日当天提交至C109室登记答辩"
-    status: todo
+    status: done
   - id: T4
     objective_id: o2
     condition: "与孙老师约定会面"
@@ -156,6 +156,8 @@ tasks:
   - id: T10
     objective_id: o2
     due: 2026-04-06
-    condition: "孙老师返回修改意见，若无修改意见，则在英文论文完成后再进行一次彻底重构"
-    description: "从论文生产方法入手，补充之前缺少的一切层级，最终反映到论文整体上"
+    condition: 
+    - 英文论文完成后
+    - 预审结束，结果返回后
+    description: "再进行一次彻底重构，从论文生产方法入手，补充之前缺少的一切层级，最终反映到论文整体上"
     status: todo
