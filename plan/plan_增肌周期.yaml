@@ -4,6 +4,7 @@ philosophy: constraint-led
 cycle: 4-week
 desired_state:
   statement: "在4周内完成增肌训练计划，达到预期体重增长和力量提升目标"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）
+status: suspend
 
 meta:
   period_start: 2026-03-01

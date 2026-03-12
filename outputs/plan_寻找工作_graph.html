@@ -37,13 +37,13 @@ classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
 PLAN[&quot;PLAN: 找到一份满意的工作&quot;]:::plan
 EP[&quot;EXEC: execution&quot;]:::plan
 PLAN --&gt; EP
-OBJ_o1[&quot;o1&lt;br/&gt;due: 2026-03-09&lt;br/&gt;明确行业，岗位等目标细节及需求&quot;]:::obj
+OBJ_o1[&quot;✓ o1&lt;br/&gt;due: 2026-03-09&lt;br/&gt;明确行业，岗位等目标细节及需求&quot;]:::done
 EP --&gt; OBJ_o1
-OBJ_o2[&quot;o2&lt;br/&gt;due: 2026-03-09&lt;br/&gt;明确自身职业发展相关三观具体内容&quot;]:::obj
+OBJ_o2[&quot;✓ o2&lt;br/&gt;due: 2026-03-09&lt;br/&gt;明确自身职业发展相关三观具体内容&quot;]:::done
 EP --&gt; OBJ_o2
-OBJ_o3[&quot;o3&lt;br/&gt;due: 2026-03-10&lt;br/&gt;综合自我评估表与行业调研表，获得目标岗位列表&quot;]:::obj
+OBJ_o3[&quot;✓ o3&lt;br/&gt;due: 2026-03-10&lt;br/&gt;综合自我评估表与行业调研表，获得目标岗位列表&quot;]:::done
 EP --&gt; OBJ_o3
-OBJ_o4[&quot;o4&lt;br/&gt;due: 2026-03-11&lt;br/&gt;根据目标岗位，设计针对性的求职行动方案&quot;]:::obj
+OBJ_o4[&quot;✓ o4&lt;br/&gt;due: 2026-03-11&lt;br/&gt;根据目标岗位，设计针对性的求职行动方案&quot;]:::done
 EP --&gt; OBJ_o4
 OBJ_o5[&quot;o5&lt;br/&gt;due: 2026-03-12&lt;br/&gt;根据求职行动方案，准备简历与求职材料&quot;]:::obj
 EP --&gt; OBJ_o5
@@ -54,26 +54,43 @@ OBJ_o2 ~~~ OBJ_o3
 OBJ_o3 ~~~ OBJ_o4
 OBJ_o4 ~~~ OBJ_o5
 OBJ_o5 ~~~ OBJ_o6
-TASK_T4[&quot;T4&lt;br/&gt;due: 2026-03-04&lt;br/&gt;定义自我评估维度与结构（能力/经验/偏好/价值取向/约束），并产出自我评估模板文件&quot;]:::task
+TASK_T4[&quot;✓ T4&lt;br/&gt;due: 2026-03-04&lt;br/&gt;定义自我评估维度与结构（能力/经验/偏好/价值取向/约束），并产出自我评估模板文件&quot;]:::done
 OBJ_o2 --&gt; TASK_T4
-TASK_T1[&quot;T1&lt;br/&gt;定义求职对齐维度：确定用于评估就业方向的字段（如工作内容、技能要求、门槛、发展路径、薪…&quot;]:::task
+TASK_T8.5[&quot;T8.5&lt;br/&gt;due: 2026-03-12&lt;br/&gt;了解国内外药企形式，哪些药企算大药企？我想去大药企还是小药企？&quot;]:::task
+OBJ_o5 --&gt; TASK_T8.5
+TASK_T9[&quot;T9&lt;br/&gt;due: 2026-03-13&lt;br/&gt;参加春日招聘会&quot;]:::task
+OBJ_o6 --&gt; TASK_T9
+TASK_T1[&quot;✓ T1&lt;br/&gt;定义求职对齐维度：确定用于评估就业方向的字段（如工作内容、技能要求、门槛、发展路径、薪…&quot;]:::done
 OBJ_o1 --&gt; TASK_T1
-TASK_T2[&quot;T2&lt;br/&gt;列出 3–5 个主要就业方向清单，并将其作为调研对象填入模板&quot;]:::task
+TASK_T2[&quot;✓ T2&lt;br/&gt;列出 3–5 个主要就业方向清单，并将其作为调研对象填入模板&quot;]:::done
 OBJ_o1 --&gt; TASK_T2
-TASK_T3[&quot;T3&lt;br/&gt;为每个就业方向采集至少 2 个岗位 JD，并按模板字段填入调研表（形成行业调研表 v0…&quot;]:::task
+TASK_T3[&quot;✓ T3&lt;br/&gt;为每个就业方向采集至少 2 个岗位 JD，并按模板字段填入调研表（形成行业调研表 v0…&quot;]:::done
 OBJ_o1 --&gt; TASK_T3
-TASK_T5[&quot;T5&lt;br/&gt;填写自我评估模板中的事实项（经历、技能、限制条件等），形成自我评估表 v0.1&quot;]:::task
+TASK_T5[&quot;✓ T5&lt;br/&gt;填写自我评估模板中的事实项（经历、技能、限制条件等），形成自我评估表 v0.1&quot;]:::done
 OBJ_o2 --&gt; TASK_T5
 TASK_T6[&quot;T6&lt;br/&gt;建立『三观持续提升』项目计划（世界观/价值观/职业选择），并定义可执行与可复盘机制&quot;]:::task
 OBJ_o2 --&gt; TASK_T6
+TASK_T7[&quot;T7&lt;br/&gt;约谈理涯王老师，再次检阅简历&quot;]:::task
+OBJ_o5 --&gt; TASK_T7
+TASK_T8[&quot;T8&lt;br/&gt;完成简历最终修正&quot;]:::task
+OBJ_o5 --&gt; TASK_T8
+TASK_T10[&quot;T10&lt;br/&gt;参加第二场邯郸招聘会&quot;]:::task
+OBJ_o6 --&gt; TASK_T10
 TASK_T4 ~~~ TASK_T5
 TASK_T5 ~~~ TASK_T6
+TASK_T8.5 ~~~ TASK_T7
+TASK_T7 ~~~ TASK_T8
+TASK_T9 ~~~ TASK_T10
 TASK_T1 ~~~ TASK_T2
 TASK_T2 ~~~ TASK_T3
 TASK_T2 -. depends_on .-&gt; TASK_T1
 TASK_T3 -. depends_on .-&gt; TASK_T2
 TASK_T5 -. depends_on .-&gt; TASK_T4
 TASK_T6 -. depends_on .-&gt; TASK_T4
+TASK_T8 -. depends_on .-&gt; TASK_T7
+TASK_T8.5 -. depends_on .-&gt; TASK_T8
+TASK_T9 -. depends_on .-&gt; TASK_T8
+TASK_T10 -. depends_on .-&gt; TASK_T8
       </pre>
     </div>
     <p class="legend">输出文件：/Volumes/Samsung_SSD_990_PRO_2TB_Media/life_os/outputs/plan_寻找工作_graph.html</p>

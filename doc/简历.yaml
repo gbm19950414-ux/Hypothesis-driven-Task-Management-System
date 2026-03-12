@@ -1,0 +1,122 @@
+resume:
+  基础信息:
+    name: "龚宝铭"
+    email: "22110700022@m.fudan.edu.cn"
+    phone: "18055428576"
+    github: 
+  教育经历:
+    - institution: "复旦大学"
+      degree: "博士"
+      field: "免疫学"
+      start_year: "2022"
+      end_year: "2026"
+      advisor: "吴晓晖"
+
+    - institution: "南京师范大学"
+      degree: "硕士"
+      field: "细胞生物学"
+      start_year: "2018"
+      end_year: "2021"
+      advisor: "陈龙"
+
+  科研经历:
+  - 参与项目: 国家重点研发计划项目（2021YFC2701102）：生殖健康及重大出生缺陷防控研究
+    工作内容: >
+      基于piggyBac转座子基因敲除技术，对大规模品系进行表型分析，鉴定出生缺陷相关致病基因，并建立胚胎发育表型数据库。
+    具体工作:
+        动物资源管理；胚胎解剖与样品处理；多模态表型数据采集；数据库构建
+    主要成就:
+      - 2年内完成 68 株小鼠突变品系的发育、代谢及免疫相关多表型数据收集、数据库建立、初步分析。
+
+  - 参与项目: 国家重点研发计划项目（2018YFA0801102）：蛋白质与生命过程调控
+    工作内容: >
+      基于小鼠原代腹腔巨噬细胞，探索EphB1缺失导致代谢缺陷表型的具体机制。
+    具体工作:
+      课题设计；数据收集；数据分析；文章撰写
+    主要成就:
+      - 首次发现酪氨酸激酶受体通过调控线粒体膜脂环境（心磷脂）影响细胞焦亡发生。
+
+  科研成果:
+    - title: "Embryonic Lethal Phenotyping to Identify Candidate Genes Related with Birth Defects"
+      journal: "International Journal of Molecular Sciences"
+      year: "2024"
+      authorship: "共同第一作者（负责除论文撰写外所有工作）"
+      doi: "10.3390/ijms252413476" # 10.3390/ijms25168788
+      authors: "Yan Bing, Gong Bao-ming, et al"
+      volume: "25"
+      issue: "24"
+      pages: "13476"
+      IF: 5.7
+      funding: 
+        2021YFC2701102
+        2018YFA0801102
+        32071139
+      funding_name:
+        国家重点研发计划[2021YFC2701102]和[2018YFA0801102]
+        国家自然科学基金[32071139]
+        上海市教委创新计划[2019-01-07-00-07-E00041]
+
+    - title: "Metformin attenuates cadmium-induced neuronal apoptosis in vitro via blocking ROS-dependent PP5/AMPK-JNK signaling pathway"
+      journal: "NEUROPHARMACOLOGY"
+      year: "2020"
+      authorship: "第三作者"
+      authors: "Chen Xiao-Ling, Wu Wen, Gong Bao‑Ming, et al"
+      volume: "175"
+      issue: "15"
+      pages: "108065"
+      IF: 4.6
+      doi: "10.3389/fbioe.2023.1159805"
+
+    - title: "An miRNA-mRNA integrative analysis in human placentas and mice: role of the Smad2/miR-155-5p axis in the development of fetal growth restriction"
+      journal: "Frontiers in Bioengineering and Biotechnology"
+      year: "2023"
+      authorship: "第三作者"
+      authors: "Wu Jia‑Xing, Shi Ming, Gong Bao‑Ming, et al"
+      volume: "11"
+      issue: ""
+      pages: "1159805"
+      IF: 5.6
+      doi: "10.3389/fbioe.2023.1159805"
+      
+    - title: "Mass Spectrometry Detects Sphingolipid Metabolites for Discovery of New Strategy for Cancer Therapy from the Aspect of Programmed Cell Death"
+      author: 
+      journal: "Metabolites"
+      year: "2023"
+      authorship: "第四作者"
+      authors: "Shi Ming, Tang Chao, Wu Jia-Xing, Ji Bao-Wei, Gong Bao-Ming, et al"
+      volume: "13"
+      issue: "7"
+      pages: "867"
+      IF: 4.1
+      doi: "10.3390/metabo13070867"
+
+    - title: "Ephb1 regulates mitochondrial cardiolipin to limit NLRP3 inflammasome–induced pyroptosis"
+      journal: "Cell Reports"
+      status: "Submitted"
+      year: "2026"
+      authorship: "第一作者"
+      authors: "Gong Bao‑Ming, et al"
+      volume: "-"
+      issue: "-"
+      pages: "-"
+      IF: 7.5
+      doi: ""
+  技能:
+
+    实验技能:
+      熟练开展多种动物表型检测实验；
+      熟练开展免疫学相关细胞生物学实验（Western blot、ELISA、LDH、ASC寡聚体检测）；
+      掌握线粒体功能检测方法（H2DCFDA、MitoSOX、TMRM、线粒体分离与mtDNA释放分析)；
+      掌握共聚焦显微成像方法；
+      熟悉脂质组学样品制备。
+    计算技能:
+      熟练使用R与Python进行实验数据处理、统计分析与可视化；
+      掌握RNA-seq数据分析流程（QC、比对、表达定量、差异基因分析及功能富集）；
+      掌握脂质组学数据分析流程（QC、PCA、差异脂质分析）；
+      具有多组学分析机制探索经验（中介模型）；
+      熟悉实验数据质控，能够构建可复现的数据分析流程。
+    组织管理:
+      具备完整科研项目规划、执行与数据管理经验；
+      熟练设计并实施动物与细胞实验流程；
+      熟练使用实验数据记录、版本管理与结果复现流程，确保研究数据的可追溯性与可靠性；
+      具有多组学分析经验，能够整合干湿实验结果进行机制研究。

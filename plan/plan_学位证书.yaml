@@ -60,10 +60,9 @@ name: "博士毕业论文投稿、接收"
 time_window: "2026-02-26~2026-05-26"
 objective:
   - id: o1
-    due: "2026-03-26"      
+    due: 2026-03-26
     description: "完成博士毕业论文并开始投稿"
     done_if: "博士毕业论文完成并已开始投稿"
-
   - id: o2
     due: "2026-04-26"
     condition: "o1 is done"
@@ -116,6 +115,7 @@ tasks:
       2026-03-09，目前已经完成result、introduction的重构
       discution的重构
       可读性提升
+      接下来整体阅读一遍，做最终校阅，结束发给老师进行校阅
     status: todo
   - id: T2.2
     objective_id: o1
@@ -134,13 +134,13 @@ tasks:
     condition: ""
     start: 2026-03-28
     due: 2026-04-03
-    description: "整理好所有内容，发送给导师做最终check"
+    description: "修正好的文章，添加关键证据后，整理好所有内容，发送给导师做最终check"
     records: 
     status: todo
 
   - id: T3
     objective_id: o1
     depends_on: T2.3
-    condition: "最终审阅完成"
+    condition: "最终审阅、修正完成"
     description: "完成投稿"
     status: todo

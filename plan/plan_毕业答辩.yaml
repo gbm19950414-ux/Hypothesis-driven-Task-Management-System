@@ -102,7 +102,7 @@ tasks:
     status: done
   - id: T2
     objective_id: o1
-    depends_on: [T1.1, T11]
+    depends_on: [T1.1]
     condition: "孙老师意见表拟定完成"
     description: "根据需要，将论文提交给吴老师，线上或线下找吴老师完成意见表填写与签名"
     records: 
@@ -160,4 +160,11 @@ tasks:
     - 英文论文完成后
     - 预审结束，结果返回后
     description: "再进行一次彻底重构，从论文生产方法入手，补充之前缺少的一切层级，最终反映到论文整体上"
+    status: todo
+  - id: T11
+    objective_id: o2
+    due: 2026-04-30
+    description: "完成墙报投稿，获得会议日程或会议手册"
+    record: 
+      目前已经完成投稿，接下来需要联系会议方，询问会议手册与日程什么时候能出
     status: todo

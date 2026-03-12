@@ -1,0 +1,27 @@
+﻿name,type,city,track,role_type,leader,research_match,tech_match,stability,growth,autonomy,evidence,conclusion,total_score,avg_score
+罗氏中国创新中心（CICoR）,pharma,上海,免疫/肿瘤/新模态,Scientist/Discovery,待查,5,5,5,4,4,官网R&D页,A,23,4.6
+阿斯利康上海R&D中心,pharma,上海,呼吸免疫/疫苗免疫/代谢,Scientist/Translational,待查,5,5,5,4,4,官网R&D页,A,23,4.6
+阿斯利康北京R&D中心,pharma,北京,早研/临床开发,Scientist/Translational,待查,4,5,5,4,4,官网R&D页,A,22,4.4
+勃林格殷格翰上海,pharma,上海,Human Pharma/生物药,Scientist/Platform,待查,4,4,5,4,3,官网区域页,A-,20,4.0
+诺华中国,pharma,上海,免疫/心肾代谢/研发体系,Scientist/Medical R&D,待查,4,4,5,3,3,官网/职位足迹,B+,19,3.8
+礼来中国上海,pharma,上海,代谢/免疫/研发合作,Scientist/Translational,待查,4,4,5,4,3,官网/职位足迹,A-,20,4.0
+诺和诺德中国,pharma,上海/北京,代谢/肥胖/心代谢,Scientist/Translational,待查,4,4,5,4,3,官网/赛道匹配,A-,20,4.0
+赛诺菲中国,pharma,上海,免疫炎症/生物药,Scientist/Medical R&D,待查,4,4,5,3,3,官网/赛道匹配,B+,19,3.8
+辉瑞中国,pharma,上海/北京,炎症/免疫/广谱研发,Scientist/Clinical/Med R&D,待查,3,4,5,3,3,官网/赛道匹配,B,18,3.6
+默沙东中国（MSD）,pharma,上海/北京,免疫/疫苗/肿瘤,Scientist/Clinical R&D,待查,3,4,5,3,3,官网/赛道匹配,B,18,3.6
+再鼎医药,biotech,上海,转化/创新药/肿瘤+免疫,Scientist/Translational,待查,4,4,4,4,4,上海创新药生态,A,20,4.0
+君实生物,biotech,上海,免疫肿瘤/抗体药,Scientist/Discovery/Translational,待查,4,4,4,4,4,张江生态/公司官网,A-,20,4.0
+复宏汉霖,biotech,上海,抗体/生物药,Scientist/Discovery/Platform,待查,3,4,4,4,3,张江生态/公司官网,B+,18,3.6
+三生国健,biotech,上海,抗体/自身免疫/炎症,Scientist/Discovery/Translational,待查,5,4,4,4,4,张江药谷生态,A,21,4.2
+信达生物,biotech,苏州,抗体/肿瘤/炎症,Scientist/Discovery/Translational,待查,4,5,4,5,4,BioBAY官方生态,A,22,4.4
+百济神州,biotech,苏州/北京/上海,创新药/广谱研发,Scientist/Discovery/Translational,待查,4,5,4,5,4,BioBAY官方生态,A,22,4.4
+康诺亚（Keymed）,biotech,苏州/成都,自身免疫/抗体药,Scientist/Discovery,待查,5,4,3,4,4,赛道匹配,A,20,4.0
+荣昌生物,biotech,烟台/上海,自身免疫/抗体药,Scientist/Discovery/Translational,待查,5,4,4,4,4,赛道匹配,A-,21,4.2
+天境生物（I-Mab）,biotech,上海,免疫/创新生物药,Scientist/Discovery/Translational,待查,4,4,3,4,4,上海创新药生态,A-,19,3.8
+锐格医药（Regor Therapeutics）,biotech,上海/苏州,代谢/心代谢/小分子,Scientist/Discovery Biology,待查,5,4,3,5,4,代谢赛道匹配,A,21,4.2
+上海科技大学免疫化学研究所,institute,上海,免疫/药物发现/组学,Postdoc/Research Scientist,待查,5,5,4,5,4,官网,A,23,4.6
+上海交通大学转化医学研究院,institute,上海,转化医学,Postdoc/Research Scientist,待查,4,4,4,4,4,官网,A,20,4.0
+上海交通大学系统生物医学研究院,institute,上海,系统生物学/组学,Postdoc,待查,4,5,4,4,4,官网,A,21,4.2
+中科院上海营养与健康研究所,institute,上海,代谢/免疫,Postdoc,待查,5,5,4,4,4,官网,A,22,4.4
+深圳医学科学院（SMART）,institute,深圳,转化医学,Postdoc,待查,5,4,4,5,4,官网,A,22,4.4
+深圳湾实验室,institute,深圳,感染免疫/转化,Postdoc,待查,5,5,4,5,4,官网,A,23,4.6

@@ -63,61 +63,68 @@ objective:
     due: "2026-03-09"      
     description: "明确行业，岗位等目标细节及需求"
     done_if: "获得行业调研表"
+    status: done
+
   - id: o2
     due: "2026-03-09"      
     depends_on: [o1]
     description: "明确自身职业发展相关三观具体内容"
     done_if: "获得自我评估表"
+    status: done
   - id: o3
     due: "2026-03-10"      
     depends_on: [o1, o2]
     description: "综合自我评估表与行业调研表，获得目标岗位列表"
     done_if: "获得目标岗位列表"
+    status: done
   - id: o4
     due: "2026-03-11"      
     depends_on: [o3]
     description: "根据目标岗位，设计针对性的求职行动方案"
     done_if: "获得求职行动方案"
+    status: done
   - id: o5
     due: "2026-03-12"      
     depends_on: [o4]
     description: "根据求职行动方案，准备简历与求职材料"
     done_if: "获得简历"
+    status: todo
   - id: o6
     due: "2026-03-13"      
     depends_on: [o5]
     description: "投递简历，准备面试，并进行面试，直至获得offer"
     done_if: "获得工作offer"
+    status: todo
 tasks:
   - id: T1
     objective_id: o1
     condition: ""
     description: "定义求职对齐维度：确定用于评估就业方向的字段（如工作内容、技能要求、门槛、发展路径、薪资区间、节奏、地域、风险等），并产出模板文件"
-    status: todo
+    status: done
 
   - id: T2
     objective_id: o1
     depends_on: [T1]
     description: "列出 3–5 个主要就业方向清单，并将其作为调研对象填入模板"
-    status: todo
+    status: done
 
   - id: T3
     objective_id: o1
     depends_on: [T2]
     description: "为每个就业方向采集至少 2 个岗位 JD，并按模板字段填入调研表（形成行业调研表 v0.1）"
-    status: todo
+    status: done
 
   - id: T4
     objective_id: o2
     due: "2026-03-04"
     description: "定义自我评估维度与结构（能力/经验/偏好/价值取向/约束），并产出自我评估模板文件"
-    status: todo
+    status: done
 
   - id: T5
     objective_id: o2
     depends_on: [T4]
     description: "填写自我评估模板中的事实项（经历、技能、限制条件等），形成自我评估表 v0.1"
-    status: todo
+    status: done
 
   - id: T6
     objective_id: o2
@@ -142,4 +149,39 @@ tasks:
       任何人都不能也没有能力给其他人的人生作出规划，因为人生轨迹是初始条件与基于个人价值观的选择共同塑造的，而这一过程是独特、无法复制的。建议只应当停留在个人价值观的塑造上，以帮助他人更好地了解自己，做出的下一个选择更正确。
       人生是等价交换，通过选择承担一部分责任，来获得一部分好处，过多的责任会耗尽人的精力，不再有情绪照顾他人感受、完善自己的工作质量。掌握好自己的斤两，承担适度的责任，让自己能用最佳的精力完成，获得适当的报酬，可持续地循环。
     timebox: "3h"
+    status: suspend
+  - id: T7
+    objective_id: o5
+    description: "约谈理涯王老师，再次检阅简历"
+    record:
+      添加王君老师微信——doing
+      发送消息
+      打印简历
+      再次约谈
+    status: done
+  - id: T8
+    objective_id: o5
+    depends_on: [T7]
+    description: "完成简历最终修正"
+    status: todo
+
+  - id: T8.5
+    objective_id: o5
+    depends_on: []
+    due: 2026-03-12
+    description: "了解国内外药企形式，哪些药企算大药企？我想去大药企还是小药企？"
+    status: todo
+
+  - id: T9
+    objective_id: o6
+    depends_on: [T8]
+    due: 2026-03-13
+    description: "参加春日招聘会"
+    status: todo
+
+  - id: T10
+    objective_id: o6
+    depends_on: [T8]
+    due: 
+    description: "参加第二场邯郸招聘会"
     status: todo

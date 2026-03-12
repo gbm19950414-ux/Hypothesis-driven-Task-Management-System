@@ -1,0 +1,403 @@
+units:
+
+# =========================
+# pharma
+# =========================
+
+- name: 罗氏中国创新中心（CICoR）
+  type: pharma
+  city: 上海
+  track: 免疫/肿瘤/新模态
+  role_type: Scientist/Discovery
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 5
+    stability: 5
+    growth: 4
+    autonomy: 4
+  evidence: 官网R&D页
+  conclusion: A
+
+- name: 阿斯利康上海R&D中心
+  type: pharma
+  city: 上海
+  track: 呼吸免疫/疫苗免疫/代谢
+  role_type: Scientist/Translational
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 5
+    stability: 5
+    growth: 4
+    autonomy: 4
+  evidence: 官网R&D页
+  conclusion: A
+
+- name: 阿斯利康北京R&D中心
+  type: pharma
+  city: 北京
+  track: 早研/临床开发
+  role_type: Scientist/Translational
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 5
+    stability: 5
+    growth: 4
+    autonomy: 4
+  evidence: 官网R&D页
+  conclusion: A
+
+- name: 勃林格殷格翰上海
+  type: pharma
+  city: 上海
+  track: Human Pharma/生物药
+  role_type: Scientist/Platform
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 4
+    stability: 5
+    growth: 4
+    autonomy: 3
+  evidence: 官网区域页
+  conclusion: A-
+
+- name: 诺华中国
+  type: pharma
+  city: 上海
+  track: 免疫/心肾代谢/研发体系
+  role_type: Scientist/Medical R&D
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 4
+    stability: 5
+    growth: 3
+    autonomy: 3
+  evidence: 官网/职位足迹
+  conclusion: B+
+
+- name: 礼来中国上海
+  type: pharma
+  city: 上海
+  track: 代谢/免疫/研发合作
+  role_type: Scientist/Translational
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 4
+    stability: 5
+    growth: 4
+    autonomy: 3
+  evidence: 官网/职位足迹
+  conclusion: A-
+
+- name: 诺和诺德中国
+  type: pharma
+  city: 上海/北京
+  track: 代谢/肥胖/心代谢
+  role_type: Scientist/Translational
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 4
+    stability: 5
+    growth: 4
+    autonomy: 3
+  evidence: 官网/赛道匹配
+  conclusion: A-
+
+- name: 赛诺菲中国
+  type: pharma
+  city: 上海
+  track: 免疫炎症/生物药
+  role_type: Scientist/Medical R&D
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 4
+    stability: 5
+    growth: 3
+    autonomy: 3
+  evidence: 官网/赛道匹配
+  conclusion: B+
+
+- name: 辉瑞中国
+  type: pharma
+  city: 上海/北京
+  track: 炎症/免疫/广谱研发
+  role_type: Scientist/Clinical/Med R&D
+  leader: 待查
+  score:
+    research_match: 3
+    tech_match: 4
+    stability: 5
+    growth: 3
+    autonomy: 3
+  evidence: 官网/赛道匹配
+  conclusion: B
+
+- name: 默沙东中国（MSD）
+  type: pharma
+  city: 上海/北京
+  track: 免疫/疫苗/肿瘤
+  role_type: Scientist/Clinical R&D
+  leader: 待查
+  score:
+    research_match: 3
+    tech_match: 4
+    stability: 5
+    growth: 3
+    autonomy: 3
+  evidence: 官网/赛道匹配
+  conclusion: B
+
+# =========================
+# biotech
+# =========================
+
+- name: 再鼎医药
+  type: biotech
+  city: 上海
+  track: 转化/创新药/肿瘤+免疫
+  role_type: Scientist/Translational
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 4
+    stability: 4
+    growth: 4
+    autonomy: 4
+  evidence: 上海创新药生态
+  conclusion: A
+
+- name: 君实生物
+  type: biotech
+  city: 上海
+  track: 免疫肿瘤/抗体药
+  role_type: Scientist/Discovery/Translational
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 4
+    stability: 4
+    growth: 4
+    autonomy: 4
+  evidence: 张江生态/公司官网
+  conclusion: A-
+
+- name: 复宏汉霖
+  type: biotech
+  city: 上海
+  track: 抗体/生物药
+  role_type: Scientist/Discovery/Platform
+  leader: 待查
+  score:
+    research_match: 3
+    tech_match: 4
+    stability: 4
+    growth: 4
+    autonomy: 3
+  evidence: 张江生态/公司官网
+  conclusion: B+
+
+- name: 三生国健
+  type: biotech
+  city: 上海
+  track: 抗体/自身免疫/炎症
+  role_type: Scientist/Discovery/Translational
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 4
+    stability: 4
+    growth: 4
+    autonomy: 4
+  evidence: 张江药谷生态
+  conclusion: A
+
+- name: 信达生物
+  type: biotech
+  city: 苏州
+  track: 抗体/肿瘤/炎症
+  role_type: Scientist/Discovery/Translational
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 5
+    stability: 4
+    growth: 5
+    autonomy: 4
+  evidence: BioBAY官方生态
+  conclusion: A
+
+- name: 百济神州
+  type: biotech
+  city: 苏州/北京/上海
+  track: 创新药/广谱研发
+  role_type: Scientist/Discovery/Translational
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 5
+    stability: 4
+    growth: 5
+    autonomy: 4
+  evidence: BioBAY官方生态
+  conclusion: A
+
+- name: 康诺亚（Keymed）
+  type: biotech
+  city: 苏州/成都
+  track: 自身免疫/抗体药
+  role_type: Scientist/Discovery
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 4
+    stability: 3
+    growth: 4
+    autonomy: 4
+  evidence: 赛道匹配
+  conclusion: A
+
+- name: 荣昌生物
+  type: biotech
+  city: 烟台/上海
+  track: 自身免疫/抗体药
+  role_type: Scientist/Discovery/Translational
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 4
+    stability: 4
+    growth: 4
+    autonomy: 4
+  evidence: 赛道匹配
+  conclusion: A-
+
+- name: 天境生物（I-Mab）
+  type: biotech
+  city: 上海
+  track: 免疫/创新生物药
+  role_type: Scientist/Discovery/Translational
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 4
+    stability: 3
+    growth: 4
+    autonomy: 4
+  evidence: 上海创新药生态
+  conclusion: A-
+
+- name: 锐格医药（Regor Therapeutics）
+  type: biotech
+  city: 上海/苏州
+  track: 代谢/心代谢/小分子
+  role_type: Scientist/Discovery Biology
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 4
+    stability: 3
+    growth: 5
+    autonomy: 4
+  evidence: 代谢赛道匹配
+  conclusion: A
+
+# =========================
+# research institutes
+# =========================
+
+- name: 上海科技大学免疫化学研究所
+  type: institute
+  city: 上海
+  track: 免疫/药物发现/组学
+  role_type: Postdoc/Research Scientist
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 5
+    stability: 4
+    growth: 5
+    autonomy: 4
+  evidence: 官网
+  conclusion: A
+
+- name: 上海交通大学转化医学研究院
+  type: institute
+  city: 上海
+  track: 转化医学
+  role_type: Postdoc/Research Scientist
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 4
+    stability: 4
+    growth: 4
+    autonomy: 4
+  evidence: 官网
+  conclusion: A
+
+- name: 上海交通大学系统生物医学研究院
+  type: institute
+  city: 上海
+  track: 系统生物学/组学
+  role_type: Postdoc
+  leader: 待查
+  score:
+    research_match: 4
+    tech_match: 5
+    stability: 4
+    growth: 4
+    autonomy: 4
+  evidence: 官网
+  conclusion: A
+
+- name: 中科院上海营养与健康研究所
+  type: institute
+  city: 上海
+  track: 代谢/免疫
+  role_type: Postdoc
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 5
+    stability: 4
+    growth: 4
+    autonomy: 4
+  evidence: 官网
+  conclusion: A
+
+- name: 深圳医学科学院（SMART）
+  type: institute
+  city: 深圳
+  track: 转化医学
+  role_type: Postdoc
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 4
+    stability: 4
+    growth: 5
+    autonomy: 4
+  evidence: 官网
+  conclusion: A
+
+- name: 深圳湾实验室
+  type: institute
+  city: 深圳
+  track: 感染免疫/转化
+  role_type: Postdoc
+  leader: 待查
+  score:
+    research_match: 5
+    tech_match: 5
+    stability: 4
+    growth: 5
+    autonomy: 4
+  evidence: 官网
+  conclusion: A

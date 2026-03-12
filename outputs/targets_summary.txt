@@ -1,0 +1,31 @@
+目标单位汇总
+========================================
+总单位数: 26
+
+按类型统计：
+- pharma: 10
+- biotech: 10
+- institute: 6
+
+按城市统计（Top 10）：
+- 上海: 15
+- 上海/北京: 3
+- 深圳: 2
+- 北京: 1
+- 苏州: 1
+- 苏州/北京/上海: 1
+- 苏州/成都: 1
+- 烟台/上海: 1
+- 上海/苏州: 1
+
+Top 10（按平均分）：
+1. 罗氏中国创新中心（CICoR） | pharma | 上海 | avg=4.60 total=23.0 | A
+2. 阿斯利康上海R&D中心 | pharma | 上海 | avg=4.60 total=23.0 | A
+3. 上海科技大学免疫化学研究所 | institute | 上海 | avg=4.60 total=23.0 | A
+4. 深圳湾实验室 | institute | 深圳 | avg=4.60 total=23.0 | A
+5. 阿斯利康北京R&D中心 | pharma | 北京 | avg=4.40 total=22.0 | A
+6. 信达生物 | biotech | 苏州 | avg=4.40 total=22.0 | A
+7. 百济神州 | biotech | 苏州/北京/上海 | avg=4.40 total=22.0 | A
+8. 中科院上海营养与健康研究所 | institute | 上海 | avg=4.40 total=22.0 | A
+9. 深圳医学科学院（SMART） | institute | 深圳 | avg=4.40 total=22.0 | A
+10. 三生国健 | biotech | 上海 | avg=4.20 total=21.0 | A

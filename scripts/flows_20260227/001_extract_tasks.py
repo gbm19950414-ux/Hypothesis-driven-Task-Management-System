@@ -91,19 +91,64 @@ def _extract_tasks(doc: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], str]:
     return [], "none"
 
 
+def _is_plan_suspended(doc: Dict[str, Any]) -> bool:
+    status = doc.get("status")
+    return isinstance(status, str) and status.strip().lower() == "suspend"
+
+
 def _extract_objectives_index(doc: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
     """
-    For execution plans: index objectives by id so we can lift due/done_if if needed.
+    Index objectives by id.
+    Supports both:
+    - execution_plan.objective
+    - top-level objective / objectives
     """
     out: Dict[str, Dict[str, Any]] = {}
+
+    candidates: List[Any] = []
+
     ep = doc.get("execution_plan")
-    if not isinstance(ep, dict):
-        return out
-    obj = ep.get("objective")
-    if isinstance(obj, list):
-        for it in obj:
-            if isinstance(it, dict) and isinstance(it.get("id"), str):
-                out[it["id"]] = it
+    if isinstance(ep, dict):
+        candidates.append(ep.get("objective"))
+        candidates.append(ep.get("objectives"))
+
+    candidates.append(doc.get("objective"))
+    candidates.append(doc.get("objectives"))
+
+    for obj in candidates:
+        if isinstance(obj, list):
+            for it in obj:
+                if isinstance(it, dict) and isinstance(it.get("id"), str):
+                    out[it["id"]] = it
+
+    return out
+
+
+def _extract_steps_index(doc: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    """
+    Index steps by id.
+    Supports both:
+    - execution_plan.step / execution_plan.steps
+    - top-level step / steps
+    """
+    out: Dict[str, Dict[str, Any]] = {}
+
+    candidates: List[Any] = []
+
+    ep = doc.get("execution_plan")
+    if isinstance(ep, dict):
+        candidates.append(ep.get("step"))
+        candidates.append(ep.get("steps"))
+
+    candidates.append(doc.get("step"))
+    candidates.append(doc.get("steps"))
+
+    for steps in candidates:
+        if isinstance(steps, list):
+            for it in steps:
+                if isinstance(it, dict) and isinstance(it.get("id"), str):
+                    out[it["id"]] = it
+
     return out
 
 
@@ -132,30 +177,41 @@ def _as_str(x: Any) -> str:
     return str(x)
 
 
-def _parse_due(due: str) -> Optional[dt.date]:
-    due = due.strip()
-    if not due:
-        return None
-    try:
-        return dt.date.fromisoformat(due)
-    except Exception:
-        return None
+def _parse_due(due: Any) -> Optional[dt.date]:
+    if isinstance(due, dt.datetime):
+        return due.date()
+    if isinstance(due, dt.date):
+        return due
+    if isinstance(due, str):
+        due = due.strip()
+        if not due:
+            return None
+        try:
+            return dt.date.fromisoformat(due)
+        except Exception:
+            return None
+    return None
 
 
 def _best_due(task: Dict[str, Any], obj_index: Dict[str, Dict[str, Any]]) -> str:
     # task.due > objective.due > ""
     due = task.get("due")
+    parsed = _parse_due(due)
+    if parsed is not None:
+        return parsed.isoformat()
     if isinstance(due, str) and due.strip():
         return due.strip()
 
     oid = task.get("objective_id")
     if isinstance(oid, str) and oid in obj_index:
         odue = obj_index[oid].get("due")
+        parsed = _parse_due(odue)
+        if parsed is not None:
+            return parsed.isoformat()
         if isinstance(odue, str) and odue.strip():
             return odue.strip()
 
     return ""
-
 
 def _best_done_if(task: Dict[str, Any], obj_index: Dict[str, Dict[str, Any]]) -> str:
     # task.done_if > objective.done_if > ""
@@ -168,6 +224,62 @@ def _best_done_if(task: Dict[str, Any], obj_index: Dict[str, Dict[str, Any]]) ->
         odi = obj_index[oid].get("done_if")
         if isinstance(odi, str) and odi.strip():
             return odi.strip()
+
+    return ""
+
+def _objective_or_step_id(task: Dict[str, Any]) -> str:
+    oid = task.get("objective_id")
+    if isinstance(oid, str) and oid.strip():
+        return oid.strip()
+    sid = task.get("step_id")
+    if isinstance(sid, str) and sid.strip():
+        return sid.strip()
+    return ""
+
+
+
+
+def _objective_or_step_due(
+    task: Dict[str, Any],
+    obj_index: Dict[str, Dict[str, Any]],
+    step_index: Dict[str, Dict[str, Any]],
+) -> str:
+    oid = task.get("objective_id")
+    if isinstance(oid, str) and oid in obj_index:
+        due = obj_index[oid].get("due")
+        parsed = _parse_due(due)
+        if parsed is not None:
+            return parsed.isoformat()
+        if isinstance(due, str) and due.strip():
+            return due.strip()
+
+    sid = task.get("step_id")
+    if isinstance(sid, str) and sid in step_index:
+        due = step_index[sid].get("due")
+        parsed = _parse_due(due)
+        if parsed is not None:
+            return parsed.isoformat()
+        if isinstance(due, str) and due.strip():
+            return due.strip()
+
+    return ""
+
+def _objective_or_step_description(
+    task: Dict[str, Any],
+    obj_index: Dict[str, Dict[str, Any]],
+    step_index: Dict[str, Dict[str, Any]],
+) -> str:
+    oid = task.get("objective_id")
+    if isinstance(oid, str) and oid in obj_index:
+        desc = obj_index[oid].get("description")
+        if isinstance(desc, str) and desc.strip():
+            return desc.strip()
+
+    sid = task.get("step_id")
+    if isinstance(sid, str) and sid in step_index:
+        desc = step_index[sid].get("description")
+        if isinstance(desc, str) and desc.strip():
+            return desc.strip()
 
     return ""
 
@@ -188,14 +300,12 @@ def _flatten_result_ref(v: Any) -> str:
 @dataclass
 class TaskRow:
     plan_name: str
-    plan_file: str
-    generator: str
     task_id: str
-    status: str
     due: str
+    objective_or_step_id: str
+    objective_or_step_due: str
+    objective_or_step_description: str
     description: str
-    objective_id: str
-    step_id: str
     condition: str
     done_if: str
     output: str
@@ -210,17 +320,16 @@ def _to_row(
     generator: str,
     task: Dict[str, Any],
     obj_index: Dict[str, Dict[str, Any]],
+    step_index: Dict[str, Dict[str, Any]],
 ) -> TaskRow:
     return TaskRow(
         plan_name=plan_name,
-        plan_file=str(plan_file),
-        generator=generator,
         task_id=_as_str(task.get("id", "")).strip(),
-        status=_normalize_status(task.get("status")),
         due=_best_due(task, obj_index),
+        objective_or_step_id=_objective_or_step_id(task),
+        objective_or_step_due=_objective_or_step_due(task, obj_index, step_index),
+        objective_or_step_description=_objective_or_step_description(task, obj_index, step_index),
         description=_as_str(task.get("description", "")).strip(),
-        objective_id=_as_str(task.get("objective_id", "")).strip(),
-        step_id=_as_str(task.get("step_id", "")).strip(),
         condition=_as_str(task.get("condition", "")).strip(),
         done_if=_best_done_if(task, obj_index),
         output=_as_str(task.get("output", "")).strip(),
@@ -230,24 +339,32 @@ def _to_row(
     )
 
 
-def _sort_key(row: TaskRow) -> Tuple[int, dt.date, str, str, str]:
-    # due empty goes last
-    due_date = _parse_due(row.due) or dt.date(9999, 12, 31)
-    due_missing = 1 if not row.due.strip() else 0
-    return (due_missing, due_date, row.status, row.plan_name, row.task_id)
+def _sort_key(row: TaskRow) -> Tuple[int, dt.date, int, dt.date, str, str, str]:
+    # objective/step_due empty goes last; then task due empty goes last
+    parent_due_date = _parse_due(row.objective_or_step_due) or dt.date(9999, 12, 31)
+    parent_due_missing = 1 if not row.objective_or_step_due.strip() else 0
+    task_due_date = _parse_due(row.due) or dt.date(9999, 12, 31)
+    task_due_missing = 1 if not row.due.strip() else 0
+    return (
+        parent_due_missing,
+        parent_due_date,
+        task_due_missing,
+        task_due_date,
+        row.plan_name,
+        row.objective_or_step_id,
+        row.task_id,
+    )
 
 
 def write_csv(out_path: Path, rows: List[TaskRow]) -> None:
     fields = [
         "plan_name",
-        "plan_file",
-        "generator",
         "task_id",
-        "status",
         "due",
+        "objective/step_id",
+        "objective/step_due",
+        "objective/step_description",
         "description",
-        "objective_id",
-        "step_id",
         "condition",
         "done_if",
         "output",
@@ -259,7 +376,23 @@ def write_csv(out_path: Path, rows: List[TaskRow]) -> None:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         for r in rows:
-            w.writerow({k: getattr(r, k) for k in fields})
+            w.writerow(
+                {
+                    "plan_name": r.plan_name,
+                    "task_id": r.task_id,
+                    "due": r.due,
+                    "objective/step_id": r.objective_or_step_id,
+                    "objective/step_due": r.objective_or_step_due,
+                    "objective/step_description": r.objective_or_step_description,
+                    "description": r.description,
+                    "condition": r.condition,
+                    "done_if": r.done_if,
+                    "output": r.output,
+                    "verdict": r.verdict,
+                    "result_ref": r.result_ref,
+                    "result_summary": r.result_summary,
+                }
+            )
 
 
 def main() -> None:
@@ -298,6 +431,8 @@ def main() -> None:
         doc = _safe_load_yaml(pf)
         if not doc:
             continue
+        if _is_plan_suspended(doc):
+            continue
 
         plan_name = _get_plan_name(doc, fallback=pf.stem)
         tasks, _loc = _extract_tasks(doc)
@@ -314,6 +449,7 @@ def main() -> None:
                     generator = gtype.strip()
 
         obj_index = _extract_objectives_index(doc)
+        step_index = _extract_steps_index(doc)
 
         task_status_map: Dict[str, str] = {}
         for task in tasks:
@@ -343,7 +479,7 @@ def main() -> None:
             if (not args.include_done) and status == "done":
                 continue
 
-            row = _to_row(plan_name, pf, generator, t, obj_index)
+            row = _to_row(plan_name, pf, generator, t, obj_index, step_index)
             if not row.task_id and not row.description:
                 continue
             rows.append(row)

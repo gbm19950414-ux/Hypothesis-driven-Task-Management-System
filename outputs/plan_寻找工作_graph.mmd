@@ -8,13 +8,13 @@ classDef done fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#666,rx:12,ry:12;
 PLAN["PLAN: 找到一份满意的工作"]:::plan
 EP["EXEC: execution"]:::plan
 PLAN --> EP
-OBJ_o1["o1<br/>due: 2026-03-09<br/>明确行业，岗位等目标细节及需求"]:::obj
+OBJ_o1["✓ o1<br/>due: 2026-03-09<br/>明确行业，岗位等目标细节及需求"]:::done
 EP --> OBJ_o1
-OBJ_o2["o2<br/>due: 2026-03-09<br/>明确自身职业发展相关三观具体内容"]:::obj
+OBJ_o2["✓ o2<br/>due: 2026-03-09<br/>明确自身职业发展相关三观具体内容"]:::done
 EP --> OBJ_o2
-OBJ_o3["o3<br/>due: 2026-03-10<br/>综合自我评估表与行业调研表，获得目标岗位列表"]:::obj
+OBJ_o3["✓ o3<br/>due: 2026-03-10<br/>综合自我评估表与行业调研表，获得目标岗位列表"]:::done
 EP --> OBJ_o3
-OBJ_o4["o4<br/>due: 2026-03-11<br/>根据目标岗位，设计针对性的求职行动方案"]:::obj
+OBJ_o4["✓ o4<br/>due: 2026-03-11<br/>根据目标岗位，设计针对性的求职行动方案"]:::done
 EP --> OBJ_o4
 OBJ_o5["o5<br/>due: 2026-03-12<br/>根据求职行动方案，准备简历与求职材料"]:::obj
 EP --> OBJ_o5
@@ -25,23 +25,40 @@ OBJ_o2 ~~~ OBJ_o3
 OBJ_o3 ~~~ OBJ_o4
 OBJ_o4 ~~~ OBJ_o5
 OBJ_o5 ~~~ OBJ_o6
-TASK_T4["T4<br/>due: 2026-03-04<br/>定义自我评估维度与结构（能力/经验/偏好/价值取向/约束），并产出自我评估模板文件"]:::task
+TASK_T4["✓ T4<br/>due: 2026-03-04<br/>定义自我评估维度与结构（能力/经验/偏好/价值取向/约束），并产出自我评估模板文件"]:::done
 OBJ_o2 --> TASK_T4
-TASK_T1["T1<br/>定义求职对齐维度：确定用于评估就业方向的字段（如工作内容、技能要求、门槛、发展路径、薪…"]:::task
+TASK_T8.5["T8.5<br/>due: 2026-03-12<br/>了解国内外药企形式，哪些药企算大药企？我想去大药企还是小药企？"]:::task
+OBJ_o5 --> TASK_T8.5
+TASK_T9["T9<br/>due: 2026-03-13<br/>参加春日招聘会"]:::task
+OBJ_o6 --> TASK_T9
+TASK_T1["✓ T1<br/>定义求职对齐维度：确定用于评估就业方向的字段（如工作内容、技能要求、门槛、发展路径、薪…"]:::done
 OBJ_o1 --> TASK_T1
-TASK_T2["T2<br/>列出 3–5 个主要就业方向清单，并将其作为调研对象填入模板"]:::task
+TASK_T2["✓ T2<br/>列出 3–5 个主要就业方向清单，并将其作为调研对象填入模板"]:::done
 OBJ_o1 --> TASK_T2
-TASK_T3["T3<br/>为每个就业方向采集至少 2 个岗位 JD，并按模板字段填入调研表（形成行业调研表 v0…"]:::task
+TASK_T3["✓ T3<br/>为每个就业方向采集至少 2 个岗位 JD，并按模板字段填入调研表（形成行业调研表 v0…"]:::done
 OBJ_o1 --> TASK_T3
-TASK_T5["T5<br/>填写自我评估模板中的事实项（经历、技能、限制条件等），形成自我评估表 v0.1"]:::task
+TASK_T5["✓ T5<br/>填写自我评估模板中的事实项（经历、技能、限制条件等），形成自我评估表 v0.1"]:::done
 OBJ_o2 --> TASK_T5
 TASK_T6["T6<br/>建立『三观持续提升』项目计划（世界观/价值观/职业选择），并定义可执行与可复盘机制"]:::task
 OBJ_o2 --> TASK_T6
+TASK_T7["T7<br/>约谈理涯王老师，再次检阅简历"]:::task
+OBJ_o5 --> TASK_T7
+TASK_T8["T8<br/>完成简历最终修正"]:::task
+OBJ_o5 --> TASK_T8
+TASK_T10["T10<br/>参加第二场邯郸招聘会"]:::task
+OBJ_o6 --> TASK_T10
 TASK_T4 ~~~ TASK_T5
 TASK_T5 ~~~ TASK_T6
+TASK_T8.5 ~~~ TASK_T7
+TASK_T7 ~~~ TASK_T8
+TASK_T9 ~~~ TASK_T10
 TASK_T1 ~~~ TASK_T2
 TASK_T2 ~~~ TASK_T3
 TASK_T2 -. depends_on .-> TASK_T1
 TASK_T3 -. depends_on .-> TASK_T2
 TASK_T5 -. depends_on .-> TASK_T4
 TASK_T6 -. depends_on .-> TASK_T4
+TASK_T8 -. depends_on .-> TASK_T7
+TASK_T8.5 -. depends_on .-> TASK_T8
+TASK_T9 -. depends_on .-> TASK_T8
+TASK_T10 -. depends_on .-> TASK_T8

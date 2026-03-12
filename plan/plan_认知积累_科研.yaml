@@ -1,3 +1,4 @@
+status: suspend
 
 desired_state:
   statement: "扩展科研理论视野，提升模型抽象能力"           # 期望的“不同于现在”的状态（可模糊，但要有方向性）

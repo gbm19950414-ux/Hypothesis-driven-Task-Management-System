@@ -12,6 +12,7 @@
   # philosophy 决定“成败由谁裁决”
   # 只能选一个作为主导，其余降级为辅助
 philosophy: constraint
+status: suspend
 
 # =========================
 # 1. 目标与现状
