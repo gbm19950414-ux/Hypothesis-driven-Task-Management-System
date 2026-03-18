@@ -153,6 +153,51 @@ tasks:
       顺便阅读一整遍论文，找到逻辑不通畅的地方，进行标注修改——可以做
       接下来
     status: done
+
+  - id: T9.1
+    objective_id: o2
+    due: 2026-03-19
+    description: "Day1：明确答辩故事线与PPT结构（scientific question、3–4个result模块、summary逻辑），列出逐页标题并选择需要展示的核心figure"
+    done_if: "完成逐页PPT标题列表与figure选择"
+    status: todo
+
+  - id: T9.2
+    objective_id: o2
+    due: 2026-03-20
+    depends_on: [T9.1]
+    description: "Day2：制作答辩PPT第一版（约25–30页），确保每个result模块结构为 Question→Experiment→Result→Conclusion"
+    done_if: "完成完整PPT第一版"
+    status: todo
+
+  - id: T9.3
+    objective_id: o2
+    depends_on: [T9.2]
+    due: 2026-03-21
+    description: "Day3：准备演讲要点并进行第一次完整计时预讲（目标25min），记录时间并根据结果删减或调整PPT"
+    done_if: "完成第一次完整计时预讲并完成一次PPT修订"
+    status: todo
+
+  - id: T9.4
+    objective_id: o2
+    due: 2026-03-23
+    depends_on: [T9.3]
+    description: "Day4（答辩当天上午）：进行第二次完整预讲与细节修正，确保时间稳定在24–25min，检查图注、标题与逻辑过渡"
+    done_if: "完成最终预讲并确认答辩版本PPT"
+    status: todo
+
+  - id: T9.5
+    objective_id: o2
+    due: 2026-03-23
+    condition: 
+    - 英文论文完成后
+    - 预审结束，结果返回后
+    description: "预审，获得预审意见指导盲审论文重构"
+    record: 
+      - 准备ppt
+      - 准备演讲稿
+      - 进行预讲，同时进行演讲稿修改
+      - 进行第二遍预讲，同时进行演讲稿修改
+    status: todo
   - id: T10
     objective_id: o2
     due: 2026-04-06
@@ -167,4 +212,4 @@ tasks:
     description: "完成墙报投稿，获得会议日程或会议手册"
     record: 
       目前已经完成投稿，接下来需要联系会议方，询问会议手册与日程什么时候能出
-    status: todo
+    status: done

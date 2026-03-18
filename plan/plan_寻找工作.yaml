@@ -88,7 +88,7 @@ objective:
     depends_on: [o4]
     description: "根据求职行动方案，准备简历与求职材料"
     done_if: "获得简历"
-    status: todo
+    status: done
   - id: o6
     due: "2026-03-13"      
     depends_on: [o5]
@@ -163,25 +163,32 @@ tasks:
     objective_id: o5
     depends_on: [T7]
     description: "完成简历最终修正"
-    status: todo
+    status: done
 
   - id: T8.5
     objective_id: o5
     depends_on: []
     due: 2026-03-12
     description: "了解国内外药企形式，哪些药企算大药企？我想去大药企还是小药企？"
+    status: done
+  - id: T8.6
+    objective_id: o5
+    depends_on: []
+    due: 
+    description: "持续更新个人规划，明确方向"
     status: todo
-
   - id: T9
     objective_id: o6
     depends_on: [T8]
     due: 2026-03-13
     description: "参加春日招聘会"
-    status: todo
+    status: done
 
   - id: T10
     objective_id: o6
     depends_on: [T8]
-    due: 
+    due: 2026-03-20
     description: "参加第二场邯郸招聘会"
     status: todo
+
+

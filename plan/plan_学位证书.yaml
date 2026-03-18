@@ -116,7 +116,8 @@ tasks:
       discution的重构
       可读性提升
       接下来整体阅读一遍，做最终校阅，结束发给老师进行校阅
-    status: todo
+    status: done
+
   - id: T2.2
     objective_id: o1
     depends_on: T2.1
@@ -125,13 +126,19 @@ tasks:
     due: 2026-03-27
     description: "根据论文生成体系缺少的证据，以及目前的时间条件，设计一次实验，补充证据，1～2周完成"
     records: 
-      设计实验
+      设计实验——完成
+      数据收集——完成
+      数据分析——todo
     status: todo
+
+
 
   - id: T2.4
     objective_id: o1
     depends_on: T2.2
-    condition: ""
+    condition: 
+      - 催促孙老师修正论文——3/23日进行
+      - 孙老师返回修改意见
     start: 2026-03-28
     due: 2026-04-03
     description: "修正好的文章，添加关键证据后，整理好所有内容，发送给导师做最终check"
