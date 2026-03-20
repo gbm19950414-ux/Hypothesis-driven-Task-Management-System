@@ -174,9 +174,13 @@ tasks:
   - id: T8.6
     objective_id: o5
     depends_on: []
-    due: 
+    due: 2026-03-22
     description: "持续更新个人规划，明确方向"
+    done_if: 完成目前最优化的个人规划与简历
+    record:
+      - 需要将 github 添加到简历中，并且上传多组学项目
     status: todo
+
   - id: T9
     objective_id: o6
     depends_on: [T8]

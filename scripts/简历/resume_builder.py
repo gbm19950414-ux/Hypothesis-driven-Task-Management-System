@@ -121,6 +121,7 @@ def normalize_resume(raw: Dict[str, Any]) -> Dict[str, Any]:
             "email": basic.get("email", ""),
             "phone": basic.get("phone", ""),
             "github": basic.get("github", ""),
+            "selected_projects": basic.get("Selected Projects", []),
             "photo": basic.get("photo", ""),
         },
         "教育经历": education,
@@ -153,6 +154,8 @@ def render_header(resume: Dict[str, Any], photo_uri: Optional[str]) -> str:
     email = basic.get("email", "")
     phone = basic.get("phone", "")
     github = basic.get("github", "")
+    selected_projects = ensure_list_of_strings(basic.get("selected_projects", []))
+    selected_projects_text = " | ".join(esc(x) for x in selected_projects)
 
     photo_html = ""
     if photo_uri:
@@ -169,6 +172,10 @@ def render_header(resume: Dict[str, Any], photo_uri: Optional[str]) -> str:
         lines.append(f"<div class='header-contact-subline nowrap'><span class='header-contact-label'>电话：</span>{esc(phone)}</div>")
     if exists(github):
         lines.append(f"<div class='header-contact-subline'><span class='header-contact-label'>GitHub：</span>{esc(github)}</div>")
+    if selected_projects:
+        lines.append(
+            f"<div class='header-contact-subline'><span class='header-contact-label'>Selected Projects：</span>{selected_projects_text}</div>"
+        )
 
     return (
         "<header class='resume-header'>"
